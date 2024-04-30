@@ -7,23 +7,19 @@
       <nz-step></nz-step>
     </nz-steps>
   </div>
+
+  <!--service-->
   @if(current == 0) {
   <app-services (eventService)="setSelectedService($event)"></app-services>
-  } @if(current == 1) {
+  }
+
+  <!--barber-->
+  @if(current == 1) {
   <app-barbers (eventBarber)="setSelectedBarber($event)"></app-barbers>
   }
 
-  <!--datepicker-->
-  <div *ngIf="current == 2">
-    <app-datepicker (clickEvent)="setSelectedDate($event)"></app-datepicker>
-  </div>
-
-  <div *ngIf="current == 3">
-    <app-userform (eventForm)="submitForm($event)"></app-userform>
-  </div>
-
-  <div *ngIf="current == 4">
-    <app-correct [calendarEvent]="calendarEvent"></app-correct>
-  </div>
+  <!--datePicker-->
+  @if(current == 2) {
+  <app-datepicker (clickEvent)="setSelectedDate($event)"></app-datepicker>
+  }
 </section>
-<!--End of Introduction-->

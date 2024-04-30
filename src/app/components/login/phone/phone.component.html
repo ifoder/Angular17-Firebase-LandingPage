@@ -10,6 +10,12 @@
       (ngSubmit)="submitForm()"
       class="login-form"
     >
+      <nz-alert
+        [hidden]="calendarEvent"
+        nzType="info"
+        nzMessage="Щоб закінчити бронювання залиште ваш номер телефону для зворотнього звязку. Або увійдіть до сайту іншим способом"
+        nzShowIcon
+      ></nz-alert>
       <nz-form-item>
         <nz-form-control nzErrorTip="Не може бути пустим">
           <nz-form-label for="name" nzSpan="22">Ім'я</nz-form-label>

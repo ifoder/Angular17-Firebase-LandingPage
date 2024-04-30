@@ -14,10 +14,11 @@ import { KadernictviAdminComponent } from './admin/components/kadernictvi/kadern
 import { BarbersAdminComponent } from './admin/components/barbers/barbers.component';
 import { DashboardAdminComponent } from './admin/components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { RegisterComponent } from './components/login/register/register.component';
 import { AuthGuardService } from './services/auth-guard.service';
-import { PhoneComponent } from './components/login/phone/phone.component';
 import { EditUserComponent } from './shared/components/user/edit/editUser.component';
+import { PhoneComponent } from './components/login/phone/phone.component';
+import { SuccessComponent } from './shared/components/success/success.component';
 
 export const routes: Routes = [
   // { path: ':language?', component: HomeComponent },
@@ -26,6 +27,7 @@ export const routes: Routes = [
   { title: 'Client', path: 'clients', component: ClientsComponent },
   { title: 'Reserve', path: 'reserve', component: ReserveComponent },
   { title: 'Reserve', path: 'reserve/:service', component: ReserveComponent },
+  { title: 'Success', path: 'success', component: SuccessComponent },
   {
     title: 'Feedback',
     path: 'feedback',
@@ -42,7 +44,7 @@ export const routes: Routes = [
     },
   },
   { title: 'Register', path: 'register', component: RegisterComponent },
-  { title: 'Phone', path: 'phone', component: PhoneComponent },
+  { path: 'phone', component: PhoneComponent },
 
   { title: 'Services', path: 'services', component: ServicesComponent },
   {

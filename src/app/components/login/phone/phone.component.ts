@@ -1,14 +1,4 @@
-import { CommonModule } from '@angular/common';
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-  ViewContainerRef,
-  ViewRef,
-  inject,
-} from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { AppCheckModule } from '@angular/fire/app-check';
 import {
   FormControl,
@@ -17,43 +7,38 @@ import {
   NonNullableFormBuilder,
   Validators,
 } from '@angular/forms';
-import { ReCaptchaV3Provider } from 'firebase/app-check';
-import {
-  PhoneAuthProvider,
-  RecaptchaVerifier,
-  multiFactor,
-  signInWithCredential,
-  updatePhoneNumber,
-  signInWithPhoneNumber,
-  updateProfile,
-} from 'firebase/auth';
-import { ReCaptchaV3Service, RecaptchaV3Module } from 'ng-recaptcha';
+
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { User } from 'src/app/shared/model/user.interface';
-import { SharedNgZorroAntdModule } from 'src/app/shared/ng-zorro.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ButtonLoginComponent } from '../button-login/button-login.component';
+import { CalendarEvent } from 'src/app/shared/model/calendarEvents';
+import { Router } from '@angular/router';
+import { DatepickerService } from 'src/app/services/datepicker.service';
 
 @Component({
   selector: 'app-phone',
   standalone: true,
-  imports: [SharedModule, AppCheckModule, ButtonLoginComponent],
+  imports: [SharedModule, ButtonLoginComponent],
   templateUrl: './phone.component.html',
   styleUrl: './phone.component.css',
 })
 export class PhoneComponent implements OnInit {
+  _auth = inject(AuthService);
+  _storage = inject(StorageService);
+  _router = inject(Router);
+  _datePicker = inject(DatepickerService);
+
+  isLoading = false;
+  hideFirstStep = false;
   buttonsLogin = ['google', 'email'];
+
   applicationVerifier!: any;
   verificationId: any;
   confirmationResult: any;
   newUser: User = {};
-
-  auth = inject(AuthService);
-  storage = inject(StorageService);
-
-  isLoading = false;
-  hideFirstStep = false;
+  calendarEvent: CalendarEvent;
 
   validateForm: FormGroup<{
     name: FormControl<string>;
@@ -62,8 +47,12 @@ export class PhoneComponent implements OnInit {
     verificationId: FormControl<string>;
   }>;
 
+  ngOnInit(): void {
+    this.calendarEvent = this._storage.get('calendarEvent');
+  }
+
   getOTP() {
-    this.applicationVerifier = this.auth.reCaptcha();
+    this.applicationVerifier = this._auth.reCaptcha();
     console.log(this.applicationVerifier);
     this.isLoading = true;
 
@@ -74,10 +63,10 @@ export class PhoneComponent implements OnInit {
       username: this.validateForm.value.name,
     };
 
-    this.auth
+    this._auth
       .signInWithPhone(this.applicationVerifier, this.newUser.phone!)
       .subscribe((response) => {
-        this.verificationId = this.storage.get('verificationId');
+        this.verificationId = this._storage.get('verificationId');
         this.confirmationResult = response;
         this.isLoading = false;
         this.hideFirstStep = true;
@@ -100,15 +89,25 @@ export class PhoneComponent implements OnInit {
       verificationId: ['', Validators.required],
     });
   }
-  ngOnInit(): void {}
 
   submitForm(): void {
     if (this.validateForm.valid) {
-      this.auth.withCredentional(
-        this.verificationId,
-        this.validateForm.value.verificationId!,
-        this.newUser
-      );
+      const res = this._auth
+        .withCredentional(
+          this.verificationId,
+          this.validateForm.value.verificationId!,
+          this.newUser
+        )
+        .then(() => {
+          console.log(this.calendarEvent);
+          this._datePicker.addCalendarEvent({
+            ...this.calendarEvent,
+            email: this._storage.getUser()?.uid,
+          } as CalendarEvent);
+          this._router.navigate(['success']);
+        });
+
+      console.log(res);
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {

@@ -31,6 +31,8 @@ import { ReCaptchaV3Provider, getToken } from 'firebase/app-check';
 import { appCheck } from 'firebase-admin';
 import { AppCheck } from '@angular/fire/app-check';
 import { adminToken } from '../shared/api';
+import { NotificationService } from './notification.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -38,6 +40,8 @@ import { adminToken } from '../shared/api';
 export class AuthService {
   firebaseAuth = inject(Auth);
   storage = inject(StorageService);
+  sms = inject(NotificationService);
+  router = inject(Router);
   user$ = user(this.firebaseAuth);
 
   currentUserSig = signal<User | null | undefined>(undefined);
@@ -126,6 +130,14 @@ export class AuthService {
           photoURL: user.providerData.at(0)?.photoURL!,
           admin: this.isAdmin(user.uid),
         });
+        this.sms.createNotification(
+          'success',
+          'Успішно!',
+          'Тепер ви можете переглянути ваші бронювання в профілі!'
+        );
+        setTimeout(() => {
+          this.router.navigate(['home']);
+        }, 1000);
       })
       .catch((error) => {
         console.log(error.code, error.message);
@@ -167,14 +179,18 @@ export class AuthService {
 
     return from(promise);
   }
-  withCredentional(verificationId: any, verificationCode: string, user: User) {
+  withCredentional(
+    verificationId: any,
+    verificationCode: string,
+    user: User
+  ): Promise<any> {
     const phoneCredential = PhoneAuthProvider.credential(
       verificationId,
       verificationCode
     );
     console.log(phoneCredential);
 
-    signInWithCredential(this.firebaseAuth, phoneCredential)
+    const promise = signInWithCredential(this.firebaseAuth, phoneCredential)
       .then((response) => {
         console.log(response);
         updateProfile(response.user, { displayName: user.username });
@@ -193,6 +209,8 @@ export class AuthService {
           window.location.reload();
         }, 5000);
       });
+
+    return promise;
   }
 
   PhoneVerified(phone: string, applicationVerifier: any) {

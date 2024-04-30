@@ -1,6 +1,6 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SharedNgZorroAntdModule } from '../../shared/ng-zorro.module';
 import { SharedModule } from '../../shared/shared.module';
 import { PRICE, TIMEPICKER } from '../../shared/data';
@@ -17,6 +17,7 @@ import { CalendarEvent } from '../../shared/model/calendarEvents';
 import { Observable } from 'rxjs';
 import { ServicesService } from 'src/app/services/services.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-reserve',
@@ -38,45 +39,26 @@ import { AuthService } from 'src/app/services/auth.service';
 export class ReserveComponent implements OnInit {
   private auth = inject(AuthService);
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  _datepickerService = inject(DatepickerService);
+  _servicesService = inject(ServicesService);
+  _storage = inject(StorageService);
+
+  calendarEvent?: CalendarEvent = {};
+  calendarEventsRef: any;
+  calendarEvents$!: Observable<CalendarEvent[]>;
+
   current = 0;
   timePicker = TIMEPICKER;
   price = PRICE;
-  calendarEvent?: CalendarEvent = {};
-  calendarEventsRef: any;
-
-  calendarEvents$!: Observable<CalendarEvent[]>;
-
-  _datepickerService = inject(DatepickerService);
-  _servicesService = inject(ServicesService);
 
   ngOnInit(): void {
     this.calendarEvents$ = this._datepickerService.getCalendarEvents();
 
     const serviceId = Number(this.route.snapshot.paramMap.get('service'));
     if (serviceId) this.current = 1;
-
-    // this._servicesService.addServicesCategory({
-    //   id: new Date().getTime().toString(),
-    //   title: 'balby',
-    // } as CategoryServices);
-
-    // this._servicesService.deleteServicesCategory('1713396408230');
   }
 
-  submitForm($event: any) {
-    this.current++;
-
-    this.calendarEvent!.firstName = $event.firstName;
-    // this.calendarEvent!.phone = $event.phoneNumber;
-    this.calendarEvent!.email = $event.email;
-    console.log(this.calendarEvent);
-
-    this._datepickerService.addCalendarEvent({
-      id: new Date().getMilliseconds().toString(),
-      ...this.calendarEvent,
-    } as CalendarEvent);
-    console.log('Created new item successfully!');
-  }
   setSelectedBarber($event: Barber) {
     this.current++;
     this.calendarEvent!.barber = $event.id;
@@ -90,13 +72,27 @@ export class ReserveComponent implements OnInit {
   }
 
   setSelectedDate($event: any) {
-    this.current++;
     this.calendarEvent!.date = $event;
-    if (this.auth.currentUserSig())
-      this.submitForm({
-        firstName: this.auth.currentUserSig()?.username,
-        email: this.auth.currentUserSig()?.email,
-      });
+    this.submitForm({
+      firstName: this.auth.currentUserSig()?.username,
+      email: this.auth.currentUserSig()?.email,
+    });
+    this._storage.save('calendarEvent', this.calendarEvent);
+
     console.log(this.calendarEvent);
+
+    this.router.navigate(['phone']);
+  }
+
+  submitForm($event: any) {
+    // this.current++;
+    // this.calendarEvent!.firstName = $event.firstName;
+    // this.calendarEvent!.email = $event.email;
+    // console.log(this.calendarEvent);
+    // this._datepickerService.addCalendarEvent({
+    //   id: new Date().getMilliseconds().toString(),
+    //   ...this.calendarEvent,
+    // } as CalendarEvent);
+    // console.log('Created new item successfully!');
   }
 }

@@ -4,10 +4,16 @@ https://mika-1deaa-web.app
 
 This project was generated with [Angular CLI] version 17.0.1 and [Firebase]
 
-## Command console
+## Deploy to firebase
 
 ng build
 firebase deploy
+
+## save to Github
+
+git add .
+git commit -m "commit name"
+git push origin name
 
 ## Github
 
