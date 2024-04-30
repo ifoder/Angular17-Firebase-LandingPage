@@ -1,4 +1,4 @@
-<div nz-row class="row2" nzJustify="center">
+<div nz-row class="row2" nzJustify="space-around" nzAlign="middle">
   <div nz-col [nzSpan]="20" class="section-heading">
     <h2 nz-col nzSpan="20" class="section-title">Вхід</h2>
   </div>
@@ -50,16 +50,15 @@
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
-      <nz-form-item
+      <nz-alert
         [hidden]="!hideFirstStep"
-        nz-col
-        nzSpan="22"
-        class="form-input"
-        >На ваш номер надійде код для підтвердження
-      </nz-form-item>
+        nzType="info"
+        nzMessage="На ваш номер надійде код для підтвердження"
+        nzShowIcon
+      ></nz-alert>
       <nz-form-item [hidden]="!hideFirstStep">
         <nz-form-control>
-          <nz-form-label nzSpan="22">Введіть код з смс тут</nz-form-label>
+          <nz-form-label>Введіть код з смс тут</nz-form-label>
           <input
             nz-input
             formControlName="verificationId"
@@ -88,6 +87,6 @@
     </form>
   </div>
   <div nz-col nzXs="20" nzSm="20" nzMd="10" nzLg="10" nzXl="10">
-    <button-login></button-login>
+    <button-login [buttons]="buttonsLogin"></button-login>
   </div>
 </div>

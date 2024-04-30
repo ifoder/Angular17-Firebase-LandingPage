@@ -38,17 +38,12 @@ import { ButtonLoginComponent } from '../button-login/button-login.component';
 @Component({
   selector: 'app-phone',
   standalone: true,
-  imports: [
-    CommonModule,
-    SharedNgZorroAntdModule,
-    SharedModule,
-    AppCheckModule,
-    ButtonLoginComponent,
-  ],
+  imports: [SharedModule, AppCheckModule, ButtonLoginComponent],
   templateUrl: './phone.component.html',
   styleUrl: './phone.component.css',
 })
 export class PhoneComponent implements OnInit {
+  buttonsLogin = ['google', 'email'];
   applicationVerifier!: any;
   verificationId: any;
   confirmationResult: any;

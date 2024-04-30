@@ -1,5 +1,6 @@
 <div class="login-form">
   <button
+    [hidden]="!currentButton('google')"
     nz-button
     class="login-form-button login-form-margin"
     (click)="signInGoogle()"
@@ -11,6 +12,7 @@
     Увійти з Google Account
   </button>
   <button
+    [hidden]="!currentButton('phone')"
     nz-button
     class="login-form-button login-form-margin"
     (click)="signInPhone()"
@@ -20,5 +22,17 @@
     <span nz-icon nzType="phone" nzTheme="outline"></span>
 
     Увійти з номером телефону
+  </button>
+  <button
+    [hidden]="!currentButton('email')"
+    nz-button
+    class="login-form-button login-form-margin"
+    (click)="signInEmail()"
+    nzSize="large"
+    nzShape="round"
+  >
+    <span nz-icon nzType="email" nzTheme="outline"></span>
+
+    Увійти з електронною почтою
   </button>
 </div>

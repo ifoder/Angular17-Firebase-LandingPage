@@ -1,19 +1,10 @@
-import { CommonModule, DatePipe, formatDate } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SharedNgZorroAntdModule } from '../../shared/ng-zorro.module';
 import { SharedModule } from '../../shared/shared.module';
-import {
-  PRICE,
-  SERVICES,
-  SERVICESCATEGORY,
-  TIMEPICKER,
-} from '../../shared/data';
-import {
-  CategoryServices,
-  Service,
-} from '../../shared/model/service.interface';
+import { PRICE, TIMEPICKER } from '../../shared/data';
+import { Service } from '../../shared/model/service.interface';
 import { BarbersComponent } from './barbers/barbers.component';
 import { Barber } from '../../shared/model/barbers.interface';
 import { ServicesComponent } from './services/services.component';
@@ -22,16 +13,9 @@ import { DatepickerService } from '../../services/datepicker.service';
 import { UserformComponent } from './userform/userform.component';
 import { CorrectComponent } from './correct/correct.component';
 import { CalendarEvent } from '../../shared/model/calendarEvents';
-import {
-  Firestore,
-  collection,
-  collectionData,
-  getDocs,
-} from '@angular/fire/firestore';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
+
 import { Observable } from 'rxjs';
 import { ServicesService } from 'src/app/services/services.service';
-import { BreadcrumpComponent } from 'src/app/global/breadcrump/breadcrump.component';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({

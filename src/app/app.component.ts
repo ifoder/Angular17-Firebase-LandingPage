@@ -12,9 +12,7 @@ import { AboutComponent } from './components/about/about.component';
 import { ClientsComponent } from './components/clients/clients.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
-import { NavComponent } from './global/nav/nav.component';
 import { ServicesComponent } from './components/services/services.component';
-import { FooterComponent } from './global/footer/footer.component';
 import { ReserveComponent } from './components/reserve/reserve.component';
 import { LanguageService } from './services/language.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -26,12 +24,13 @@ import { User } from './shared/model/user.interface';
 import { updateEmail, onAuthStateChanged } from 'firebase/auth';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { NgForm } from '@angular/forms';
+import { NavComponent } from './shared/components/nav/nav.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule,
     RouterOutlet,
     RouterLink,
     RouterLinkActive,

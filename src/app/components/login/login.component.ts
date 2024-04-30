@@ -17,17 +17,13 @@ import { ButtonLoginComponent } from './button-login/button-login.component';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [
-    CommonModule,
-    SharedModule,
-    SharedNgZorroAntdModule,
-    ButtonLoginComponent,
-  ],
+  imports: [SharedModule, ButtonLoginComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   authService = inject(AuthService);
+  buttonsLogin = ['google', 'phone'];
   form: any = {
     email: null,
     password: null,

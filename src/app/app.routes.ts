@@ -16,8 +16,8 @@ import { DashboardAdminComponent } from './admin/components/dashboard/dashboard.
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthGuardService } from './services/auth-guard.service';
-import { EditUserComponent } from './global/user/edit/editUser.component';
 import { PhoneComponent } from './components/login/phone/phone.component';
+import { EditUserComponent } from './shared/components/user/edit/editUser.component';
 
 export const routes: Routes = [
   // { path: ':language?', component: HomeComponent },
