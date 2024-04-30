@@ -1,0 +1,28 @@
+<!--Introduction-->
+<section id="about" class="introduction scrollto">
+  <div nz-row class="row2 clearfix">
+    <div nz-col nzSpan="20" class="section-heading">
+      <h3>About</h3>
+      <h2 class="section-title">{{ about.title }}</h2>
+    </div>
+    <div nz-col [nzXl]="12" [nzLg]="12" [nzMd]="8" [nzSm]="20" [nzXs]="20">
+      <h3></h3>
+      <h2 class="section-title">{{ about.description }}</h2>
+      <p class="section-subtitle">{{ about.detail }}</p>
+    </div>
+
+    <div
+      class="right-content"
+      nz-col
+      nzOffset="2"
+      [nzXl]="6"
+      [nzLg]="6"
+      [nzMd]="6"
+      [nzSm]="20"
+      [nzXs]="20"
+    >
+      <img [src]="about.image2" alt="" />
+    </div>
+  </div>
+</section>
+<!--End of Introduction-->

@@ -1,0 +1,46 @@
+<section id="pricing" class="secondary-color scrollto">
+  <div nz-row class="row2 clearfix">
+    <div nz-col class="section-heading" [nzSpan]="20">
+      <h3>Ціни</h3>
+      <h2 nz-col [nzSpan]="20" class="section-title">Прайс-лист</h2>
+    </div>
+    @for (category of visibleServices(); track $index){
+    <div nz-col [nzSpan]="20">
+      <h4>{{ category.title }}</h4>
+    </div>
+    <div
+      nz-col
+      [nzXl]="8"
+      [nzLg]="8"
+      [nzMd]="12"
+      [nzSm]="20"
+      [nzXs]="20"
+      *ngFor="let item of category.list"
+      class="service-category"
+    >
+      <nz-card
+        [nzTitle]="item.title"
+        class="service-card"
+        (click)="submitService(item)"
+        nzSize="small"
+      >
+        <p *ngIf="item.description">
+          {{ item.description }}
+        </p>
+        <div class="service-card-action">
+          <span class="card-price">{{ item.price }} Kč</span>
+          <button
+            nz-button
+            nzType="primary"
+            routerLink="/reserve/{{ item.id }}"
+            nzGhost
+          >
+            Записатися
+          </button>
+        </div>
+      </nz-card>
+    </div>
+
+    }
+  </div>
+</section>

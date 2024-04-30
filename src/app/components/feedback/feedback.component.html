@@ -1,0 +1,27 @@
+<!--Testimonials-->
+<aside id="testimonials" class="scrollto" data-enllax-ratio=".2">
+  <div nz-row class="row2 clearfix">
+    <div nz-col [nzSpan]="20" class="section-heading">
+      <h3>{{ testimonials.title }}</h3>
+      <h2 class="section-title">{{ testimonials.description }}</h2>
+    </div>
+    @for (feedback of testimonials.feedbacks; track feedback) {
+    <!--User Testimonial-->
+    <blockquote
+      nz-col
+      [nzXl]="8"
+      [nzLg]="8"
+      [nzMd]="12"
+      [nzSm]="20"
+      [nzXs]="20"
+      class="col-3 testimonial classic"
+    >
+      <img src="{{ feedback.userimage }}" alt="User" />
+      <q>{{ feedback.comments }}</q>
+      <footer>{{ feedback.name }} - Happy Customer</footer>
+    </blockquote>
+    <!-- End of Testimonial-->
+    }
+  </div>
+</aside>
+<!--End of Testimonials-->

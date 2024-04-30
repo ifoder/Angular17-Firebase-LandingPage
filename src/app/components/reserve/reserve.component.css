@@ -1,0 +1,77 @@
+nz-select {
+  margin: 0 8px 10px 0;
+  width: 120px;
+}
+.content {
+  margin: 0 auto;
+  padding-top: 90px;
+  padding-bottom: 50px;
+  text-align: start;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+[nz-form] {
+  max-width: 600px;
+  padding-top: 20px;
+}
+.steps {
+  max-width: 500px;
+  margin: 0 auto;
+  padding-bottom: 5px;
+}
+.phone-select {
+  width: 90px;
+}
+
+.register-are {
+  margin-bottom: 8px;
+}
+.steps-content {
+  max-width: 400;
+  margin-top: 16px;
+  border: 1px dashed #e9e9e9;
+  border-radius: 6px;
+  background-color: #fafafa;
+  min-height: 200px;
+  padding-top: 80px;
+}
+
+.steps-action {
+  margin-top: 24px;
+}
+
+button {
+  margin-right: 8px;
+}
+
+h3 {
+  margin-top: 20px;
+}
+
+.service-card {
+  transition: all 200ms;
+  cursor: pointer;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  margin: 10px 5px;
+}
+
+.service-card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-price {
+  color: rgba(243, 117, 28, 0.825);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.time-picker {
+  display: flex;
+}
+
+label {
+  margin: 4px;
+}

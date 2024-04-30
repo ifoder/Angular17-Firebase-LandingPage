@@ -1,0 +1,36 @@
+<section id="services" class="secondary-color scrollto">
+  <div nz-row class="row2 clearfix" style="margin: 0 auto">
+    <div nz-col [nzSpan]="22" cl ass="section-heading">
+      <h2 nz-col nzSpan="22" class="section-title">Послуги</h2>
+    </div>
+
+    @for (category of visibleServices(); track $index){
+    <h4 nz-col nzSpan="22">{{ category.title }}</h4>
+    <div
+      nz-col
+      [nzXl]="8"
+      [nzLg]="8"
+      [nzMd]="8"
+      [nzSm]="22"
+      [nzXs]="22"
+      class="service-category"
+      *ngFor="let item of category.list"
+    >
+      <nz-card
+        [nzTitle]="item.title"
+        [nzExtra]="extraTemplate"
+        nzSize="small"
+        class="service-card"
+        (click)="submitService(item)"
+      >
+        <p>
+          {{ item.description }}
+        </p>
+      </nz-card>
+      <ng-template #extraTemplate>
+        <a class="card-price">{{ item.price }} Kč</a>
+      </ng-template>
+    </div>
+    }
+  </div>
+</section>

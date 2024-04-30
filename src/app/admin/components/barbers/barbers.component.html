@@ -1,0 +1,81 @@
+<section *ngIf="barbers$ | async as barbers">
+  <h2>Послуги</h2>
+
+  <button nz-button (click)="addRow()" nzType="primary">Add</button>
+
+  <nz-table #editRowTable nzBordered [nzData]="barbers">
+    <thead>
+      <tr>
+        <th>ФІО</th>
+        <th>Аватар</th>
+        <th>Про себе</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of editRowTable.data" class="editable-row">
+        <td>
+          <div
+            class="editable-cell"
+            [hidden]="editId === data.id"
+            (click)="startEdit(data)"
+          >
+            {{ data.name }}
+          </div>
+          <input
+            [hidden]="editId !== data.id"
+            type="text"
+            nz-input
+            [(ngModel)]="data.name"
+            (blur)="stopEdit()"
+          />
+        </td>
+
+        <td>
+          <div
+            class="editable-cell"
+            [hidden]="editId === data.id"
+            (click)="startEdit(data)"
+          >
+            {{ data.avatar }}
+          </div>
+          <input
+            [hidden]="editId !== data.id"
+            type="text"
+            nz-input
+            [(ngModel)]="data.avatar"
+            (blur)="stopEdit()"
+          />
+        </td>
+
+        <td>
+          <div
+            class="editable-cell"
+            [hidden]="editId === data.id"
+            (click)="startEdit(data)"
+            cl
+          >
+            {{ data.description }}
+          </div>
+
+          <textarea
+            [hidden]="editId !== data.id"
+            nz-input
+            [(ngModel)]="data.description"
+            (blur)="stopEdit()"
+            placeholder="data.description"
+            [nzAutosize]="{ minRows: 2, maxRows: 20 }"
+          ></textarea>
+        </td>
+
+        <td>
+          <a
+            nz-popconfirm
+            nzPopconfirmTitle="Впевнені що потрібно видалити?"
+            (nzOnConfirm)="deleteRow(data.id)"
+            >Delete</a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</section>

@@ -1,0 +1,32 @@
+<div class="avatar">
+  <nz-avatar nz-dropdown nzIcon="user" [nzDropdownMenu]="menu2"></nz-avatar>
+
+  <nz-dropdown-menu #menu2="nzDropdownMenu">
+    <ul nz-menu>
+      @if (currentUser$()){
+      <li nz-menu-item routerLink="/user">
+        {{ currentUser$()?.username }}
+      </li>
+      <li nz-menu-divider></li>
+      <li nz-menu-item routerLink="/user">
+        <a routerLinkActive="active">Редагувати</a>
+      </li>
+      <!-- admin -->
+      @if (currentUser$()?.admin ){
+      <li nz-menu-item routerLink="/admin">
+        <a routerLinkActive="active">Бронювання</a>
+      </li>
+      }
+      <li nz-menu-item (click)="logout()">Вихід</li>
+      }
+
+      <!-- Login -->
+      @if (!currentUser$()){
+
+      <li nz-menu-item routerLink="/login">Вхід</li>
+      <li nz-menu-item routerLink="/register">Регістрація</li>
+
+      }
+    </ul>
+  </nz-dropdown-menu>
+</div>

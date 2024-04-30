@@ -1,0 +1,38 @@
+<section
+  id="services"
+  class="secondary-color scrollto"
+  *ngIf="barbers$ | async as barbers"
+>
+  <div nz-row class="row2 clearfix">
+    <div nz-col [nzSpan]="22" class="section-heading">
+      <h2 nz-col nzSpan="22" class="section-title">Працівники</h2>
+    </div>
+    <div
+      nz-col
+      [nzXl]="8"
+      [nzLg]="8"
+      [nzMd]="8"
+      [nzSm]="20"
+      [nzXs]="20"
+      class="service-category"
+      *ngFor="let barber of barbers"
+    >
+      <nz-card
+        nzSize="small"
+        class="service-card"
+        (click)="submitBarber(barber)"
+      >
+        <nz-card-meta
+          [nzAvatar]="avatarTemplate"
+          [nzTitle]="(barber.name ?? barber.name) || null"
+          [nzDescription]="(barber.description ?? barber.description) || null"
+        >
+        </nz-card-meta>
+      </nz-card>
+      <ng-template #avatarTemplate>
+        <nz-avatar [nzSrc]="barber.avatar"></nz-avatar>
+      </ng-template>
+      <!-- <ng-container *ngTemplateOutlet="selectedCard"></ng-container> -->
+    </div>
+  </div>
+</section>

@@ -1,0 +1,85 @@
+<div nz-row class="row2" nzJustify="center">
+  <div nz-col [nzSpan]="20" class="section-heading">
+    <h2 nz-col nzSpan="20" class="section-title">Профіль</h2>
+  </div>
+  <div nz-col [nzSpan]="12" class="big-padding-bottom big-padding-top">
+    <form
+      nz-form
+      [formGroup]="validateForm"
+      (ngSubmit)="submitForm()"
+      class="login-form"
+    >
+      <nz-form-item>
+        <nz-form-control nzHasFeedback [nzErrorTip]="emailErrorTpl">
+          <nz-input-group nzPrefixIcon="user">
+            <input
+              nz-input
+              formControlName="email"
+              placeholder="E-mail"
+              id="email"
+              type="email"
+            />
+            <ng-template #emailErrorTpl let-control>
+              @if (control.errors?.['email']) { The input is not valid E-mail! }
+              @if (control.errors?.['required']) { Please input your E-mail! }
+            </ng-template>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzHasFeedback [nzErrorTip]="passwordErrorTpl">
+          <nz-input-group nzPrefixIcon="user">
+            <input
+              nz-input
+              minlength="6"
+              maxlength="40"
+              placeholder="Password"
+              formControlName="password"
+              id="password"
+            />
+            <ng-template #passwordErrorTpl let-control>
+              @if (control.errors?.['maxlength']) { MaxLength is 40 } @if
+              (control.errors?.['minlength']) { MinLength is 6 } @if
+              (control.errors?.['required']) { Password is required }
+            </ng-template>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- <nz-form-item
+        >
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber"
+          >Номер телефону</nz-form-label
+        >
+        <nz-form-control
+          [nzSm]="14"
+          [nzXs]="24"
+          [nzValidateStatus]="validateForm.controls['phoneNumber']"
+          nzErrorTip="Please input your phone number!"
+        >
+          <input formControlName="phoneNumber" id="'phoneNumber'" nz-input />
+        </nz-form-control>
+      </nz-form-item> -->
+      <div nz-row class="login-form-margin">
+        <div nz-col [nzSpan]="12">
+          <label nz-checkbox formControlName="remember">
+            <span>Remember me</span>
+          </label>
+        </div>
+        <div nz-col [nzSpan]="12">
+          <a class="login-form-forgot">Forgot password</a>
+        </div>
+      </div>
+      <button
+        nz-button
+        class="login-form-button login-form-margin"
+        nzType="primary"
+      >
+        Продовжити
+      </button>
+
+      Or
+      <a>register now!</a>
+    </form>
+  </div>
+</div>

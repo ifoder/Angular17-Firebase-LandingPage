@@ -1,0 +1,29 @@
+<section id="pricing" class="secondary-color scrollto clearfix">
+  <div>
+    <nz-steps [nzCurrent]="current" class="steps">
+      <nz-step></nz-step>
+      <nz-step></nz-step>
+      <nz-step></nz-step>
+      <nz-step></nz-step>
+    </nz-steps>
+  </div>
+  @if(current == 0) {
+  <app-services (eventService)="setSelectedService($event)"></app-services>
+  } @if(current == 1) {
+  <app-barbers (eventBarber)="setSelectedBarber($event)"></app-barbers>
+  }
+
+  <!--datepicker-->
+  <div *ngIf="current == 2">
+    <app-datepicker (clickEvent)="setSelectedDate($event)"></app-datepicker>
+  </div>
+
+  <div *ngIf="current == 3">
+    <app-userform (eventForm)="submitForm($event)"></app-userform>
+  </div>
+
+  <div *ngIf="current == 4">
+    <app-correct [calendarEvent]="calendarEvent"></app-correct>
+  </div>
+</section>
+<!--End of Introduction-->

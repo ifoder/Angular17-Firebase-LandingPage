@@ -1,0 +1,104 @@
+<div id="header" class="nav-collapse">
+  <div class="row clearfix">
+    <div class="col-1">
+      <!--Logo-->
+      <div id="logo">
+        <div
+          nz-dropdown
+          nzTrigger="click"
+          [nzDropdownMenu]="menu"
+          id="nav-trigger"
+        >
+          <span></span>
+        </div>
+        <!-- Logo that is shown on the banner-->
+        <h2>Miko</h2>
+        <!--End of Banner Logo-->
+
+        <!--The Logo that is shown on the sticky Navigation Bar-->
+
+        <!--End of Navigation Logo -->
+      </div>
+      <!--End of Logo-->
+
+      <aside>
+        <!--Social Icons in Header-->
+        <ul class="social-icons">
+          <li>
+            <a
+              target="_blank"
+              title="Facebook"
+              href="https://www.facebook.com/username"
+            >
+              <i class="fa fa-facebook fa-1x"></i><span>Facebook</span>
+            </a>
+          </li>
+
+          <li>
+            <a
+              target="_blank"
+              title="Instagram"
+              href="http://www.instagram.com/username"
+            >
+              <i class="fa fa-instagram fa-1x"></i><span>Instagram</span>
+            </a>
+          </li>
+
+          <li>
+            <a
+              target="_blank"
+              title="Telegram"
+              href="http://www.tg.me/username"
+            >
+              <i class="fa fa-telegram fa-1x"></i><span>Telegram</span>
+            </a>
+          </li>
+          <li style="padding-left: 10px">
+            <nz-select
+              [(ngModel)]="languageFormControl"
+              nzSize="small"
+              [ngModelOptions]="{ standalone: true }"
+              (ngModelChange)="changeLanguage($event)"
+            >
+              <nz-option nzValue="uk" nzLabel="UA"></nz-option>
+              <nz-option nzValue="cs" nzLabel="CZ"></nz-option>
+              <nz-option nzValue="en" nzLabel="EN"></nz-option>
+            </nz-select>
+          </li>
+        </ul>
+        <!--End of Social Icons in Header-->
+      </aside>
+      <user-app></user-app>
+      <!--Main Navigation-->
+      <nav id="nav-main">
+        <ul>
+          <li *ngFor="let item of navItems; index as i">
+            <a
+              [routerLink]="item.link"
+              routerLinkActive="active"
+              ariaCurrentWhenActive="page"
+              >{{ "nav.item" + (i + 1) + ".title" | translate }}</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <!--End of Main Navigation-->
+
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <div id="nav-mobile">
+          <ul nz-menu>
+            <li nz-menu-item *ngFor="let item of navItems; index as i">
+              <a
+                [routerLink]="item.link"
+                routerLinkActive="active"
+                ariaCurrentWhenActive="page"
+                >{{ "nav.item" + (i + 1) + ".title" | translate }}</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nz-dropdown-menu>
+    </div>
+  </div>
+</div>
+<!--End of Header-->

@@ -1,0 +1,61 @@
+<div nz-row class="row2" nzJustify="center">
+  <div nz-col [nzSpan]="20" class="section-heading">
+    <h2 nz-col nzSpan="20" class="section-title">
+      Додайте вашу контактну інформацію
+    </h2>
+  </div>
+  <div nz-col [nzSpan]="12" class="big-padding-bottom big-padding-top">
+    <form
+      nz-form
+      [formGroup]="validateForm"
+      (ngSubmit)="submitForm()"
+      class="login-form"
+    >
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="firstName"
+          >Ім'я</nz-form-label
+        >
+        <nz-form-control
+          [nzSm]="14"
+          [nzXs]="24"
+          nzErrorTip="The input is not valid E-mail!"
+        >
+          <input nz-input formControlName="firstName" id="firstName" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="email"
+          >E-mail</nz-form-label
+        >
+        <nz-form-control
+          [nzSm]="14"
+          [nzXs]="24"
+          nzErrorTip="The input is not valid E-mail!"
+        >
+          <input nz-input formControlName="email" id="email" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- <nz-form-item
+        >
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber"
+          >Номер телефону</nz-form-label
+        >
+        <nz-form-control
+          [nzSm]="14"
+          [nzXs]="24"
+          [nzValidateStatus]="validateForm.controls['phoneNumber']"
+          nzErrorTip="Please input your phone number!"
+        >
+          <input formControlName="phoneNumber" id="'phoneNumber'" nz-input />
+        </nz-form-control>
+      </nz-form-item> -->
+
+      <nz-form-item nz-row class="register-area" nzJustify="start">
+        <nz-form-control [nzSpan]="20">
+          <button nz-button nzType="primary" nzBlock>Продовжити</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</div>

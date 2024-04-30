@@ -1,0 +1,24 @@
+<div class="login-form">
+  <button
+    nz-button
+    class="login-form-button login-form-margin"
+    (click)="signInGoogle()"
+    nzSize="large"
+    nzShape="round"
+  >
+    <span nz-icon nzType="google" nzTheme="outline"></span>
+
+    Увійти з Google Account
+  </button>
+  <button
+    nz-button
+    class="login-form-button login-form-margin"
+    (click)="signInPhone()"
+    nzSize="large"
+    nzShape="round"
+  >
+    <span nz-icon nzType="phone" nzTheme="outline"></span>
+
+    Увійти з номером телефону
+  </button>
+</div>

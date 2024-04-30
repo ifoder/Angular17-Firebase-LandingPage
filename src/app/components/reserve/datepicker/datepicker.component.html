@@ -1,0 +1,54 @@
+<section id="services" class="secondary-color scrollto">
+  <div nz-row class="row2 clearfix">
+    <div nz-col [nzSpan]="24" class="section-heading">
+      <h2 nz-col nzSpan="20">Виберіть термін</h2>
+    </div>
+    <div
+      nz-row
+      nzJustify="space-around"
+      class="row2 big-padding-top big-padding-bottom"
+    >
+      <div nz-col [nzXl]="10" [nzLg]="10" [nzMd]="20" [nzSm]="20" [nzXs]="20">
+        <nz-calendar
+          [(ngModel)]="selectedDate"
+          [nzDisabledDate]="disabledDate"
+          [nzFullscreen]="false"
+          (nzSelectChange)="selectDate($event)"
+        ></nz-calendar>
+      </div>
+      <div
+        nz-col
+        class="big-padding-top"
+        [nzXl]="10"
+        [nzLg]="10"
+        [nzMd]="20"
+        [nzSm]="20"
+        [nzXs]="20"
+      >
+        <nz-radio-group
+          [(ngModel)]="selectedTime"
+          nzSize="large"
+          (ngModelChange)="selectTime($event)"
+        >
+          @for (item of timePicker; track $index) {
+          <label style="margin: 5px 10px" nz-radio-button [nzValue]="item">{{
+            item
+          }}</label
+          >}
+        </nz-radio-group>
+      </div>
+      <div nz-col nzSpan="20" class="big-padding-top">
+        <button
+          [disabled]="!this.selectedTime"
+          nz-button
+          nzType="primary"
+          style="width: 100%"
+          nzBlock
+          (click)="clickNext($event)"
+        >
+          Продовжити
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
