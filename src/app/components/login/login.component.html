@@ -28,7 +28,7 @@
       </nz-form-item>
       <nz-form-item>
         <nz-form-control nzHasFeedback [nzErrorTip]="passwordErrorTpl">
-          <nz-input-group nzPrefixIcon="user">
+          <nz-input-group nzPrefixIcon="lock">
             <input
               nz-input
               minlength="6"
@@ -49,11 +49,11 @@
       <div nz-row class="login-form-margin">
         <div nz-col [nzSpan]="12">
           <label nz-checkbox formControlName="remember">
-            <span>Remember me</span>
+            <span> Запомнити мене</span>
           </label>
         </div>
         <div nz-col [nzSpan]="12">
-          <a class="login-form-forgot">Forgot password</a>
+          <a class="login-form-forgot">Забув пароль?</a>
         </div>
       </div>
       <button
@@ -61,11 +61,11 @@
         class="login-form-button login-form-margin"
         nzType="primary"
       >
-        Продовжити
+        Увійти
       </button>
 
-      Or
-      <a>register now!</a>
+      або
+      <a routerLink="/register">зареєструватись!</a>
     </form>
   </div>
   <div nz-col nzXs="20" nzSm="20" nzMd="10" nzLg="10" nzXl="10">

@@ -3,7 +3,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SharedNgZorroAntdModule } from 'src/app/shared/ng-zorro.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { Barber } from 'src/app/shared/model/barbers.interface';
+import { Barber } from 'src/app/models/barbers.interface';
 import { BarbersService } from 'src/app/services/barbers.service';
 
 @Component({

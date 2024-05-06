@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, ViewChild, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NZ_MODAL_DATA, NzModalRef } from 'ng-zorro-antd/modal';
-import { Barber } from 'src/app/shared/model/barbers.interface';
-import { CalendarEvent } from 'src/app/shared/model/calendarEvents';
-import { Service } from 'src/app/shared/model/service.interface';
+import { Barber } from 'src/app/models/barbers.interface';
+import { ICalendarEvent } from 'src/app/models/calendarEvents.interface';
+import { Service } from 'src/app/models/service.interface';
 import { SharedNgZorroAntdModule } from 'src/app/shared/ng-zorro.module';
 import { BarbersService } from 'src/app/services/barbers.service';
 import { ServicesService } from 'src/app/services/services.service';
@@ -29,7 +29,7 @@ export class NzModalCustomComponent implements OnInit {
   time: Date | null = null;
   disabledHour = [1, 2, 3, 4, 5, 6, 7, 8, 20, 21, 22, 23, 0];
   modalData: any = inject(NZ_MODAL_DATA);
-  nzModalData: CalendarEvent[];
+  nzModalData: ICalendarEvent[];
   _barberService = inject(BarbersService);
   _servicesService = inject(ServicesService);
   _datepickerService = inject(DatepickerService);
@@ -53,7 +53,7 @@ export class NzModalCustomComponent implements OnInit {
     };
   }
 
-  getTimelineColor(item: CalendarEvent) {
+  getTimelineColor(item: ICalendarEvent) {
     if (item.date.seconds - Date.parse(new Date().toString()) / 1000 < 0)
       return 'red';
     else return 'green';

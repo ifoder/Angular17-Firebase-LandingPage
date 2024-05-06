@@ -43,8 +43,23 @@ export const routes: Routes = [
       role: 'notLoggined',
     },
   },
-  { title: 'Register', path: 'register', component: RegisterComponent },
-  { path: 'phone', component: PhoneComponent },
+  {
+    title: 'Register',
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      role: 'notLoggined',
+    },
+  },
+  {
+    path: 'phone',
+    component: PhoneComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      role: 'notLoggined',
+    },
+  },
 
   { title: 'Services', path: 'services', component: ServicesComponent },
   {

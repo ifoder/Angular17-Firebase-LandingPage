@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../shared/model/user.interface';
+import { User } from '../models/user.interface';
 
 const USER_KEY = 'auth-user ';
 
@@ -7,11 +7,18 @@ const USER_KEY = 'auth-user ';
   providedIn: 'root',
 })
 export class StorageService {
-  constructor() {}
+  public get(key: string) {
+    const user = window.sessionStorage.getItem(key);
+    if (user) {
+      return JSON.parse(user);
+    }
 
-  clean(): void {
-    window.sessionStorage.clear();
-    window;
+    return null;
+  }
+
+  public save(key: string, json: any): void {
+    window.sessionStorage.removeItem(key);
+    window.sessionStorage.setItem(key, JSON.stringify(json));
   }
 
   public saveUser(user: User | undefined): void {
@@ -19,20 +26,8 @@ export class StorageService {
     window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
   }
 
-  public save(key: string, json: any): void {
-    window.sessionStorage.removeItem(key);
-    window.sessionStorage.setItem(key, JSON.stringify(json));
-  }
   public getUser(): User | null {
     const user = window.sessionStorage.getItem(USER_KEY);
-    if (user) {
-      return JSON.parse(user);
-    }
-
-    return null;
-  }
-  public get(key: string) {
-    const user = window.sessionStorage.getItem(key);
     if (user) {
       return JSON.parse(user);
     }
@@ -47,5 +42,14 @@ export class StorageService {
     }
 
     return false;
+  }
+
+  clean(): void {
+    window.sessionStorage.clear();
+    window;
+  }
+
+  remove(key: string) {
+    window.sessionStorage.removeItem(key);
   }
 }

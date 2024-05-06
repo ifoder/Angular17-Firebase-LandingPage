@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import {
   addDoc,
   collectionData,
@@ -12,32 +12,32 @@ import {
 } from '@angular/fire/firestore';
 import { collection, getDocs } from '@firebase/firestore';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { CalendarEvent } from '../shared/model/calendarEvents';
+import { ICalendarEvent } from '../models/calendarEvents.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DatepickerService {
+  private firestore = inject(Firestore);
+
   private calendarEventSource = new BehaviorSubject<any | null>(null);
+  calendarEventsCollection = collection(this.firestore, 'calendarEvent');
+
   calendarEvents$ = this.calendarEventSource.asObservable();
+  calendarEventsSig = signal<ICalendarEvent[]>([]);
 
-  constructor(private firestore: Firestore) {}
-
-  addCalendarEvent(calendarEvent: CalendarEvent) {
+  addCalendarEvent(calendarEvent: ICalendarEvent) {
     const calendarEventsRef = collection(this.firestore, 'calendarEvent');
     return addDoc(calendarEventsRef, calendarEvent);
   }
 
-  getCalendarEvents(filter = '') {
-    const calendarEventsRef = collection(this.firestore, 'calendarEvent');
-    let q = query(calendarEventsRef);
-    if (filter) {
-      q = query(calendarEventsRef, where('date', '==', filter));
-    }
-    return collectionData(q) as unknown as Observable<CalendarEvent[]>;
+  getCalendarEvents(): Observable<ICalendarEvent[]> {
+    return collectionData(this.calendarEventsCollection, {
+      idField: 'id',
+    }) as Observable<ICalendarEvent[]>;
   }
 
-  async updateCalendarEvent(calendarEvent: CalendarEvent) {
+  async updateCalendarEvent(calendarEvent: ICalendarEvent) {
     const calendarEventsRef = collection(this.firestore, 'calendarEvent');
     let q = query(calendarEventsRef, where('id', '==', calendarEvent.id));
     const querySnapshot = await getDocs(q);

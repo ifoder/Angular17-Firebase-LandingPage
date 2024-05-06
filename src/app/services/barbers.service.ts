@@ -12,7 +12,7 @@ import {
 } from '@angular/fire/firestore';
 import { collection, getDocs, collectionGroup } from '@firebase/firestore';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { Barber } from '../shared/model/barbers.interface';
+import { Barber } from '../models/barbers.interface';
 
 @Injectable({
   providedIn: 'root',

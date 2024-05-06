@@ -2,11 +2,11 @@ import {
   getPerformance,
   initializePerformance,
   trace
-} from "./chunk-3E4OBISZ.js";
-import "./chunk-32ORDZYP.js";
+} from "./chunk-A2FJNPTB.js";
 import {
   isPlatformBrowser
 } from "./chunk-VFCSK5OE.js";
+import "./chunk-GZKD4HDB.js";
 import {
   FirebaseApp,
   FirebaseApps,
@@ -15,10 +15,10 @@ import {
   ɵgetAllInstancesOf,
   ɵgetDefaultInstanceOf,
   ɵzoneWrap
-} from "./chunk-NHA3RNWX.js";
+} from "./chunk-PW3CNSUJ.js";
 import {
   registerVersion
-} from "./chunk-Y3X7M3H5.js";
+} from "./chunk-3XQ2Y4TU.js";
 import {
   InjectionToken,
   Injector,

@@ -11,23 +11,20 @@ import {
   Validators,
 } from '@angular/forms';
 import { SharedNgZorroAntdModule } from 'src/app/shared/ng-zorro.module';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ButtonLoginComponent } from './button-login/button-login.component';
+import { DatepickerService } from 'src/app/services/datepicker.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [SharedModule, ButtonLoginComponent],
+  imports: [SharedModule, ButtonLoginComponent, RouterLink],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   authService = inject(AuthService);
   buttonsLogin = ['google', 'phone'];
-  form: any = {
-    email: null,
-    password: null,
-  };
 
   validateForm: FormGroup<{
     email: FormControl<string>;
@@ -40,7 +37,8 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
 
   constructor(
-    private storage: StorageService,
+    private _storage: StorageService,
+    private _datePicker: DatepickerService,
     private fb: NonNullableFormBuilder,
     public router: Router
   ) {
@@ -74,27 +72,4 @@ export class LoginComponent implements OnInit {
   signInPhone() {
     this.router.navigate(['phone']);
   }
-  //   // 'recaptcha-container' is the ID of an element in the DOM.
-  // const applicationVerifier = new RecaptchaVerifier('recaptcha-container');
-  // const provider = new PhoneAuthProvider(auth);
-  // const verificationId = await provider.verifyPhoneNumber('+16505550101', applicationVerifier);
-  // // Obtain the verificationCode from the user.
-  // const phoneCredential = PhoneAuthProvider.credential(verificationId, verificationCode);
-  // await updatePhoneNumber(user, phoneCredential);
-
-  // onSubmit(): void {
-  //   const { email, password } = this.form;
-
-  //   this.authService.login(email, password).subscribe({
-  //     next: (data) => {},
-  //     error: (err: any) => {
-  //       this.errorMessage =
-  //         err.code === 'auth/invalid-email'
-  //           ? 'Invalid E-MAIL'
-  //           : ' Invalid Pass';
-
-  //       this.isLoginFailed = true;
-  //     },
-  //   });
-  // }
 }

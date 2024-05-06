@@ -17,6 +17,7 @@ import { SharedNgZorroAntdModule } from '../../ng-zorro.module';
 import { SharedModule } from '../../shared.module';
 import { LanguageService } from 'src/app/services/language.service';
 import { NAVITEMS } from '../../api';
+import { SettingsService } from 'src/app/services/setting.service';
 
 @Component({
   selector: 'app-nav',
@@ -27,6 +28,7 @@ import { NAVITEMS } from '../../api';
     RouterLinkActive,
     SharedModule,
     NgStyle,
+    TranslateModule,
     UserComponent,
   ],
   templateUrl: './nav.component.html',
@@ -35,6 +37,7 @@ import { NAVITEMS } from '../../api';
 export class NavComponent implements OnInit {
   authService = inject(AuthService);
   languageService = inject(LanguageService);
+  settings = inject(SettingsService);
 
   languageFormControl = 'uk';
 

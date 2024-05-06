@@ -9,11 +9,11 @@ import {
 import {
   InputBoolean
 } from "./chunk-A4L4YVTT.js";
-import "./chunk-PA6IY4WI.js";
 import {
   BidiModule,
   Directionality
 } from "./chunk-UA6AN7W3.js";
+import "./chunk-PA6IY4WI.js";
 import {
   NgClass,
   NgForOf,

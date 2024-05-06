@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { BARBERS, SERVICESCATEGORY } from '../../../shared/data';
-import { Barber } from '../../../shared/model/barbers.interface';
+import { Barber } from '../../../models/barbers.interface';
 import { SharedNgZorroAntdModule } from '../../../shared/ng-zorro.module';
 import { BarbersService } from 'src/app/services/barbers.service';
 import { Observable } from 'rxjs';

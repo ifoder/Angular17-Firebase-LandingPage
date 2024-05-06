@@ -1,8 +1,4 @@
 import {
-  NzIconDirective,
-  NzIconModule
-} from "./chunk-ZDRZN5Y6.js";
-import {
   fadeMotion
 } from "./chunk-BJIJDVLR.js";
 import {
@@ -10,6 +6,10 @@ import {
   NzScrollService
 } from "./chunk-4NQDKSHT.js";
 import "./chunk-WD2DFVI4.js";
+import {
+  NzIconDirective,
+  NzIconModule
+} from "./chunk-ZDRZN5Y6.js";
 import {
   NzConfigService,
   WithConfig
@@ -19,13 +19,13 @@ import {
 } from "./chunk-A4L4YVTT.js";
 import "./chunk-GRCHAQNP.js";
 import {
+  Directionality
+} from "./chunk-UA6AN7W3.js";
+import {
   Platform,
   normalizePassiveListenerOptions
 } from "./chunk-HH3PCEGU.js";
 import "./chunk-PA6IY4WI.js";
-import {
-  Directionality
-} from "./chunk-UA6AN7W3.js";
 import "./chunk-437BBMU4.js";
 import "./chunk-WK2VJHMP.js";
 import {

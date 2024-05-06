@@ -19,12 +19,12 @@ import {
   RIGHT_ARROW
 } from "./chunk-27BDGVS6.js";
 import {
+  Directionality
+} from "./chunk-UA6AN7W3.js";
+import {
   Platform
 } from "./chunk-HH3PCEGU.js";
 import "./chunk-PA6IY4WI.js";
-import {
-  Directionality
-} from "./chunk-UA6AN7W3.js";
 import {
   NgTemplateOutlet
 } from "./chunk-VFCSK5OE.js";

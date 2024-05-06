@@ -55,8 +55,10 @@
           </li>
           <li style="padding-left: 10px">
             <nz-select
-              [(ngModel)]="languageFormControl"
+              [(ngModel)]="settings.language"
               nzSize="small"
+              name="language"
+              id="language"
               [ngModelOptions]="{ standalone: true }"
               (ngModelChange)="changeLanguage($event)"
             >

@@ -2,10 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, computed, inject } from '@angular/core';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { Observable } from 'rxjs';
-import {
-  CategoryServices,
-  Service,
-} from 'src/app/shared/model/service.interface';
+import { CategoryServices, Service } from 'src/app/models/service.interface';
 import { SharedNgZorroAntdModule } from 'src/app/shared/ng-zorro.module';
 import { ServicesService } from 'src/app/services/services.service';
 import { SharedModule } from 'src/app/shared/shared.module';

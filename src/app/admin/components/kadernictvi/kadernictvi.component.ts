@@ -4,7 +4,7 @@ import { FormControl, FormGroup, FormRecord, NgForm } from '@angular/forms';
 import { Observable, timeout } from 'rxjs';
 import { SharedModule } from '../../../shared/shared.module';
 import { SharedNgZorroAntdModule } from '../../../shared/ng-zorro.module';
-import { Contacts } from 'src/app/shared/model/contacts';
+import { Contacts } from 'src/app/models/contacts';
 import { ContactsService } from 'src/app/services/contacts.service';
 
 @Component({

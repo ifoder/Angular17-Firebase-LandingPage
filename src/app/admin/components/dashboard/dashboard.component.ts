@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { NzI18nService, en_US, uk_UA } from 'ng-zorro-antd/i18n';
 import { Observable } from 'rxjs';
-import { CalendarEvent } from 'src/app/shared/model/calendarEvents';
+import { ICalendarEvent } from 'src/app/models/calendarEvents.interface';
 import { differenceInCalendarDays, setHours, format } from 'date-fns';
 import { ru, enUS, uk } from 'date-fns/locale';
 
@@ -18,7 +18,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { NzModalCustomComponent } from './modal/modal.component';
 import { BarbersService } from 'src/app/services/barbers.service';
-import { Barber } from 'src/app/shared/model/barbers.interface';
+import { Barber } from 'src/app/models/barbers.interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -33,8 +33,8 @@ import { Barber } from 'src/app/shared/model/barbers.interface';
   styleUrl: './dashboard.component.css',
 })
 export class DashboardAdminComponent implements OnInit {
-  calendarEvents$!: Observable<CalendarEvent[]>;
-  calendarEvents: CalendarEvent[] = [];
+  calendarEvents$!: Observable<ICalendarEvent[]>;
+  calendarEvents: ICalendarEvent[] = [];
   barbers: Barber[] = [];
 
   isVisible = false;
@@ -54,12 +54,17 @@ export class DashboardAdminComponent implements OnInit {
   ngOnInit(): void {
     this._barberService.getBarbers().forEach((p) => (this.barbers = [...p]));
 
-    this.calendarEvents$ = this._datepickerService.getCalendarEvents();
+    // this.calendarEvents$ = this._datepickerService.getCalendarEvents();
+    // this._datepickerService
+    //   .getCalendarEvents()
+    //   .forEach((p) => (this.calendarEvents = [...p]));
+    this.i18n.setLocale(uk_UA);
+    // this.calendarEvents$.subscribe((p) => this.getDaysOfEvents())
     this._datepickerService
       .getCalendarEvents()
-      .forEach((p) => (this.calendarEvents = [...p]));
-    this.i18n.setLocale(uk_UA);
-    this.calendarEvents$.subscribe((p) => this.getDaysOfEvents());
+      .subscribe((calendarEvents) =>
+        this._datepickerService.calendarEventsSig.set(calendarEvents)
+      );
   }
 
   getBarber(id: any) {
@@ -75,17 +80,17 @@ export class DashboardAdminComponent implements OnInit {
   getDaysOfEvents() {
     let allDaysEvent: number[] = [];
 
-    this.calendarEvents.forEach((d) => {
-      allDaysEvent.push(+format(new Date(d.date.seconds * 1000), 'dd'));
+    this._datepickerService.calendarEventsSig().forEach((d) => {
+      allDaysEvent.push(new Date(d.date).getDate());
+      console.log(d.date);
     });
     this.days = allDaysEvent.filter((e, i) => allDaysEvent.indexOf(e) === i);
   }
 
   listDataEvent(date: Date) {
-    let list = this.calendarEvents.filter(
-      (f) =>
-        format(new Date(f.date.seconds * 1000), 'dd/MM') ==
-        format(date, 'dd/MM')
+    let list = this._datepickerService.calendarEventsSig();
+    list = list.filter(
+      (f) => new Date(f.date).getDate() == new Date(date).getDate()
     );
 
     return list;
@@ -97,7 +102,7 @@ export class DashboardAdminComponent implements OnInit {
     this.isVisible = true;
   }
 
-  createComponentModal(list: CalendarEvent[], date: Date): void {
+  createComponentModal(list: ICalendarEvent[], date: Date): void {
     let title = format(date, 'EEEE, d MMMM', { locale: uk });
     const modal = this.modal.create({
       nzTitle: title,
@@ -120,7 +125,7 @@ export class DashboardAdminComponent implements OnInit {
     }, 2000);
   }
 
-  getTimelineColor(item: CalendarEvent) {
+  getTimelineColor(item: ICalendarEvent) {
     if (item.date.seconds - Date.parse(new Date().toString()) / 1000 < 0)
       return 'error';
     else return 'success';

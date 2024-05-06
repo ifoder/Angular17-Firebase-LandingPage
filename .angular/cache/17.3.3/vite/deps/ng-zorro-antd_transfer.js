@@ -1,8 +1,4 @@
 import {
-  NzCheckboxComponent,
-  NzCheckboxModule
-} from "./chunk-BMVZ3HEJ.js";
-import {
   NzEmbedEmptyComponent,
   NzEmptyModule
 } from "./chunk-YG4BL5X2.js";
@@ -10,6 +6,10 @@ import {
   NzI18nService
 } from "./chunk-RCQ74I4I.js";
 import "./chunk-7BZHZZSQ.js";
+import {
+  NzCheckboxComponent,
+  NzCheckboxModule
+} from "./chunk-BMVZ3HEJ.js";
 import "./chunk-NGEBQP6D.js";
 import {
   NzFormNoStatusService,
@@ -18,37 +18,37 @@ import {
 import {
   NzButtonComponent,
   NzButtonModule
-} from "./chunk-BMWXHJR6.js";
-import {
-  NzWaveDirective
-} from "./chunk-UZPRKK5P.js";
+} from "./chunk-T4KVFTV6.js";
 import {
   NzTransitionPatchDirective
 } from "./chunk-NPFQICFZ.js";
+import {
+  NzWaveDirective
+} from "./chunk-UZPRKK5P.js";
 import "./chunk-NA7MVJ2Z.js";
 import "./chunk-A7RVIN62.js";
 import "./chunk-I37PCP7C.js";
+import "./chunk-WD2DFVI4.js";
 import {
   NzIconDirective,
   NzIconModule
 } from "./chunk-ZDRZN5Y6.js";
-import "./chunk-WD2DFVI4.js";
 import "./chunk-7CXXYODY.js";
 import {
   InputBoolean,
   getStatusClassNames,
   toArray
 } from "./chunk-A4L4YVTT.js";
+import "./chunk-EIPRZNBF.js";
 import "./chunk-TLRFD67R.js";
-import "./chunk-27BDGVS6.js";
 import "./chunk-2CGA3OMX.js";
+import "./chunk-27BDGVS6.js";
 import "./chunk-GRCHAQNP.js";
-import "./chunk-HH3PCEGU.js";
-import "./chunk-PA6IY4WI.js";
 import {
   Directionality
 } from "./chunk-UA6AN7W3.js";
-import "./chunk-EIPRZNBF.js";
+import "./chunk-HH3PCEGU.js";
+import "./chunk-PA6IY4WI.js";
 import {
   DefaultValueAccessor,
   FormsModule,

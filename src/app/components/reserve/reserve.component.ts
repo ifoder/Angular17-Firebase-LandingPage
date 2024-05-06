@@ -4,15 +4,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SharedNgZorroAntdModule } from '../../shared/ng-zorro.module';
 import { SharedModule } from '../../shared/shared.module';
 import { PRICE, TIMEPICKER } from '../../shared/data';
-import { Service } from '../../shared/model/service.interface';
+import { Service } from '../../models/service.interface';
 import { BarbersComponent } from './barbers/barbers.component';
-import { Barber } from '../../shared/model/barbers.interface';
+import { Barber } from '../../models/barbers.interface';
 import { ServicesComponent } from './services/services.component';
 import { DatepickerComponent } from './datepicker/datepicker.component';
 import { DatepickerService } from '../../services/datepicker.service';
 import { UserformComponent } from './userform/userform.component';
 import { CorrectComponent } from './correct/correct.component';
-import { CalendarEvent } from '../../shared/model/calendarEvents';
+import { ICalendarEvent } from '../../models/calendarEvents.interface';
 
 import { Observable } from 'rxjs';
 import { ServicesService } from 'src/app/services/services.service';
@@ -44,16 +44,16 @@ export class ReserveComponent implements OnInit {
   _servicesService = inject(ServicesService);
   _storage = inject(StorageService);
 
-  calendarEvent?: CalendarEvent = {};
-  calendarEventsRef: any;
-  calendarEvents$!: Observable<CalendarEvent[]>;
+  IcalendarEvent?: ICalendarEvent = {};
+  IcalendarEventsRef: any;
+  IcalendarEvents$!: Observable<ICalendarEvent[]>;
 
   current = 0;
   timePicker = TIMEPICKER;
   price = PRICE;
 
   ngOnInit(): void {
-    this.calendarEvents$ = this._datepickerService.getCalendarEvents();
+    this.IcalendarEvents$ = this._datepickerService.getCalendarEvents();
 
     const serviceId = Number(this.route.snapshot.paramMap.get('service'));
     if (serviceId) this.current = 1;
@@ -61,38 +61,38 @@ export class ReserveComponent implements OnInit {
 
   setSelectedBarber($event: Barber) {
     this.current++;
-    this.calendarEvent!.barber = $event.id;
-    console.log(this.calendarEvent);
+    this.IcalendarEvent!.barber = $event.id;
+    console.log(this.IcalendarEvent);
   }
 
   setSelectedService($event: Service) {
     this.current++;
-    this.calendarEvent!.service = $event.id;
-    console.log(this.calendarEvent);
+    this.IcalendarEvent!.service = $event.id;
+    console.log(this.IcalendarEvent);
   }
 
   setSelectedDate($event: any) {
-    this.calendarEvent!.date = $event;
+    this.IcalendarEvent!.date = $event;
     this.submitForm({
       firstName: this.auth.currentUserSig()?.username,
       email: this.auth.currentUserSig()?.email,
     });
-    this._storage.save('calendarEvent', this.calendarEvent);
+    this._storage.save('IcalendarEvent', this.IcalendarEvent);
 
-    console.log(this.calendarEvent);
+    console.log(this.IcalendarEvent);
 
     this.router.navigate(['phone']);
   }
 
   submitForm($event: any) {
     // this.current++;
-    // this.calendarEvent!.firstName = $event.firstName;
-    // this.calendarEvent!.email = $event.email;
-    // console.log(this.calendarEvent);
-    // this._datepickerService.addCalendarEvent({
+    // this.IcalendarEvent!.firstName = $event.firstName;
+    // this.IcalendarEvent!.email = $event.email;
+    // console.log(this.IcalendarEvent);
+    // this._datepickerService.addICalendarEvent({
     //   id: new Date().getMilliseconds().toString(),
-    //   ...this.calendarEvent,
-    // } as CalendarEvent);
+    //   ...this.IcalendarEvent,
+    // } as ICalendarEvent);
     // console.log('Created new item successfully!');
   }
 }

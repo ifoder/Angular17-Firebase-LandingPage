@@ -10,10 +10,9 @@ import {
 
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
-import { User } from 'src/app/shared/model/user.interface';
+import { User } from 'src/app/models/user.interface';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ButtonLoginComponent } from '../button-login/button-login.component';
-import { CalendarEvent } from 'src/app/shared/model/calendarEvents';
 import { Router } from '@angular/router';
 import { DatepickerService } from 'src/app/services/datepicker.service';
 
@@ -38,7 +37,6 @@ export class PhoneComponent implements OnInit {
   verificationId: any;
   confirmationResult: any;
   newUser: User = {};
-  calendarEvent: CalendarEvent;
 
   validateForm: FormGroup<{
     name: FormControl<string>;
@@ -47,9 +45,7 @@ export class PhoneComponent implements OnInit {
     verificationId: FormControl<string>;
   }>;
 
-  ngOnInit(): void {
-    this.calendarEvent = this._storage.get('calendarEvent');
-  }
+  ngOnInit(): void {}
 
   getOTP() {
     this.applicationVerifier = this._auth.reCaptcha();
@@ -99,12 +95,7 @@ export class PhoneComponent implements OnInit {
           this.newUser
         )
         .then(() => {
-          console.log(this.calendarEvent);
-          this._datePicker.addCalendarEvent({
-            ...this.calendarEvent,
-            email: this._storage.getUser()?.uid,
-          } as CalendarEvent);
-          this._router.navigate(['success']);
+          this._router.navigate(['home']);
         });
 
       console.log(res);

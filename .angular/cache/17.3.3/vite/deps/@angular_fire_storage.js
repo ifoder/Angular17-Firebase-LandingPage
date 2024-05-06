@@ -1,8 +1,8 @@
 import {
   AuthInstances
-} from "./chunk-EPB7XAAE.js";
+} from "./chunk-ISKMVW3N.js";
 import "./chunk-JQJXKPM6.js";
-import "./chunk-D3UCH3NQ.js";
+import "./chunk-IDUKWBKV.js";
 import {
   FirebaseApp,
   FirebaseApps,
@@ -12,7 +12,7 @@ import {
   ɵgetAllInstancesOf,
   ɵgetDefaultInstanceOf,
   ɵzoneWrap
-} from "./chunk-NHA3RNWX.js";
+} from "./chunk-PW3CNSUJ.js";
 import {
   Component,
   FirebaseError,
@@ -24,7 +24,7 @@ import {
   getDefaultEmulatorHostnameAndPort,
   getModularInstance,
   registerVersion
-} from "./chunk-Y3X7M3H5.js";
+} from "./chunk-3XQ2Y4TU.js";
 import {
   InjectionToken,
   Injector,

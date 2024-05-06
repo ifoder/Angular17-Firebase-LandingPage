@@ -20,12 +20,15 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { SharedModule } from './shared/shared.module';
 import { StorageService } from './services/storage.service';
 import { AuthService } from './services/auth.service';
-import { User } from './shared/model/user.interface';
+import { User } from './models/user.interface';
 import { updateEmail, onAuthStateChanged } from 'firebase/auth';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { NgForm } from '@angular/forms';
 import { NavComponent } from './shared/components/nav/nav.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
+import { DatepickerService } from './services/datepicker.service';
+import { ICalendarEvent } from './models/calendarEvents.interface';
+import { NotificationService } from './services/notification.service';
 
 @Component({
   selector: 'app-root',
@@ -54,11 +57,27 @@ export class AppComponent implements OnInit {
   private authService = inject(AuthService);
   private router = inject(Router);
   private storage = inject(StorageService);
+  private sms = inject(NotificationService);
+  private datePicker = inject(DatepickerService);
   showLayoutTopBottom = signal<boolean>(true);
+
+  calendarEvet: ICalendarEvent;
 
   ngOnInit(): void {
     this.languageService.initLanguage();
 
+    this.ifAuthUser();
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        if (event.url.substring(0, 6) == '/admin') {
+          this.showLayoutTopBottom.set(false);
+        }
+      }
+    });
+  }
+
+  ifAuthUser() {
     this.authService.user$.subscribe((user) => {
       let currentUser: User = new User();
       if (user) {
@@ -75,24 +94,36 @@ export class AppComponent implements OnInit {
           email: user.email!,
           username: user.displayName!,
           uid: user.uid,
-          admin: this.authService.isAdmin(user.uid),
+          admin: this.authService.isAdmin(user.email!),
           phone: user.phoneNumber!,
           photoURL: user.photoURL!,
         };
         this.authService.currentUserSig.set(currentUser);
+        this.ifStorageReservace();
       } else {
         this.authService.currentUserSig.set(null);
         this.storage.clean();
       }
       console.log(this.authService.currentUserSig());
     });
+  }
 
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        if (event.url.substring(0, 6) == '/admin') {
-          this.showLayoutTopBottom.set(false);
-        }
-      }
-    });
+  ifStorageReservace() {
+    if (this.storage.get('calendarEvent') && this.authService.isLoggedIn()) {
+      this.datePicker.addCalendarEvent({
+        ...this.storage.get('calendarEvent'),
+        user: this.storage.getUser(),
+      } as ICalendarEvent);
+      this.storage.remove('calendarEvent');
+      this.sms.createNotification(
+        'success',
+        'Послуга зарезервована!',
+        'Ви можете переглянути ваші бронювання в профілі!'
+      );
+      setTimeout(() => {
+        this.router.navigate(['home']);
+      }, 1000);
+      this.router.navigate(['home']);
+    }
   }
 }

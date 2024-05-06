@@ -8,7 +8,7 @@ import { toNumber } from 'ng-zorro-antd/core/util';
 import { DatepickerService } from '../../../services/datepicker.service';
 import { NzI18nService, en_US, uk_UA } from 'ng-zorro-antd/i18n';
 import { Observable, timestamp } from 'rxjs';
-import { CalendarEvent } from 'src/app/shared/model/calendarEvents';
+import { ICalendarEvent } from 'src/app/models/calendarEvents.interface';
 
 // Sun Mar 31 2024 14:00:00 GMT+0200 (Центральная Европа, летнее время)'
 @Component({
@@ -23,9 +23,9 @@ export class DatepickerComponent implements OnInit {
   @Output() timePickEvent = new EventEmitter();
   @Output() clickEvent = new EventEmitter();
 
-  calendarEvents$!: Observable<CalendarEvent[]>;
+  calendarEvents$!: Observable<ICalendarEvent[]>;
 
-  calendarEvents: CalendarEvent[] = [];
+  calendarEvents: ICalendarEvent[] = [];
   selectedTime: any;
   selectedDate: Date = new Date();
   timePicker = TIMEPICKER;
@@ -48,7 +48,7 @@ export class DatepickerComponent implements OnInit {
     //   return format(current, 'dd/MM') == format(new Date(g.date!), 'dd/MM');
     // });
 
-    let dayPicked: CalendarEvent[] = [];
+    let dayPicked: ICalendarEvent[] = [];
     this.calendarEvents.forEach((g) => {
       if (
         format(current, 'dd/MM') ==

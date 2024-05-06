@@ -11,11 +11,11 @@ import {
   NzOutletModule,
   NzStringTemplateOutletDirective
 } from "./chunk-I37PCP7C.js";
+import "./chunk-WD2DFVI4.js";
 import {
   NzIconDirective,
   NzIconModule
 } from "./chunk-ZDRZN5Y6.js";
-import "./chunk-WD2DFVI4.js";
 import {
   NzConfigService,
   WithConfig
@@ -31,11 +31,11 @@ import {
   SPACE
 } from "./chunk-27BDGVS6.js";
 import "./chunk-GRCHAQNP.js";
-import "./chunk-HH3PCEGU.js";
-import "./chunk-PA6IY4WI.js";
 import {
   Directionality
 } from "./chunk-UA6AN7W3.js";
+import "./chunk-HH3PCEGU.js";
+import "./chunk-PA6IY4WI.js";
 import {
   NG_VALUE_ACCESSOR
 } from "./chunk-M6FD3VIN.js";

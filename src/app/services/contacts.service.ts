@@ -12,7 +12,7 @@ import {
 } from '@angular/fire/firestore';
 import { collection, getDocs, collectionGroup } from '@firebase/firestore';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { Contacts } from '../shared/model/contacts';
+import { Contacts } from '../models/contacts';
 
 @Injectable({
   providedIn: 'root',

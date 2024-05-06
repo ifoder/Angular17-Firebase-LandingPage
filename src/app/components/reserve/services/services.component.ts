@@ -8,10 +8,7 @@ import {
   inject,
 } from '@angular/core';
 import { PRICE, SERVICES, SERVICESCATEGORY } from '../../../shared/data';
-import {
-  CategoryServices,
-  Service,
-} from '../../../shared/model/service.interface';
+import { CategoryServices, Service } from '../../../models/service.interface';
 import { SharedNgZorroAntdModule } from '../../../shared/ng-zorro.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ServicesService } from 'src/app/services/services.service';

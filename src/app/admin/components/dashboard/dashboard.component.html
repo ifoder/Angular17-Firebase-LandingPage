@@ -1,17 +1,15 @@
-<section *ngIf="calendarEvents$ | async as dateEvents">
-  <nz-calendar>
-    <ul *nzDateCell="let date" class="events" (click)="showModal(date)">
-      <ng-container [ngSwitch]="date.getDate()">
-        @for (course of days; track course) {
-        <ng-container *ngSwitchCase="course">
-          <li *ngFor="let item of listDataEvent(date)">
-            <nz-badge [nzStatus]="getTimelineColor(item)"
-              >{{ item.date.seconds * 1000 | date : "H:mm" }} -
-              {{ getBarber(item.barber)?.name }}</nz-badge
-            >
-          </li> </ng-container
-        >}
-      </ng-container>
-    </ul>
-  </nz-calendar>
-</section>
+<nz-calendar>
+  <ul *nzDateCell="let date" class="events" (click)="showModal(date)">
+    <ng-container [ngSwitch]="date.getDate()">
+      @for (course of days; track course) {
+      <ng-container *ngSwitchCase="course">
+        <li *ngFor="let item of listDataEvent(date)">
+          <nz-badge [nzStatus]="getTimelineColor(item)"
+            >{{ item.date | date : "H:mm" }} -
+            {{ getBarber(item.barber)?.name }}</nz-badge
+          >
+        </li> </ng-container
+      >}
+    </ng-container>
+  </ul>
+</nz-calendar>

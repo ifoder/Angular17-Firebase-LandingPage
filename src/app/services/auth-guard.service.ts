@@ -30,7 +30,6 @@ export class AuthGuardService {
       route.data.role == 'notLoggined' &&
       this.authService.isLoggedIn() == true
     ) {
-      window.alert('Access Denied, for notLoggined');
       this.router.navigate(['home']);
     }
 
@@ -38,12 +37,10 @@ export class AuthGuardService {
       this.authService.isLoggedIn() !== true &&
       route.data.role !== 'notLoggined'
     ) {
-      window.alert('Access Denied, login ');
       this.router.navigate(['login']);
     }
 
     if (route.data.role == 'admin' && !this.authService.isAdmin()) {
-      window.alert('Access Denied, dont have permission');
       this.router.navigate(['/home']);
     }
     return true;

@@ -3,6 +3,7 @@ import {
   DatePipe,
   NgClass,
   NgFor,
+  NgIf,
   NgStyle,
 } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -21,13 +22,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 const EXPORT = [
-  CommonModule,
-
   FormsModule,
   ReactiveFormsModule,
   SharedNgZorroAntdModule,
   TranslateModule,
-
+  NgIf,
   NgFor,
   NgForm,
   NgStyle,

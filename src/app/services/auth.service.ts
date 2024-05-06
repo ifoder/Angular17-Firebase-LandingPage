@@ -25,7 +25,7 @@ import {
   signInWithCredential,
   ApplicationVerifier,
 } from 'firebase/auth';
-import { User } from '../shared/model/user.interface';
+import { User } from '../models/user.interface';
 import { StorageService } from './storage.service';
 import { ReCaptchaV3Provider, getToken } from 'firebase/app-check';
 import { appCheck } from 'firebase-admin';
@@ -46,10 +46,11 @@ export class AuthService {
 
   currentUserSig = signal<User | null | undefined>(undefined);
 
-  isAdmin(uid?: string) {
-    if (!uid) uid = this.storage.getUser()?.uid;
+  isAdmin(email?: string) {
+    if (!email) email = this.storage.getUser()?.email;
+    console.log(email);
 
-    return adminToken.includes(uid!);
+    return adminToken.includes(email!);
   }
 
   isLoggedIn(): boolean {
@@ -69,6 +70,15 @@ export class AuthService {
           username: response.user.displayName!,
           email: response.user.email!,
         }) as User | undefined;
+
+        this.sms.createNotification(
+          'success',
+          'Успішно!',
+          'Тепер ви можете переглянути ваші бронювання в профілі!'
+        );
+        setTimeout(() => {
+          this.router.navigate(['home']);
+        }, 1000);
       })
       .catch((error) => {
         console.log(error.code, error.message);
@@ -111,6 +121,11 @@ export class AuthService {
   logout(): Observable<void> {
     const promise = signOut(this.firebaseAuth);
     this.storage.clean();
+
+    this.sms.createNotification('success', 'Успішно!', 'Ви вийшли з профілю!');
+    setTimeout(() => {
+      this.router.navigate(['home']);
+    }, 1000);
     return from(promise);
   }
 
@@ -201,6 +216,15 @@ export class AuthService {
           phone: user.phone,
           admin: this.isAdmin(response.user.uid),
         });
+
+        this.sms.createNotification(
+          'success',
+          'Успішно!',
+          'Тепер ви можете переглянути ваші бронювання в профілі!'
+        );
+        setTimeout(() => {
+          this.router.navigate(['home']);
+        }, 1000);
       })
       .catch((error) => {
         console.log(error.code, error.message);

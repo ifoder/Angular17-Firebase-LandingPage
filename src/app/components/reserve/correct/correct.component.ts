@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { CalendarEvent } from 'src/app/shared/model/calendarEvents';
+import { ICalendarEvent } from 'src/app/models/calendarEvents.interface';
 import { SharedNgZorroAntdModule } from 'src/app/shared/ng-zorro.module';
 
 @Component({
@@ -12,5 +12,5 @@ import { SharedNgZorroAntdModule } from 'src/app/shared/ng-zorro.module';
   styleUrl: './correct.component.css',
 })
 export class CorrectComponent {
-  @Input() calendarEvent?: CalendarEvent;
+  @Input() calendarEvent?: ICalendarEvent;
 }
