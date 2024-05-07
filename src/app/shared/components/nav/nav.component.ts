@@ -39,5 +39,6 @@ export class NavComponent implements OnInit {
 
   changeLanguage($event: any) {
     // this.languageService.changeLanguage($event);
+    this.settings.save();
   }
 }

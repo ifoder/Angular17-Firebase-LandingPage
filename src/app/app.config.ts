@@ -35,7 +35,7 @@ import { getAuth } from 'firebase/auth';
 registerLocaleData(localeUk);
 
 function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, 'i18n', '.ts');
 }
 
 const I18N_CONFIG = {
@@ -73,6 +73,6 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideHttpClient(),
 
-    //  importProvidersFrom(TranslateModule.forRoot(I18N_CONFIG)),
+    importProvidersFrom(TranslateModule.forRoot()),
   ],
 };

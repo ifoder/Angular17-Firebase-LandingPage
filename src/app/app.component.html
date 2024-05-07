@@ -1,10 +1,9 @@
-<nz-layout>
+<nz-layout *ngIf="this.translationsService.translationsDataSig()">
   <nz-header *ngIf="showLayoutTopBottom()" style="background: none !important"
     ><app-nav></app-nav
   ></nz-header>
-  <nz-content
-    ><router-outlet></router-outlet>
-    </nz-content
-  >
+  <nz-content>
+    <router-outlet></router-outlet>
+  </nz-content>
   <nz-footer *ngIf="showLayoutTopBottom()"><app-footer></app-footer></nz-footer>
 </nz-layout>

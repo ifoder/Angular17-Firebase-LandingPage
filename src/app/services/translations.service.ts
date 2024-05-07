@@ -9,24 +9,22 @@ export class TranslationsService {
   private firestore = inject(Firestore);
   translationsCollection = collection(this.firestore, 'translations');
 
-  translationsDataSig = signal<TranslationData[]>([]);
+  translationsDataSig = signal<any | null | undefined>(undefined);
 
   // add(data: TranslationData) {
   //   const translation: Translation = { [data.key]: data.value };
   //   return this.db.setDocument('translations', data.lang, translation);
   // }
 
-  getAll(lang?: string): Observable<TranslationData[]> {
-    return collectionData(this.translationsCollection, {
-      idField: 'id',
-    }).pipe(
+  getAll(lang?: string): Observable<any> {
+    return collectionData(this.translationsCollection).pipe(
       map((translations: TranslationData[]) => {
         //console.log(translations);
-        const allTranslations: any = [];
+        const allTranslations: any = {};
         translations.forEach((translations: TranslationData) => {
-          console.log(translations);
+          // console.log(translations);
           if (!allTranslations[translations.lang])
-            allTranslations[translations.lang] = [];
+            allTranslations[translations.lang] = {};
 
           allTranslations[translations.lang] = {
             ...allTranslations[translations.lang],
@@ -35,7 +33,7 @@ export class TranslationsService {
         });
         return allTranslations;
       })
-    ) as Observable<TranslationData[]>;
+    ) as Observable<any>;
   }
 
   // getAll() {

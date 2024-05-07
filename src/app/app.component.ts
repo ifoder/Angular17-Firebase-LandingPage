@@ -1,5 +1,5 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import {
   ActivatedRoute,
   NavigationEnd,
@@ -14,16 +14,14 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { ServicesComponent } from './components/services/services.component';
 import { ReserveComponent } from './components/reserve/reserve.component';
-import { LanguageService } from './services/language.service';
-import { TranslateService } from '@ngx-translate/core';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { SharedModule } from './shared/shared.module';
 import { StorageService } from './services/storage.service';
 import { AuthService } from './services/auth.service';
 import { User } from './models/user.interface';
 import { updateEmail, onAuthStateChanged } from 'firebase/auth';
-import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { NgForm } from '@angular/forms';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { NavComponent } from './shared/components/nav/nav.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { DatepickerService } from './services/datepicker.service';
@@ -31,6 +29,7 @@ import { ICalendarEvent } from './models/calendarEvents.interface';
 import { NotificationService } from './services/notification.service';
 import { TranslationsService } from './services/translations.service';
 import { I18nService } from './services/i18n.services';
+import { TranslatePipe } from './pipes/translate.pipe';
 
 @Component({
   selector: 'app-root',
@@ -51,6 +50,8 @@ import { I18nService } from './services/i18n.services';
     FooterComponent,
     NzLayoutModule,
     SharedModule,
+    TranslatePipe,
+    AsyncPipe,
   ],
   templateUrl: './app.component.html',
 })
@@ -108,7 +109,7 @@ export class AppComponent implements OnInit {
         this.authService.currentUserSig.set(null);
         this.storage.clean();
       }
-      console.log(this.authService.currentUserSig());
+      // console.log(this.authService.currentUserSig());
     });
   }
 
@@ -134,7 +135,7 @@ export class AppComponent implements OnInit {
   getTranslations() {
     this.translationsService.getAll().subscribe((translations) => {
       this.translationsService.translationsDataSig.set(translations);
-      console.log(translations);
+      console.log(translations['en']);
     });
   }
 }

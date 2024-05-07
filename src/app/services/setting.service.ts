@@ -25,14 +25,14 @@ export class SettingsService implements Settings {
           isRemovable: false,
         },
         {
-          label: 'French',
-          key: 'fr',
+          label: 'Ukraine',
+          key: 'ua',
           isActive: true,
           isRemovable: false,
         },
         {
-          label: 'Arabic',
-          key: 'ar',
+          label: 'Czech',
+          key: 'cs',
           isActive: true,
           isRemovable: false,
         },

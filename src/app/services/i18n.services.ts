@@ -1,19 +1,16 @@
-import { Injectable, computed } from '@angular/core';
+import { Injectable, OnInit, computed, signal } from '@angular/core';
 import { en } from '../i18n/en';
 import { cs } from '../i18n/cs';
 import { ua } from '../i18n/ua';
 import { SettingsService } from './setting.service';
 import { TranslationsService } from './translations.service';
+import { Translation, TranslationData } from '../models/translations.model';
 
 @Injectable({ providedIn: 'root' })
-export class I18nService {
+export class I18nService implements OnInit {
   private lang: string = 'en';
-  trans: any;
-  private translations: any = {
-    en: en,
-    cs: cs,
-    ua: ua,
-  };
+  trans = computed(() => this.translate.translationsDataSig());
+  translations: Translation = {};
 
   constructor(
     private settings: SettingsService,
@@ -21,10 +18,12 @@ export class I18nService {
   ) {
     // Set language
     if (this.settings.language) {
+      console.log(this.settings);
+
       this.setLanguage(this.settings.language);
     }
   }
-
+  ngOnInit(): void {}
   setLanguage(lang: string): void {
     this.lang = lang;
   }
@@ -34,8 +33,11 @@ export class I18nService {
   }
 
   get(key: string, substitutions?: { [key: string]: string }): string {
-    return this.translations[this.lang][key]
-      ? this.replace(this.translations[this.lang][key], substitutions)
+    return this.translate.translationsDataSig()[this.lang][key]
+      ? this.replace(
+          this.translate.translationsDataSig()[this.lang][key],
+          substitutions
+        )
       : key;
   }
 
