@@ -29,6 +29,8 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { DatepickerService } from './services/datepicker.service';
 import { ICalendarEvent } from './models/calendarEvents.interface';
 import { NotificationService } from './services/notification.service';
+import { TranslationsService } from './services/translations.service';
+import { I18nService } from './services/i18n.services';
 
 @Component({
   selector: 'app-root',
@@ -53,19 +55,21 @@ import { NotificationService } from './services/notification.service';
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-  private languageService = inject(LanguageService);
+  // private languageService = inject(LanguageService);
   private authService = inject(AuthService);
   private router = inject(Router);
   private storage = inject(StorageService);
   private sms = inject(NotificationService);
   private datePicker = inject(DatepickerService);
+  translationsService = inject(TranslationsService);
+  i18n = inject(I18nService);
   showLayoutTopBottom = signal<boolean>(true);
 
   calendarEvet: ICalendarEvent;
 
   ngOnInit(): void {
-    this.languageService.initLanguage();
-
+    // this.languageService.initLanguage();
+    this.getTranslations();
     this.ifAuthUser();
 
     this.router.events.subscribe((event) => {
@@ -125,5 +129,12 @@ export class AppComponent implements OnInit {
       }, 1000);
       this.router.navigate(['home']);
     }
+  }
+
+  getTranslations() {
+    this.translationsService.getAll().subscribe((translations) => {
+      this.translationsService.translationsDataSig.set(translations);
+      console.log(translations);
+    });
   }
 }

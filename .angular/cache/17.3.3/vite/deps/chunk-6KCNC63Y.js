@@ -1,19 +1,19 @@
 import {
   NzI18nService
-} from "./chunk-RCQ74I4I.js";
+} from "./chunk-WQY2S64R.js";
 import {
   NzOutletModule,
   NzStringTemplateOutletDirective
 } from "./chunk-I37PCP7C.js";
-import {
-  NzConfigService
-} from "./chunk-7CXXYODY.js";
 import {
   CdkPortalOutlet,
   ComponentPortal,
   PortalModule,
   TemplatePortal
 } from "./chunk-2CGA3OMX.js";
+import {
+  NzConfigService
+} from "./chunk-7CXXYODY.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -667,4 +667,4 @@ export {
   NzEmbedEmptyComponent,
   NzEmptyModule
 };
-//# sourceMappingURL=chunk-YG4BL5X2.js.map
+//# sourceMappingURL=chunk-6KCNC63Y.js.map

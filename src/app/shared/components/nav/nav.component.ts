@@ -2,22 +2,14 @@ import { CommonModule, NgClass, NgFor, NgStyle } from '@angular/common';
 import { Component, Input, OnInit, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import {
-  FormControl,
-  FormsModule,
-  NgModel,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+
 import { AuthService } from 'src/app/services/auth.service';
-import { NzAvatarModule } from 'ng-zorro-antd/avatar';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import { UserComponent } from '../user/user.component';
-import { SharedNgZorroAntdModule } from '../../ng-zorro.module';
 import { SharedModule } from '../../shared.module';
-import { LanguageService } from 'src/app/services/language.service';
 import { NAVITEMS } from '../../api';
 import { SettingsService } from 'src/app/services/setting.service';
+import { TranslatePipe } from 'src/app/pipes/translate.pipe';
+import { TranslationsService } from 'src/app/services/translations.service';
 
 @Component({
   selector: 'app-nav',
@@ -28,7 +20,7 @@ import { SettingsService } from 'src/app/services/setting.service';
     RouterLinkActive,
     SharedModule,
     NgStyle,
-    TranslateModule,
+    TranslatePipe,
     UserComponent,
   ],
   templateUrl: './nav.component.html',
@@ -36,7 +28,7 @@ import { SettingsService } from 'src/app/services/setting.service';
 })
 export class NavComponent implements OnInit {
   authService = inject(AuthService);
-  languageService = inject(LanguageService);
+  translationService = inject(TranslationsService);
   settings = inject(SettingsService);
 
   languageFormControl = 'uk';
@@ -46,6 +38,6 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {}
 
   changeLanguage($event: any) {
-    this.languageService.changeLanguage($event);
+    // this.languageService.changeLanguage($event);
   }
 }

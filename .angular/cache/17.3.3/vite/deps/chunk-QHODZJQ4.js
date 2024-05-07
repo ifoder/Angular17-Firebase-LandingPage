@@ -17,6 +17,14 @@ import {
   NzIconModule
 } from "./chunk-ZDRZN5Y6.js";
 import {
+  CdkFixedSizeVirtualScroll,
+  CdkVirtualForOf,
+  CdkVirtualScrollViewport
+} from "./chunk-SOPZD4MF.js";
+import {
+  NG_VALUE_ACCESSOR
+} from "./chunk-M6FD3VIN.js";
+import {
   NzConfigService,
   WithConfig
 } from "./chunk-7CXXYODY.js";
@@ -24,16 +32,8 @@ import {
   InputBoolean
 } from "./chunk-A4L4YVTT.js";
 import {
-  CdkFixedSizeVirtualScroll,
-  CdkVirtualForOf,
-  CdkVirtualScrollViewport
-} from "./chunk-GWWQI25Q.js";
-import {
   Directionality
 } from "./chunk-UA6AN7W3.js";
-import {
-  NG_VALUE_ACCESSOR
-} from "./chunk-M6FD3VIN.js";
 import {
   NgForOf,
   NgIf,
@@ -3264,4 +3264,4 @@ export {
   NzTreeComponent,
   NzTreeModule
 };
-//# sourceMappingURL=chunk-JOBENSX5.js.map
+//# sourceMappingURL=chunk-QHODZJQ4.js.map

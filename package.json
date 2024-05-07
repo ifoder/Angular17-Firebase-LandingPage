@@ -1,12 +1,11 @@
 {
-  "name": "website",
-  "version": "0.0.0",
+  "name": "miko",
+  "version": "0.1.2",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+   
+    "serve": "ng serve",
+    "build": "ng build", 
+    "deploy": "firebase deploy"
   },
   "private": true,
   "dependencies": {

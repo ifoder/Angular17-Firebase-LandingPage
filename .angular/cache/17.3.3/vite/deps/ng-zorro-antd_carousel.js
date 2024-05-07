@@ -1,4 +1,8 @@
 import {
+  LEFT_ARROW,
+  RIGHT_ARROW
+} from "./chunk-27BDGVS6.js";
+import {
   NzResizeObserver
 } from "./chunk-YIVWQ6UJ.js";
 import {
@@ -15,15 +19,11 @@ import {
   InputNumber
 } from "./chunk-A4L4YVTT.js";
 import {
-  LEFT_ARROW,
-  RIGHT_ARROW
-} from "./chunk-27BDGVS6.js";
+  Platform
+} from "./chunk-HH3PCEGU.js";
 import {
   Directionality
 } from "./chunk-UA6AN7W3.js";
-import {
-  Platform
-} from "./chunk-HH3PCEGU.js";
 import "./chunk-PA6IY4WI.js";
 import {
   NgTemplateOutlet

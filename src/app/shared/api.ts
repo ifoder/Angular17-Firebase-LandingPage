@@ -7,7 +7,7 @@ export const GOOGLE_MAPS = {
 export const adminToken = ['leha.kardan2016@gmail.com'];
 
 export const NAVITEMS = [
-  { title: 'Додому', link: '/home' },
+  { title: 'Home', link: '/home' },
   { title: 'Про нас', link: '/about' },
   { title: 'Галерея', link: '/gallery' },
   { title: 'Відгуки', link: '/feedback' },

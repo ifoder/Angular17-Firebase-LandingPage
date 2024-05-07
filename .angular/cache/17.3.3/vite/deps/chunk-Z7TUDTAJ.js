@@ -4,7 +4,7 @@ import {
   NzOverlayModule,
   POSITION_MAP,
   getPlacementName
-} from "./chunk-T5XCZF5M.js";
+} from "./chunk-OR3XDGBB.js";
 import {
   NzNoAnimationDirective
 } from "./chunk-HVVV2P4P.js";
@@ -16,6 +16,10 @@ import {
   zoomBigMotion
 } from "./chunk-BJIJDVLR.js";
 import {
+  CdkConnectedOverlay,
+  OverlayModule
+} from "./chunk-7OFVZOUP.js";
+import {
   NzConfigService,
   isPresetColor
 } from "./chunk-7CXXYODY.js";
@@ -24,10 +28,6 @@ import {
   isNotNil,
   toBoolean
 } from "./chunk-A4L4YVTT.js";
-import {
-  CdkConnectedOverlay,
-  OverlayModule
-} from "./chunk-2WDYTXJ5.js";
 import {
   Directionality
 } from "./chunk-UA6AN7W3.js";
@@ -796,4 +796,4 @@ export {
   NzToolTipComponent,
   NzToolTipModule
 };
-//# sourceMappingURL=chunk-ALNUVXIG.js.map
+//# sourceMappingURL=chunk-Z7TUDTAJ.js.map

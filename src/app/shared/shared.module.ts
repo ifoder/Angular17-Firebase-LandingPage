@@ -25,7 +25,7 @@ const EXPORT = [
   FormsModule,
   ReactiveFormsModule,
   SharedNgZorroAntdModule,
-  TranslateModule,
+  // TranslateModule,
   NgIf,
   NgFor,
   NgForm,

@@ -1,15 +1,9 @@
 import {
   FocusMonitor
-} from "./chunk-NGEBQP6D.js";
+} from "./chunk-SXF55ANG.js";
 import {
   NzFormStatusService
 } from "./chunk-N7EO5KHK.js";
-import {
-  InputBoolean
-} from "./chunk-A4L4YVTT.js";
-import {
-  Directionality
-} from "./chunk-UA6AN7W3.js";
 import {
   CheckboxControlValueAccessor,
   FormsModule,
@@ -17,6 +11,12 @@ import {
   NgControlStatus,
   NgModel
 } from "./chunk-M6FD3VIN.js";
+import {
+  InputBoolean
+} from "./chunk-A4L4YVTT.js";
+import {
+  Directionality
+} from "./chunk-UA6AN7W3.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -602,4 +602,4 @@ export {
   NzCheckboxGroupComponent,
   NzCheckboxModule
 };
-//# sourceMappingURL=chunk-BMVZ3HEJ.js.map
+//# sourceMappingURL=chunk-VS45QL5Q.js.map

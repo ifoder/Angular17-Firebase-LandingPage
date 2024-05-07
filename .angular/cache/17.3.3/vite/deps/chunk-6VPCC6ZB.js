@@ -14,13 +14,13 @@ import {
   shallowEqual
 } from "./chunk-A4L4YVTT.js";
 import {
-  BidiModule,
-  Directionality
-} from "./chunk-UA6AN7W3.js";
-import {
   Platform,
   PlatformModule
 } from "./chunk-HH3PCEGU.js";
+import {
+  BidiModule,
+  Directionality
+} from "./chunk-UA6AN7W3.js";
 import {
   DOCUMENT
 } from "./chunk-VFCSK5OE.js";
@@ -441,4 +441,4 @@ export {
   NzAffixComponent,
   NzAffixModule
 };
-//# sourceMappingURL=chunk-W33BROWZ.js.map
+//# sourceMappingURL=chunk-6VPCC6ZB.js.map

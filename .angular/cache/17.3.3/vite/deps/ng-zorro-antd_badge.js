@@ -1,8 +1,6 @@
 import {
   NzNoAnimationDirective
 } from "./chunk-HVVV2P4P.js";
-import "./chunk-NA7MVJ2Z.js";
-import "./chunk-A7RVIN62.js";
 import {
   NzOutletModule,
   NzStringTemplateOutletDirective
@@ -10,6 +8,9 @@ import {
 import {
   zoomBadgeMotion
 } from "./chunk-BJIJDVLR.js";
+import "./chunk-NA7MVJ2Z.js";
+import "./chunk-A7RVIN62.js";
+import "./chunk-GRCHAQNP.js";
 import {
   NzConfigService,
   WithConfig
@@ -17,7 +18,6 @@ import {
 import {
   InputBoolean
 } from "./chunk-A4L4YVTT.js";
-import "./chunk-GRCHAQNP.js";
 import {
   Directionality
 } from "./chunk-UA6AN7W3.js";

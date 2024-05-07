@@ -17,6 +17,7 @@ import {
   Router,
   ɵEmptyOutletComponent
 } from "./chunk-UZVDMXWE.js";
+import "./chunk-GZKD4HDB.js";
 import {
   Title
 } from "./chunk-437BBMU4.js";
@@ -28,7 +29,6 @@ import {
 } from "./chunk-ISKMVW3N.js";
 import "./chunk-JQJXKPM6.js";
 import "./chunk-IDUKWBKV.js";
-import "./chunk-GZKD4HDB.js";
 import {
   FirebaseApp,
   FirebaseApps,

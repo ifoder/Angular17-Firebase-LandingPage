@@ -60,11 +60,10 @@ export class DashboardAdminComponent implements OnInit {
     //   .forEach((p) => (this.calendarEvents = [...p]));
     this.i18n.setLocale(uk_UA);
     // this.calendarEvents$.subscribe((p) => this.getDaysOfEvents())
-    this._datepickerService
-      .getCalendarEvents()
-      .subscribe((calendarEvents) =>
-        this._datepickerService.calendarEventsSig.set(calendarEvents)
-      );
+    this._datepickerService.getCalendarEvents().subscribe((calendarEvents) => {
+      this.getDaysOfEvents();
+      this._datepickerService.calendarEventsSig.set(calendarEvents);
+    });
   }
 
   getBarber(id: any) {

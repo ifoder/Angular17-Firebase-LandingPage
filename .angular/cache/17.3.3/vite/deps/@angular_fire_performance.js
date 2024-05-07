@@ -3,10 +3,10 @@ import {
   initializePerformance,
   trace
 } from "./chunk-A2FJNPTB.js";
+import "./chunk-GZKD4HDB.js";
 import {
   isPlatformBrowser
 } from "./chunk-VFCSK5OE.js";
-import "./chunk-GZKD4HDB.js";
 import {
   FirebaseApp,
   FirebaseApps,

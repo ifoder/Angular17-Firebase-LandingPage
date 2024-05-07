@@ -1,7 +1,4 @@
 import {
-  BreakpointObserver
-} from "./chunk-WD2DFVI4.js";
-import {
   ContentObserver,
   ObserversModule
 } from "./chunk-TLRFD67R.js";
@@ -26,6 +23,9 @@ import {
   ZERO,
   hasModifierKey
 } from "./chunk-27BDGVS6.js";
+import {
+  BreakpointObserver
+} from "./chunk-WD2DFVI4.js";
 import {
   Platform,
   _getEventTarget,
@@ -2168,4 +2168,4 @@ export {
   CdkMonitorFocus,
   A11yModule
 };
-//# sourceMappingURL=chunk-NGEBQP6D.js.map
+//# sourceMappingURL=chunk-SXF55ANG.js.map
