@@ -1,0 +1,108 @@
+<fa-layout>
+  <!-- Page Header -->
+  <div class="page-header row no-gutters py-4">
+    <div class="col-12 text-center text-sm-left mb-0">
+      <span class="text-uppercase page-subtitle">{{ 'Posts' | translate }}</span>
+      <h3 class="page-title">{{ 'List' | translate }}</h3>
+    </div>
+  </div>
+  <!-- End Page Header -->
+  <fa-loading-indicator [show]="isLoading" [center]="true"></fa-loading-indicator>
+  <div class="row">
+    <div class="col-12 mb-4">
+      <div class="card card-small lo-stats">
+        <div class="card-body p-0">
+          <table datatable [dtOptions]="dataTableOptions" [dtTrigger]="dataTableTrigger" class="file-manager file-manager-list d-none table-responsive">
+            <thead>
+              <tr>
+                <th class="hide-sort-icons"></th>
+                <th class="text-left">{{ 'PostTitle' | translate }}</th>
+                <th>{{ 'PostDate' | translate }}</th>
+                <th>{{ 'PostStatus' | translate }}</th>
+                <th>{{ 'PostLanguage' | translate }}</th>
+                <th>{{ 'Categories' | translate }}</th>
+                <th>{{ 'PostCreatedAt' | translate }}</th>
+                <th>{{ 'PostUpdatedAt' | translate }}</th>
+                <th *ngIf="currentUser?.isAdmin()">{{ 'PostAuthor' | translate }}</th>
+                <th class="text-right hide-sort-icons">{{ 'Actions' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let post of allPosts | async">
+                <td class="text-left lo-stats__image pr-0">
+                  <img class="border rounded" [src]="post.image.url | async | escapeUrl">
+                </td>
+                <td class="text-left lo-stats__order-details">
+                  <span>{{ post.title }}</span>
+                  <span>{{ '/' + post.slug }}</span>
+                </td>
+                <td>{{ post.date | shortdate }}</td>
+                <td>
+                  <a [routerLink]="navigation.getRouterLink('posts', 'list', 'status', post.status)">
+                    <span class="badge badge-pill badge-{{ allStatus.colors[post.status] || 'primary' }}">{{ allStatus.labels[post.status] | translate }}</span>
+                  </a>
+                </td>
+                <td>{{ allLanguages[post.lang].label | translate }}</td>
+                <td>
+                  <ng-container *ngFor="let categoryId of post.categories; let i = index">
+                    <i *ngIf="i > 0">, </i>
+                    <a [routerLink]="navigation.getRouterLink('posts', 'list', 'category', categoryId)">{{ allCategories[categoryId]?.label }}</a>
+                  </ng-container>
+                </td>
+                <td>{{ post.createdAt | datetime }}</td>
+                <td>{{ post.updatedAt | datetime }}</td>
+                <td *ngIf="currentUser?.isAdmin()">
+                  <a *ngIf="post.createdBy" [routerLink]="navigation.getRouterLink('users', 'profile', post.createdBy)">
+                    {{ post.author | async }}
+                  </a>
+                </td>
+                <td class="text-right">
+                  <div class="btn-group btn-group-sm" role="group" aria-label="Table row actions">
+                    <button *ngIf="post.status !== 'published'" type="button" class="btn btn-white active-light" title="{{ 'Publish' | translate }}" (click)="publishPost($event, post)">
+                      <i class="material-icons">check</i>
+                    </button>
+                    <button *ngIf="post.isTranslatable" type="button" class="btn btn-white active-light" title="{{ 'Translate' | translate }}" [routerLink]="navigation.getRouterLink('posts', 'translate', post.id)">
+                      <i class="material-icons">translate</i>
+                    </button>
+                    <button type="button" class="btn btn-white active-light" title="{{ 'Edit' | translate }}" [routerLink]="navigation.getRouterLink('posts', 'edit', post.id)">
+                      <i class="material-icons">edit</i>
+                    </button>
+                    <ng-container *ngIf="post.status !== 'trash'; else deleteButton">
+                      <button type="button" class="btn btn-white" title="{{ 'MoveToTrash' | translate }}" (click)="moveToTrash($event, post)">
+                        <i class="material-icons">delete</i>
+                      </button>
+                    </ng-container>
+                    <ng-template #deleteButton>
+                      <button type="button" class="btn btn-danger" title="{{ 'Delete' | translate }}" data-toggle="modal" data-target="#deleteModal" (click)="selectedPost = post">
+                        <i class="material-icons">delete_forever</i>
+                      </button>
+                    </ng-template>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</fa-layout>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ 'DeletePost' | translate }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body" innerHTML="{{ 'ConfirmDeletePost' | translate: {title: selectedPost?.title} }}"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-white" data-dismiss="modal">{{ 'Cancel' | translate }}</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deletePost(selectedPost)">{{ 'Delete' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>

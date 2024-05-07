@@ -3,24 +3,56 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "FireAdmin": {
+      "projectType": "library",
+      "root": "projects/fire-admin",
+      "sourceRoot": "projects/fire-admin/src",
+      "prefix": "fa",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/fire-admin/tsconfig.lib.json",
+            "project": "projects/fire-admin/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/fire-admin/src/test.ts",
+            "tsConfig": "projects/fire-admin/tsconfig.spec.json",
+            "karmaConfig": "projects/fire-admin/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/fire-admin/tsconfig.lib.json",
+              "projects/fire-admin/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
     "website": {
       "projectType": "application",
       "schematics": {},
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "app",
+      "root": "projects/web-app",
+      "sourceRoot": "projects/web-app/src",
+      "prefix": "wa",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "public",
-            "index": "src/index.html",
-            "browser": "src/main.ts",
-            "polyfills": ["zone.js"],
-            "tsConfig": "tsconfig.app.json",
+            "index": "projects/web-app/src/index.html",
+            "browser": "projects/web-app/src/main.ts",
+            "tsConfig": "./projects/web-app/tsconfig.app.json",
             "assets": [
-              "./src/favicon.ico",
-              "./src/assets",
+              "./projects/web-app/src/favicon.ico",
+              "./projects/web-app/src/assets",
               {
                 "glob": "**/*",
                 "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
@@ -28,8 +60,8 @@
               }
             ],
             "styles": [
-              "./src/theme.less",
-              "./src/styles.css",
+              "./projects/web-app/src/theme.less",
+              "./projects/web-app/src/styles.css",
               "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "./node_modules/ng-zorro-antd-mobile/src/ng-zorro-antd-mobile.min.css"
             ],
@@ -76,14 +108,28 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "polyfills": ["zone.js", "zone.js/testing"],
-            "tsConfig": "tsconfig.spec.json",
-            "assets": ["./src/favicon.ico", "./src/assets"],
+            "tsConfig": "./projects/web-app/tsconfig.spec.json",
+            "assets": ["./projects/web-app/src/favicon.ico", "./src/assets"],
             "styles": [
-              "./src/styles.css",
-              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
-              "./node_modules/ng-zorro-antd-mobile/src/ng-zorro-antd-mobile.min.css"
+              "./projects/web-app/src/styles.css",
+              "./projects/web-app/node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
+              "./node_modules/ng-zorro-antd-mobile/src/ng-zorro-antd-mobile.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "node_modules/material-icons-font/material-icons-font.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/datatables.net-responsive-dt/css/responsive.dataTables.min.css",
+              "node_modules/quill/dist/quill.snow.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/datatables.net/js/jquery.dataTables.min.js",
+              "node_modules/datatables.net-responsive-dt/js/responsive.dataTables.min.js",
+              "node_modules/chart.js/dist/Chart.min.js",
+              "node_modules/shards-ui/dist/js/shards.min.js",
+              "node_modules/quill/dist/quill.min.js"
+            ]
           }
         }
       }

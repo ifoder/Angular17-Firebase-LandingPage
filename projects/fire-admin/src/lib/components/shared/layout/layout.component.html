@@ -1,0 +1,28 @@
+<div class="container-fluid" [class.icon-sidebar-nav]="settings.sidebarStyle === 'collapsed'">
+  <div class="row">
+    <ng-container *ngIf="settings.sidebarStyle !== 'headerbar'; else headerBarLayoutTemplate">
+      <fa-sidebar [style]="settings.sidebarStyle"></fa-sidebar>
+      <main class="main-content" [ngClass]="settings.sidebarStyle === 'collapsed' ? 'col' : 'col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3'">
+        <fa-navbar></fa-navbar>
+        <fa-alert></fa-alert>
+        <ng-container *ngTemplateOutlet="mainContainerTemplate"></ng-container>
+        <fa-footer></fa-footer>
+      </main>
+    </ng-container>
+    <ng-template #headerBarLayoutTemplate>
+      <main class="main-content col-lg-12 col-md-12 col-sm-12 p-0">
+        <fa-navbar [isSticky]="false" [isCentered]="true" [showBrand]="true"></fa-navbar>
+        <fa-sidebar [style]="settings.sidebarStyle"></fa-sidebar>
+        <fa-alert></fa-alert>
+        <ng-container *ngTemplateOutlet="mainContainerTemplate"></ng-container>
+        <fa-footer></fa-footer>
+      </main>
+    </ng-template>
+  </div>
+</div>
+
+<ng-template #mainContainerTemplate>
+  <div class="main-content-container" [ngClass]="settings.sidebarStyle === 'headerbar' ? 'container' : 'container-fluid px-4'">
+    <ng-content></ng-content>
+  </div>
+</ng-template>

@@ -1,0 +1,55 @@
+
+<div class="container-fluid h-100">
+  <div class="row h-100">
+    <main class="main-content col">
+      <div class="main-content-container container-fluid px-4 my-auto h-100">
+        <div class="row no-gutters h-100">
+          <div class="col-lg-3 col-md-5 auth-form mx-auto my-auto">
+            <div *ngIf="error?.length" class="alert alert-warning alert-dismissible fade show mb-4" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="dismissError($event)">
+                <span aria-hidden="true">×</span>
+              </button>
+              <i class="fa fa-exclamation mx-2"></i>
+              {{ error }}
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img class="auth-form__logo d-table mx-auto mb-3" [src]="logo | escapeUrl" alt="FireAdmin">
+                <h5 class="auth-form__title text-center mb-4">{{ 'SignInToYourAccount' | translate }}</h5>
+                <form (ngSubmit)="onSubmit()">
+                  <div class="form-group">
+                    <label for="inputEmail">{{ 'EmailAddress' | translate }}</label>
+                    <input type="email" class="form-control" id="inputEmail" name="inputEmail" aria-describedby="emailHelp" placeholder="{{ 'EnterEmail' | translate }}" [(ngModel)]="email">
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPassword">{{ 'Password' | translate }}</label>
+                    <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="{{ 'Password' | translate }}" [(ngModel)]="password">
+                  </div>
+                  <div class="form-group mb-3 d-table mx-auto">
+                    <div class="custom-control custom-checkbox mb-1">
+                      <input type="checkbox" class="custom-control-input" id="rememberMe" name="rememberMe" [(ngModel)]="rememberMe">
+                      <label class="custom-control-label" for="rememberMe">{{ 'RememberMe' | translate }}</label>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-pill btn-accent d-table mx-auto">{{ 'SignIn' | translate }}</button>
+                </form>
+              </div>
+              <!-- <div class="card-footer border-top">
+                <ul class="auth-form__social-icons d-table mx-auto">
+                  <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                  <li><a href="#"><i class="fab fa-github"></i></a></li>
+                  <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                </ul>
+              </div> -->
+            </div>
+            <div class="auth-form__meta d-flex mt-4">
+              <a href="#">{{ 'ForgotYourPassword' | translate }}</a>
+              <!-- <a class="ml-auto" href="#">Create new account?</a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

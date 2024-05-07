@@ -1,9 +1,0 @@
-{
-  "nav.item1": { "title": "Додому", "link": "/home" },
-  "nav.item2": { "title": "Про нас", "link": "/about" },
-  "nav.item3": { "title": "Галерея", "link": "/gallery" },
-  "nav.item4": { "title": "Відгуки", "link": "/feedback" },
-  "nav.item5": { "title": "Прайс-лист", "link": "/services" },
-  "nav.item6": { "title": "Контакти", "link": "/clients" },
-  "nav.item7": { "title": "Адмін", "link": "/clients" }
-}

@@ -1,19 +1,59 @@
 rules_version = '2';
-
 service cloud.firestore {
   match /databases/{database}/documents {
+    match /{collection}/{document}/{path=**} {
+      allow read: if isReadable(collection, document);
+      allow write: if isWritable(collection, document);
+    }
 
-    // This rule allows anyone with your Firestore database reference to view, edit,
-    // and delete all data in your Firestore database. It is useful for getting
-    // started, but it is configured to expire after 30 days because it
-    // leaves your app open to attackers. At that time, all client
-    // requests to your Firestore database will be denied.
-    //
-    // Make sure to write security rules for your app before that time, or else
-    // all client requests to your Firestore database will be denied until you Update
-    // your rules
-    match /{document=**} {
-      allow read, write: if request.time < timestamp.date(2024, 6, 6);
+    // Checks if collection/document is readable
+    function isReadable(collection, document) {
+      return isAdmin() || !isReadProtected(collection) || isOwner(document);
+    }
+
+    // Checks if collection is protected against read
+    function isReadProtected(collection) {
+      return collection in ['users'];
+    }
+
+    // Checks if collection/document is writable
+    function isWritable(collection, document) {
+      return isAdmin() || (
+        collection == 'users' && isRegistrationEnabled()
+      ) || (
+        isEditor() && (!isWriteProtected(collection) || isOwner(document))
+      );
+    }
+
+    // Checks if collection is protected against write
+    function isWriteProtected(collection) {
+      return collection in ['users', 'config'];
+    }
+
+    // Checks if registration is enabled
+    function isRegistrationEnabled() {
+      return !exists(/databases/$(database)/documents/config/registration) || get(/databases/$(database)/documents/config/registration).data.enabled;
+    }
+
+    // User role check functions
+    function isAdmin() {
+      return hasRole('admin');
+    }
+
+    function isEditor() {
+      return hasRole('editor');
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function hasRole(role) {
+      return isSignedIn() && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == role;
+    }
+
+    function isOwner(ownerId) {
+      return isSignedIn() && request.auth.uid == ownerId;
     }
   }
 }

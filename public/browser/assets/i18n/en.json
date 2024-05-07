@@ -1,8 +1,0 @@
-{
-  "nav.item1": { "title": "Home", "link": "/home" },
-  "nav.item2": { "title": "About us", "link": "/about" },
-  "nav.item3": { "title": "Gallery", "link": "/gallery" },
-  "nav.item4": { "title": "Feedback", "link": "/feedback" },
-  "nav.item5": { "title": "Price-list", "link": "/services" },
-  "nav.item6": { "title": "Contacts", "link": "/clients" }
-}

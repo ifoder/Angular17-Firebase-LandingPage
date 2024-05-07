@@ -1,14 +1,14 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "strictNullChecks": false,
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "strictFunctionTypes": false,
     "strictPropertyInitialization": false,
-    "strictNullChecks": true,
-    "strict": true,
+    "strict": false,
     "sourceMap": true,
+
     "emitDecoratorMetadata": true,
     "typeRoots": ["node_modules/@types"],
     "noImplicitOverride": true,
@@ -17,7 +17,7 @@
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "declaration": true,
+    "declaration": false,
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
@@ -25,17 +25,28 @@
     "module": "es2022",
     "useDefineForClassFields": false,
     "lib": ["ES2022", "dom"],
-
+    "paths": {
+      "fire-admin": ["dist/fire-admin"],
+      "fire-admin/*": ["dist/fire-admin/*"],
+      "web-app": ["dist/web-app"],
+      "web-app/*": ["dist/web-app/*"]
+    },
     "allowSyntheticDefaultImports": true,
 
     // Strictness Checks
-    "noImplicitThis": true,
-    "alwaysStrict": true
+    "noImplicitThis": false,
+    "alwaysStrict": false
   },
   "angularCompilerOptions": {
+    "strict": false,
+    "strictFunctionTypes": false,
+    "strictNullChecks": false,
+    "strictPropertyInitialization": false,
+
+    "fullTemplateTypeCheck": false,
     "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictInjectionParameters": false,
+    "strictInputAccessModifiers": false,
+    "strictTemplates": false
   }
 }

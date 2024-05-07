@@ -1,8 +1,0 @@
-{
-  "nav.item1": { "title": "Domov", "link": "/home" },
-  "nav.item2": { "title": "O na`s", "link": "/about" },
-  "nav.item3": { "title": "Galerie", "link": "/gallery" },
-  "nav.item4": { "title": "Recenze", "link": "/feedback" },
-  "nav.item5": { "title": "Cenik", "link": "/services" },
-  "nav.item6": { "title": "Kontakty", "link": "/clients" }
-}

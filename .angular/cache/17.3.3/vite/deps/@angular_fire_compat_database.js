@@ -1,10 +1,9 @@
+import "./chunk-3DEZ5MRG.js";
+import "./chunk-WYYHD7HM.js";
 import {
   firebase
-} from "./chunk-IUHWDHAU.js";
-import {
-  isPlatformServer
-} from "./chunk-VFCSK5OE.js";
-import "./chunk-IDUKWBKV.js";
+} from "./chunk-QN5Y54JU.js";
+import "./chunk-B6MYZVS2.js";
 import {
   FirebaseApp,
   VERSION as VERSION2,
@@ -15,7 +14,7 @@ import {
   ɵgetAllInstancesOf,
   ɵgetDefaultInstanceOf,
   ɵzoneWrap
-} from "./chunk-PW3CNSUJ.js";
+} from "./chunk-DSS2RY5L.js";
 import {
   Component,
   ComponentContainer,
@@ -58,7 +57,10 @@ import {
   validateArgCount,
   validateCallback,
   validateContextObject
-} from "./chunk-3XQ2Y4TU.js";
+} from "./chunk-TI24BFSE.js";
+import {
+  isPlatformServer
+} from "./chunk-DIUYAEL7.js";
 import {
   Inject,
   Injectable,
@@ -74,7 +76,7 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-2P2HMI5Y.js";
+} from "./chunk-FNVBMXYR.js";
 import {
   Observable,
   Subject,
@@ -103,7 +105,7 @@ import "./chunk-ECDNAN6X.js";
 import {
   __async,
   __spreadValues
-} from "./chunk-47AXDMZD.js";
+} from "./chunk-KA6IPRFH.js";
 
 // node_modules/@firebase/app-check/dist/esm/index.esm2017.js
 var APP_CHECK_STATES = /* @__PURE__ */ new Map();
@@ -903,27 +905,22 @@ var initializeAppCheck2 = ɵzoneWrap(initializeAppCheck, true);
 var onTokenChanged2 = ɵzoneWrap(onTokenChanged, true);
 var setTokenAutoRefreshEnabled2 = ɵzoneWrap(setTokenAutoRefreshEnabled, true);
 
-// node_modules/firebase/compat/app/dist/esm/index.esm.js
-var name2 = "firebase";
-var version2 = "10.10.0";
-firebase.registerVersion(name2, version2, "app-compat");
-
 // node_modules/@angular/fire/fesm2022/angular-fire-compat.mjs
 var noopFunctions = ["ngOnDestroy"];
 var ɵlazySDKProxy = (klass, observable, zone, options = {}) => {
   return new Proxy(klass, {
-    get: (_, name5) => zone.runOutsideAngular(() => {
-      if (klass[name5]) {
+    get: (_, name4) => zone.runOutsideAngular(() => {
+      if (klass[name4]) {
         if (options?.spy?.get) {
-          options.spy.get(name5, klass[name5]);
+          options.spy.get(name4, klass[name4]);
         }
-        return klass[name5];
+        return klass[name4];
       }
-      if (noopFunctions.indexOf(name5) > -1) {
+      if (noopFunctions.indexOf(name4) > -1) {
         return () => void 0;
       }
       const promise = observable.toPromise().then((mod) => {
-        const ret = mod?.[name5];
+        const ret = mod?.[name4];
         if (typeof ret === "function") {
           return ret.bind(mod);
         } else if (ret?.then) {
@@ -933,12 +930,12 @@ var ɵlazySDKProxy = (klass, observable, zone, options = {}) => {
         }
       });
       return new Proxy(() => void 0, {
-        get: (_2, name6) => promise[name6],
+        get: (_2, name5) => promise[name5],
         // TODO handle callbacks as transparently as I can
         apply: (self2, _2, args) => promise.then((it) => {
           const res = it?.(...args);
           if (options?.spy?.apply) {
-            options.spy.apply(name5, args, res);
+            options.spy.apply(name4, args, res);
           }
           return res;
         })
@@ -948,8 +945,8 @@ var ɵlazySDKProxy = (klass, observable, zone, options = {}) => {
 };
 var ɵapplyMixins = (derivedCtor, constructors) => {
   constructors.forEach((baseCtor) => {
-    Object.getOwnPropertyNames(baseCtor.prototype || baseCtor).forEach((name5) => {
-      Object.defineProperty(derivedCtor.prototype, name5, Object.getOwnPropertyDescriptor(baseCtor.prototype || baseCtor, name5));
+    Object.getOwnPropertyNames(baseCtor.prototype || baseCtor).forEach((name4) => {
+      Object.defineProperty(derivedCtor.prototype, name4, Object.getOwnPropertyDescriptor(baseCtor.prototype || baseCtor, name4));
     });
   });
 };
@@ -961,9 +958,9 @@ var FirebaseApp2 = class {
 var FIREBASE_OPTIONS = new InjectionToken("angularfire2.app.options");
 var FIREBASE_APP_NAME = new InjectionToken("angularfire2.app.name");
 function ɵfirebaseAppFactory(options, zone, nameOrConfig) {
-  const name5 = typeof nameOrConfig === "string" && nameOrConfig || "[DEFAULT]";
+  const name4 = typeof nameOrConfig === "string" && nameOrConfig || "[DEFAULT]";
   const config = typeof nameOrConfig === "object" && nameOrConfig || {};
-  config.name = config.name || name5;
+  config.name = config.name || name4;
   const existingApp = firebase.apps.filter((app2) => app2 && app2.name === config.name)[0];
   const app = existingApp || zone.runOutsideAngular(() => firebase.initializeApp(options, config));
   try {
@@ -1148,9 +1145,9 @@ var AngularFireAuth = class _AngularFireAuth {
    * Observable of the currently signed-in user's credential, or null
    */
   credential;
-  constructor(options, name5, platformId, zone, schedulers, useEmulator, settings, tenantId, languageCode, useDeviceLanguage, persistence, _appCheckInstances) {
+  constructor(options, name4, platformId, zone, schedulers, useEmulator, settings, tenantId, languageCode, useDeviceLanguage, persistence, _appCheckInstances) {
     const logins = new Subject();
-    const auth = of(void 0).pipe(observeOn(schedulers.outsideAngular), switchMap(() => zone.runOutsideAngular(() => import("./index.esm-HTFQKVCE.js"))), map(() => ɵfirebaseAppFactory(options, zone, name5)), map((app) => ɵauthFactory(app, zone, useEmulator, tenantId, languageCode, useDeviceLanguage, settings, persistence)), shareReplay({
+    const auth = of(void 0).pipe(observeOn(schedulers.outsideAngular), switchMap(() => zone.runOutsideAngular(() => import("./firebase_compat_auth.js"))), map(() => ɵfirebaseAppFactory(options, zone, name4)), map((app) => ɵauthFactory(app, zone, useEmulator, tenantId, languageCode, useDeviceLanguage, settings, persistence)), shareReplay({
       bufferSize: 1,
       refCount: false
     }));
@@ -1188,8 +1185,8 @@ var AngularFireAuth = class _AngularFireAuth {
     }
     return ɵlazySDKProxy(this, auth, zone, {
       spy: {
-        apply: (name6, _, val) => {
-          if (name6.startsWith("signIn") || name6.startsWith("createUser")) {
+        apply: (name5, _, val) => {
+          if (name5.startsWith("signIn") || name5.startsWith("createUser")) {
             val.then((user) => logins.next(user));
           }
         }
@@ -1315,11 +1312,11 @@ var AngularFireAuthModule = class _AngularFireAuthModule {
 })();
 
 // node_modules/@firebase/database/dist/index.esm2017.js
-var name3 = "@firebase/database";
-var version3 = "1.0.4";
+var name2 = "@firebase/database";
+var version2 = "1.0.4";
 var SDK_VERSION2 = "";
-function setSDKVersion(version5) {
-  SDK_VERSION2 = version5;
+function setSDKVersion(version4) {
+  SDK_VERSION2 = version4;
 }
 var DOMStorageWrapper = class {
   /**
@@ -1354,8 +1351,8 @@ var DOMStorageWrapper = class {
   remove(key) {
     this.domStorage_.removeItem(this.prefixedName_(key));
   }
-  prefixedName_(name5) {
-    return this.prefix_ + name5;
+  prefixedName_(name4) {
+    return this.prefix_ + name4;
   }
   toString() {
     return this.domStorage_.toString();
@@ -1886,11 +1883,11 @@ var StatsCollection = class {
   constructor() {
     this.counters_ = {};
   }
-  incrementCounter(name5, amount = 1) {
-    if (!contains(this.counters_, name5)) {
-      this.counters_[name5] = 0;
+  incrementCounter(name4, amount = 1) {
+    if (!contains(this.counters_, name4)) {
+      this.counters_[name4] = 0;
     }
-    this.counters_[name5] += amount;
+    this.counters_[name4] += amount;
   }
   get() {
     return deepCopy(this.counters_);
@@ -2990,14 +2987,14 @@ var Connection = class {
    */
   onHandshake_(handshake) {
     const timestamp = handshake.ts;
-    const version5 = handshake.v;
+    const version4 = handshake.v;
     const host = handshake.h;
     this.sessionId = handshake.s;
     this.repoInfo_.host = host;
     if (this.state_ === 0) {
       this.conn_.start();
       this.onConnectionEstablished_(this.conn_, timestamp);
-      if (PROTOCOL_VERSION !== version5) {
+      if (PROTOCOL_VERSION !== version4) {
         warn("Protocol version mismatch detected");
       }
       this.tryStartUpgrade_();
@@ -4282,12 +4279,12 @@ var PersistentConnection = class _PersistentConnection extends ServerActions {
 PersistentConnection.nextPersistentConnectionId_ = 0;
 PersistentConnection.nextConnectionId_ = 0;
 var NamedNode = class _NamedNode {
-  constructor(name5, node) {
-    this.name = name5;
+  constructor(name4, node) {
+    this.name = name4;
     this.node = node;
   }
-  static Wrap(name5, node) {
-    return new _NamedNode(name5, node);
+  static Wrap(name4, node) {
+    return new _NamedNode(name4, node);
   }
 };
 var Index = class {
@@ -4341,7 +4338,7 @@ var KeyIndex = class extends Index {
   maxPost() {
     return new NamedNode(MAX_NAME, __EMPTY_NODE);
   }
-  makePost(indexValue, name5) {
+  makePost(indexValue, name4) {
     assert(typeof indexValue === "string", "KeyIndex indexValue must always be a string.");
     return new NamedNode(indexValue, __EMPTY_NODE);
   }
@@ -5138,9 +5135,9 @@ var PriorityIndex = class extends Index {
   maxPost() {
     return new NamedNode(MAX_NAME, new LeafNode("[PRIORITY-POST]", MAX_NODE$1));
   }
-  makePost(indexValue, name5) {
+  makePost(indexValue, name4) {
     const priorityNode = nodeFromJSON$1(indexValue);
-    return new NamedNode(name5, new LeafNode("[PRIORITY-POST]", priorityNode));
+    return new NamedNode(name4, new LeafNode("[PRIORITY-POST]", priorityNode));
   }
   /**
    * @returns String representation for inclusion in a query spec
@@ -5750,10 +5747,10 @@ var PathIndex = class extends Index {
       return indexCmp;
     }
   }
-  makePost(indexValue, name5) {
+  makePost(indexValue, name4) {
     const valueNode = nodeFromJSON(indexValue);
     const node = ChildrenNode.EMPTY_NODE.updateChild(this.indexPath_, valueNode);
-    return new NamedNode(name5, node);
+    return new NamedNode(name4, node);
   }
   maxPost() {
     const node = ChildrenNode.EMPTY_NODE.updateChild(this.indexPath_, MAX_NODE);
@@ -5784,9 +5781,9 @@ var ValueIndex = class extends Index {
   maxPost() {
     return NamedNode.MAX;
   }
-  makePost(indexValue, name5) {
+  makePost(indexValue, name4) {
     const valueNode = nodeFromJSON(indexValue);
-    return new NamedNode(name5, valueNode);
+    return new NamedNode(name4, valueNode);
   }
   /**
    * @returns String representation for inclusion in a query spec
@@ -7859,8 +7856,8 @@ function viewProcessorAckUserWrite(viewProcessor, viewCache, ackPath, affectedTr
       return viewProcessorApplyServerOverwrite(viewProcessor, viewCache, ackPath, serverCache.getNode().getChild(ackPath), writesCache, completeCache, filterServerNode, accumulator);
     } else if (pathIsEmpty(ackPath)) {
       let changedChildren = new ImmutableTree(null);
-      serverCache.getNode().forEachChild(KEY_INDEX, (name5, node) => {
-        changedChildren = changedChildren.set(new Path(name5), node);
+      serverCache.getNode().forEachChild(KEY_INDEX, (name4, node) => {
+        changedChildren = changedChildren.set(new Path(name4), node);
       });
       return viewProcessorApplyServerMerge(viewProcessor, viewCache, ackPath, changedChildren, writesCache, completeCache, filterServerNode, accumulator);
     } else {
@@ -8659,8 +8656,8 @@ var Tree = class {
    * @param parent - Optional parent node.
    * @param node - Optional node to wrap.
    */
-  constructor(name5 = "", parent = null, node = { children: {}, childCount: 0 }) {
-    this.name = name5;
+  constructor(name4 = "", parent = null, node = { children: {}, childCount: 0 }) {
+    this.name = name4;
     this.parent = parent;
     this.node = node;
   }
@@ -10241,9 +10238,9 @@ function push(parent, value) {
   validateWritablePath("push", parent._path);
   validateFirebaseDataArg("push", value, parent._path, true);
   const now = repoServerTime(parent._repo);
-  const name5 = nextPushId(now);
-  const thennablePushRef = child(parent, name5);
-  const pushRef = child(parent, name5);
+  const name4 = nextPushId(now);
+  const thennablePushRef = child(parent, name4);
+  const pushRef = child(parent, name4);
   let promise;
   if (value != null) {
     promise = set(pushRef, value).then(() => pushRef);
@@ -10863,8 +10860,8 @@ function registerDatabase(variant) {
     "PUBLIC"
     /* ComponentType.PUBLIC */
   ).setMultipleInstances(true));
-  registerVersion(name3, version3, variant);
-  registerVersion(name3, version3, "esm2017");
+  registerVersion(name2, version2, variant);
+  registerVersion(name2, version2, "esm2017");
 }
 var SERVER_TIMESTAMP = {
   ".sv": "timestamp"
@@ -10922,8 +10919,8 @@ PersistentConnection.prototype.echo = function(data, onEcho) {
 registerDatabase();
 
 // node_modules/@firebase/database-compat/dist/index.esm2017.js
-var name4 = "@firebase/database-compat";
-var version4 = "1.0.4";
+var name3 = "@firebase/database-compat";
+var version3 = "1.0.4";
 var logClient2 = new Logger("@firebase/database-compat");
 var warn2 = function(msg) {
   const message = "FIREBASE WARNING: " + msg;
@@ -11295,29 +11292,29 @@ var Query = class _Query {
     validateArgCount("Query.orderByValue", 0, 0, arguments.length);
     return new _Query(this.database, query(this._delegate, orderByValue()));
   }
-  startAt(value = null, name5) {
+  startAt(value = null, name4) {
     validateArgCount("Query.startAt", 0, 2, arguments.length);
-    return new _Query(this.database, query(this._delegate, startAt(value, name5)));
+    return new _Query(this.database, query(this._delegate, startAt(value, name4)));
   }
-  startAfter(value = null, name5) {
+  startAfter(value = null, name4) {
     validateArgCount("Query.startAfter", 0, 2, arguments.length);
-    return new _Query(this.database, query(this._delegate, startAfter(value, name5)));
+    return new _Query(this.database, query(this._delegate, startAfter(value, name4)));
   }
-  endAt(value = null, name5) {
+  endAt(value = null, name4) {
     validateArgCount("Query.endAt", 0, 2, arguments.length);
-    return new _Query(this.database, query(this._delegate, endAt(value, name5)));
+    return new _Query(this.database, query(this._delegate, endAt(value, name4)));
   }
-  endBefore(value = null, name5) {
+  endBefore(value = null, name4) {
     validateArgCount("Query.endBefore", 0, 2, arguments.length);
-    return new _Query(this.database, query(this._delegate, endBefore(value, name5)));
+    return new _Query(this.database, query(this._delegate, endBefore(value, name4)));
   }
   /**
    * Load the selection of children with exactly the specified value, and, optionally,
    * the specified name.
    */
-  equalTo(value, name5) {
+  equalTo(value, name4) {
     validateArgCount("Query.equalTo", 1, 2, arguments.length);
-    return new _Query(this.database, query(this._delegate, equalTo(value, name5)));
+    return new _Query(this.database, query(this._delegate, equalTo(value, name4)));
   }
   /**
    * @returns URL for this location.
@@ -11561,8 +11558,8 @@ Database2.ServerValue = {
   TIMESTAMP: serverTimestamp(),
   increment: (delta) => increment(delta)
 };
-function initStandalone({ app, url, version: version5, customAuthImpl, customAppCheckImpl, namespace, nodeAdmin = false }) {
-  setSDKVersion(version5);
+function initStandalone({ app, url, version: version4, customAuthImpl, customAppCheckImpl, namespace, nodeAdmin = false }) {
+  setSDKVersion(version4);
   const container = new ComponentContainer("database-standalone");
   const authProvider = new Provider("auth-internal", container);
   authProvider.setComponent(new Component(
@@ -11613,7 +11610,7 @@ function registerDatabase2(instance) {
       ServerValue
     }
   ).setMultipleInstances(true));
-  instance.registerVersion(name4, version4);
+  instance.registerVersion(name3, version3);
 }
 registerDatabase2(firebase);
 
@@ -11914,10 +11911,10 @@ var USE_EMULATOR2 = new InjectionToken("angularfire2.database.use-emulator");
 var AngularFireDatabase = class _AngularFireDatabase {
   schedulers;
   database;
-  constructor(options, name5, databaseURL, platformId, zone, schedulers, _useEmulator, auth, useAuthEmulator, authSettings, tenantId, languageCode, useDeviceLanguage, persistence, _appCheckInstances) {
+  constructor(options, name4, databaseURL, platformId, zone, schedulers, _useEmulator, auth, useAuthEmulator, authSettings, tenantId, languageCode, useDeviceLanguage, persistence, _appCheckInstances) {
     this.schedulers = schedulers;
     const useEmulator = _useEmulator;
-    const app = ɵfirebaseAppFactory(options, zone, name5);
+    const app = ɵfirebaseAppFactory(options, zone, name4);
     if (auth) {
       ɵauthFactory(app, zone, useAuthEmulator, tenantId, languageCode, useDeviceLanguage, authSettings, persistence);
     }
@@ -12187,24 +12184,6 @@ export {
    *)
 
 @firebase/app-check/dist/esm/index.esm2017.js:
-  (**
-   * @license
-   * Copyright 2020 Google LLC
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   *   http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *)
-
-firebase/compat/app/dist/esm/index.esm.js:
   (**
    * @license
    * Copyright 2020 Google LLC

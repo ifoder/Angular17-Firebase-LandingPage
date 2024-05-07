@@ -2,11 +2,8 @@ import {
   getPerformance,
   initializePerformance,
   trace
-} from "./chunk-A2FJNPTB.js";
-import "./chunk-GZKD4HDB.js";
-import {
-  isPlatformBrowser
-} from "./chunk-VFCSK5OE.js";
+} from "./chunk-JR4AB3U6.js";
+import "./chunk-G3WCZ6BC.js";
 import {
   FirebaseApp,
   FirebaseApps,
@@ -15,10 +12,13 @@ import {
   ɵgetAllInstancesOf,
   ɵgetDefaultInstanceOf,
   ɵzoneWrap
-} from "./chunk-PW3CNSUJ.js";
+} from "./chunk-DSS2RY5L.js";
 import {
   registerVersion
-} from "./chunk-3XQ2Y4TU.js";
+} from "./chunk-TI24BFSE.js";
+import {
+  isPlatformBrowser
+} from "./chunk-DIUYAEL7.js";
 import {
   InjectionToken,
   Injector,
@@ -29,7 +29,7 @@ import {
   setClassMetadata,
   ɵɵdefineInjector,
   ɵɵdefineNgModule
-} from "./chunk-2P2HMI5Y.js";
+} from "./chunk-FNVBMXYR.js";
 import {
   EMPTY,
   Observable,
@@ -40,7 +40,7 @@ import {
   timer
 } from "./chunk-ELRSAQZ7.js";
 import "./chunk-ECDNAN6X.js";
-import "./chunk-47AXDMZD.js";
+import "./chunk-KA6IPRFH.js";
 
 // node_modules/rxfire/performance/index.esm.js
 var trace$ = function(traceId) {
