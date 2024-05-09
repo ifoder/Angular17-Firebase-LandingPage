@@ -1,4 +1,10 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  inject,
+  signal,
+} from '@angular/core';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import {
   ActivatedRoute,
@@ -54,6 +60,8 @@ import { TranslatePipe } from './pipes/translate.pipe';
     AsyncPipe,
   ],
   templateUrl: './app.component.html',
+
+  encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent implements OnInit {
   // private languageService = inject(LanguageService);

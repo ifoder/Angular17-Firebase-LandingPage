@@ -1,5 +1,10 @@
 <div class="avatar">
-  <nz-avatar nz-dropdown nzIcon="user" [nzDropdownMenu]="menu2"></nz-avatar>
+  <nz-avatar
+    nz-dropdown
+    nzIcon="user"
+    [nzSrc]="currentUser$()?.photoURL"
+    [nzDropdownMenu]="menu2"
+  ></nz-avatar>
 
   <nz-dropdown-menu #menu2="nzDropdownMenu">
     <ul nz-menu>

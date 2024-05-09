@@ -1,0 +1,30 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../out-tsc/lib",
+    "declaration": true,
+    "declarationMap": true,
+    "inlineSources": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "ignoreDeprecations": "5.0",
+    
+    "types": []
+  },
+},
+"angularCompilerOptions": {
+  "suppressImplicitAnyIndexErrors": true,
+  "annotateForClosureCompiler": true,
+  "skipTemplateCodegen": true,
+  "strictMetadataEmit": true,
+  "fullTemplateTypeCheck": true,
+  "strictInjectionParameters": true,
+  "enableResourceInlining": true
+},
+  "exclude": [
+    [
+      "src/test.ts",
+    "**/*.spec.ts"
+    ]]
+}
+

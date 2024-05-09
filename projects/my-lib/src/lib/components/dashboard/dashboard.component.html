@@ -1,0 +1,159 @@
+<fa-layout>
+  <!-- Page Header -->
+  <div class="page-header row no-gutters justify-content-start py-4">
+    <div class="col-12 col-sm-4 text-sm-left mb-0">
+      <span class="text-uppercase text-center page-subtitle"> Dashboard </span>
+    </div>
+  </div>
+  <!-- End Page Header -->
+  <!-- Small Stats Blocks -->
+  <div class="row justify-content-start">
+    <div class="col-lg col-md-6 col-sm-6 mb-4">
+      <div class="stats-small stats-small--1 card card-small">
+        <div class="card-body p-0 d-flex">
+          <div class="d-flex flex-column m-auto">
+            <div class="stats-small__data text-center">
+              <span class="stats-small__label text-uppercase">Posts</span>
+              <h6 class="stats-small__value count my-3">0</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg col-md-4 col-sm-6 mb-4">
+      <div class="stats-small stats-small--1 card card-small">
+        <div class="card-body p-0 d-flex">
+          <div class="d-flex flex-column m-auto">
+            <div class="stats-small__data text-center">
+              <span class="stats-small__label text-uppercase">comm</span>
+              <h6 class="stats-small__value count my-3">0</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg col-md-4 col-sm-6 mb-4" *ngIf="currentUser">
+      <div class="stats-small stats-small--1 card card-small">
+        <div class="card-body p-0 d-flex">
+          <div class="d-flex flex-column m-auto">
+            <div class="stats-small__data text-center">
+              <span class="stats-small__label text-uppercase"> Users </span>
+              <h6 class="stats-small__value count my-3">0</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="col-lg col-md-4 mb-4"
+      [ngClass]="currentUser ? 'col-sm-12' : 'col-sm-6'"
+    >
+      <div class="stats-small stats-small--1 card card-small">
+        <div class="card-body p-0 d-flex">
+          <div class="d-flex flex-column m-auto">
+            <div class="stats-small__data text-center">
+              <span class="stats-small__label text-uppercase">
+                Translations
+              </span>
+              <h6 class="stats-small__value count my-3">0</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Small Stats Blocks -->
+  <div class="row justify-content-start">
+    <!-- Latest Posts -->
+    <div class="col-lg-8 col-md-12 col-sm-12 mb-4">
+      <div class="card card-small lo-stats">
+        <div class="card-header border-bottom">
+          <h6 class="m-0">{{ "LatestPosts" | translate }}</h6>
+          <div class="block-handle"></div>
+        </div>
+        <div class="card-body p-0">
+          <table class="table mb-0">
+            <thead class="py-2 bg-light text-semibold border-bottom">
+              <tr>
+                <th class="text-left" colspan="2">
+                  {{ "PostTitle" | translate }}
+                </th>
+                <th class="text-center">{{ "PostDate" | translate }}</th>
+                <th class="text-center">{{ "PostStatus" | translate }}</th>
+                <th class="text-center">{{ "Categories" | translate }}</th>
+                <th class="text-right">{{ "Actions" | translate }}</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="card-footer border-top">
+          <div class="row">
+            <div class="col">
+              <select
+                class="custom-select custom-select-sm w-auto"
+                style="min-width: 130px"
+                name="postsLanguage"
+              >
+                <option value="" disabled>
+                  {{ "PostLanguage" | translate }}
+                </option>
+                <option value="*">{{ "All" | translate }}</option>
+              </select>
+            </div>
+            <div class="col text-right view-report">
+              <a [routerLink]="navigation.getRouterLink('posts', 'list')"
+                >{{ "FullList" | translate }} &rarr;</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Latest Posts -->
+
+    <!-- Add New Translation Form -->
+    <div class="col-lg col-md-6 col-sm-6 mb-4">
+      <div class="card card-small mb-3">
+        <div class="card-header border-bottom">
+          <h6 class="m-0">{{ "NewTranslation" | translate }}</h6>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="{{ 'TranslationKey' | translate }}"
+                name="key"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="{{ 'TranslationValue' | translate }}"
+                name="value"
+              />
+            </div>
+            <div class="form-group">
+              <select class="custom-select" name="language">
+                <option value="" disabled>
+                  {{ "TranslationLanguage" | translate }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group mb-0">
+              <button type="submit" class="btn btn-primary">
+                <i class="material-icons">add</i>
+                {{ "AddTranslation" | translate }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- / Add New Translation Form -->
+  </div>
+</fa-layout>

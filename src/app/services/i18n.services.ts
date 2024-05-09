@@ -1,16 +1,33 @@
-import { Injectable, OnInit, computed, signal } from '@angular/core';
+import {
+  Injectable,
+  OnInit,
+  Signal,
+  computed,
+  effect,
+  signal,
+} from '@angular/core';
 import { en } from '../i18n/en';
 import { cs } from '../i18n/cs';
 import { ua } from '../i18n/ua';
 import { SettingsService } from './setting.service';
 import { TranslationsService } from './translations.service';
-import { Translation, TranslationData } from '../models/translations.model';
+import {
+  TranslateLang,
+  Translation,
+  TranslationData,
+} from '../models/translations.model';
+import { toObservable } from '../pipes/toObservable';
 
 @Injectable({ providedIn: 'root' })
 export class I18nService implements OnInit {
   private lang: string = 'en';
-  trans = computed(() => this.translate.translationsDataSig());
-  translations: Translation = {};
+
+  langSig = signal('en');
+  translateWithLanguageSig = computed(() => {
+    return this.translate.translationsDataSig()[
+      this.langSig()
+    ] as TranslateLang;
+  });
 
   constructor(
     private settings: SettingsService,
@@ -18,26 +35,23 @@ export class I18nService implements OnInit {
   ) {
     // Set language
     if (this.settings.language) {
-      console.log(this.settings);
-
       this.setLanguage(this.settings.language);
     }
   }
   ngOnInit(): void {}
   setLanguage(lang: string): void {
-    this.lang = lang;
+    this.langSig.set(lang);
   }
 
   getCurrentLanguage(): string {
-    return this.lang;
+    return this.langSig();
   }
-
   get(key: string, substitutions?: { [key: string]: string }): string {
-    return this.translate.translationsDataSig()[this.lang][key]
-      ? this.replace(
-          this.translate.translationsDataSig()[this.lang][key],
-          substitutions
-        )
+    const langObj = this.translate.translationsDataSig();
+
+    return Object.keys(langObj).includes(this.lang) &&
+      Object.keys(langObj[this.lang]).includes(key)
+      ? this.translateWithLanguageSig()[key]
       : key;
   }
 
@@ -54,7 +68,6 @@ export class I18nService implements OnInit {
         );
       });
     }
-    console.log('translation:', result);
     return result;
   }
 }

@@ -1,5 +1,19 @@
-import { CommonModule, NgClass, NgFor, NgStyle } from '@angular/common';
-import { Component, Input, OnInit, inject, signal } from '@angular/core';
+import {
+  AsyncPipe,
+  CommonModule,
+  NgClass,
+  NgFor,
+  NgStyle,
+} from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+  effect,
+  inject,
+  signal,
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
@@ -10,6 +24,8 @@ import { NAVITEMS } from '../../api';
 import { SettingsService } from 'src/app/services/setting.service';
 import { TranslatePipe } from 'src/app/pipes/translate.pipe';
 import { TranslationsService } from 'src/app/services/translations.service';
+import { I18nService } from 'src/app/services/i18n.services';
+import { SignalPipe } from 'src/app/pipes/signal.pipe';
 
 @Component({
   selector: 'app-nav',
@@ -22,13 +38,17 @@ import { TranslationsService } from 'src/app/services/translations.service';
     NgStyle,
     TranslatePipe,
     UserComponent,
+    AsyncPipe,
+    SignalPipe,
   ],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavComponent implements OnInit {
   authService = inject(AuthService);
   translationService = inject(TranslationsService);
+  i18n = inject(I18nService);
   settings = inject(SettingsService);
 
   languageFormControl = 'uk';
@@ -38,7 +58,8 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {}
 
   changeLanguage($event: any) {
-    // this.languageService.changeLanguage($event);
+    this.i18n.langSig.set($event);
     this.settings.save();
+    window.location.reload();
   }
 }

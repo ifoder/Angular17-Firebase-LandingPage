@@ -110,12 +110,12 @@ import {
   waitForPendingWrites,
   where,
   writeBatch
-} from "./chunk-57OZRPHP.js";
+} from "./chunk-3NACKTWZ.js";
 import {
   AuthInstances
-} from "./chunk-ISKMVW3N.js";
+} from "./chunk-LRXZ67KR.js";
 import "./chunk-JQJXKPM6.js";
-import "./chunk-IDUKWBKV.js";
+import "./chunk-73WZDZUD.js";
 import {
   FirebaseApp,
   FirebaseApps,
@@ -125,10 +125,10 @@ import {
   ɵgetAllInstancesOf,
   ɵgetDefaultInstanceOf,
   ɵzoneWrap
-} from "./chunk-PW3CNSUJ.js";
+} from "./chunk-REYYQF4P.js";
 import {
   registerVersion
-} from "./chunk-3XQ2Y4TU.js";
+} from "./chunk-SKRSHTZE.js";
 import {
   InjectionToken,
   Injector,
@@ -138,7 +138,7 @@ import {
   setClassMetadata,
   ɵɵdefineInjector,
   ɵɵdefineNgModule
-} from "./chunk-2P2HMI5Y.js";
+} from "./chunk-Y4OPO6BX.js";
 import {
   Observable,
   concatMap,
@@ -154,7 +154,7 @@ import {
   timer
 } from "./chunk-ELRSAQZ7.js";
 import "./chunk-ECDNAN6X.js";
-import "./chunk-47AXDMZD.js";
+import "./chunk-JN3CWD3G.js";
 
 // node_modules/rxfire/firestore/index.esm.js
 var __assign = function() {

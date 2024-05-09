@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Language } from '../models/language.interface';
-import { Settings } from '../models/settings.model';
+import { Settings, SidebarStyle } from '../models/settings.model';
 import { StorageService } from './storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class SettingsService implements Settings {
   language: string;
+  sidebarStyle: SidebarStyle;
+
   supportedLanguages: Language[];
 
   constructor(private localStorage: StorageService) {
@@ -17,6 +19,7 @@ export class SettingsService implements Settings {
   private getDefaults(): Settings {
     return {
       language: 'en',
+      sidebarStyle: 'expanded',
       supportedLanguages: [
         {
           label: 'English',

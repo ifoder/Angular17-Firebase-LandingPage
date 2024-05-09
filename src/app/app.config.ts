@@ -1,5 +1,6 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import {
+  RouterModule,
   provideRouter,
   withComponentInputBinding,
   withEnabledBlockingInitialNavigation,
@@ -13,8 +14,6 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { FormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { getAnalytics } from 'firebase/analytics';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
@@ -29,27 +28,22 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { registerLocaleData } from '@angular/common';
 
 import localeUk from '@angular/common/locales/uk';
+import localeEn from '@angular/common/locales/en';
+import localeCs from '@angular/common/locales/cs';
 import { provideAuth } from '@angular/fire/auth';
 import { getAuth } from 'firebase/auth';
-
+import { MyLibModule } from 'projects/my-lib/src/public-api';
+import { routesChild } from 'projects/my-lib/src/lib/my-lib-routing.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 registerLocaleData(localeUk);
-
-function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, 'i18n', '.ts');
-}
-
-const I18N_CONFIG = {
-  loader: {
-    provide: TranslateLoader,
-    useFactory: HttpLoaderFactory,
-    deps: [HttpClient],
-  },
-};
+registerLocaleData(localeEn);
+registerLocaleData(localeCs);
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(
       routes,
+
       withComponentInputBinding(),
       withViewTransitions(),
       withEnabledBlockingInitialNavigation()
@@ -68,11 +62,11 @@ export const appConfig: ApplicationConfig = {
     AngularFireDatabaseModule,
 
     importProvidersFrom(GoogleMapsModule),
-
+    importProvidersFrom(RouterModule.forChild(routesChild)),
     importProvidersFrom(FormsModule),
+    importProvidersFrom(NgbModule),
+    importProvidersFrom(MyLibModule),
     provideAnimationsAsync(),
     provideHttpClient(),
-
-    importProvidersFrom(TranslateModule.forRoot()),
   ],
 };

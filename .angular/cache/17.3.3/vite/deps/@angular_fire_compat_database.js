@@ -1,10 +1,7 @@
 import {
   firebase
-} from "./chunk-IUHWDHAU.js";
-import {
-  isPlatformServer
-} from "./chunk-VFCSK5OE.js";
-import "./chunk-IDUKWBKV.js";
+} from "./chunk-X2S76GIC.js";
+import "./chunk-73WZDZUD.js";
 import {
   FirebaseApp,
   VERSION as VERSION2,
@@ -15,7 +12,7 @@ import {
   ɵgetAllInstancesOf,
   ɵgetDefaultInstanceOf,
   ɵzoneWrap
-} from "./chunk-PW3CNSUJ.js";
+} from "./chunk-REYYQF4P.js";
 import {
   Component,
   ComponentContainer,
@@ -58,7 +55,10 @@ import {
   validateArgCount,
   validateCallback,
   validateContextObject
-} from "./chunk-3XQ2Y4TU.js";
+} from "./chunk-SKRSHTZE.js";
+import {
+  isPlatformServer
+} from "./chunk-D5TAH3ZD.js";
 import {
   Inject,
   Injectable,
@@ -74,7 +74,7 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-2P2HMI5Y.js";
+} from "./chunk-Y4OPO6BX.js";
 import {
   Observable,
   Subject,
@@ -103,7 +103,7 @@ import "./chunk-ECDNAN6X.js";
 import {
   __async,
   __spreadValues
-} from "./chunk-47AXDMZD.js";
+} from "./chunk-JN3CWD3G.js";
 
 // node_modules/@firebase/app-check/dist/esm/index.esm2017.js
 var APP_CHECK_STATES = /* @__PURE__ */ new Map();
@@ -1150,7 +1150,7 @@ var AngularFireAuth = class _AngularFireAuth {
   credential;
   constructor(options, name5, platformId, zone, schedulers, useEmulator, settings, tenantId, languageCode, useDeviceLanguage, persistence, _appCheckInstances) {
     const logins = new Subject();
-    const auth = of(void 0).pipe(observeOn(schedulers.outsideAngular), switchMap(() => zone.runOutsideAngular(() => import("./index.esm-HTFQKVCE.js"))), map(() => ɵfirebaseAppFactory(options, zone, name5)), map((app) => ɵauthFactory(app, zone, useEmulator, tenantId, languageCode, useDeviceLanguage, settings, persistence)), shareReplay({
+    const auth = of(void 0).pipe(observeOn(schedulers.outsideAngular), switchMap(() => zone.runOutsideAngular(() => import("./index.esm-GRG2IAT3.js"))), map(() => ɵfirebaseAppFactory(options, zone, name5)), map((app) => ɵauthFactory(app, zone, useEmulator, tenantId, languageCode, useDeviceLanguage, settings, persistence)), shareReplay({
       bufferSize: 1,
       refCount: false
     }));

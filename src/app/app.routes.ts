@@ -19,6 +19,9 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { EditUserComponent } from './shared/components/user/edit/editUser.component';
 import { PhoneComponent } from './components/login/phone/phone.component';
 import { SuccessComponent } from './shared/components/success/success.component';
+import { MyLibComponent } from 'projects/my-lib/src/public-api';
+import { FireAdminRoutingModule } from 'projects/my-lib/src/lib/my-lib-routing.module';
+import { DashboardComponent } from 'projects/my-lib/src/lib/components/dashboard/dashboard.component';
 
 export const routes: Routes = [
   // { path: ':language?', component: HomeComponent },
@@ -28,6 +31,14 @@ export const routes: Routes = [
   { title: 'Reserve', path: 'reserve', component: ReserveComponent },
   { title: 'Reserve', path: 'reserve/:service', component: ReserveComponent },
   { title: 'Success', path: 'success', component: SuccessComponent },
+  {
+    title: 'FireAdmin',
+    path: 'admin',
+    loadChildren: () =>
+      import('projects/my-lib/src/lib/my-lib-routing.module').then((a) => {
+        return a.FireAdminRoutingModule;
+      }),
+  },
   {
     title: 'Feedback',
     path: 'feedback',
@@ -69,37 +80,37 @@ export const routes: Routes = [
     canActivate: [AuthGuardService],
   },
 
-  {
-    title: 'Admin',
-    path: 'admin',
-    component: AdminComponent,
-    canActivate: [AuthGuardService],
-    data: {
-      role: 'admin',
-    },
+  // {
+  //   title: 'Admin',
+  //   path: 'admin2',
+  //   component: AdminComponent,
+  //   canActivate: [AuthGuardService],
+  //   data: {
+  //     role: 'admin',
+  //   },
 
-    children: [
-      {
-        path: 'category',
-        component: CategoryAdminComponent,
-      },
-      {
-        path: 'services',
-        component: ServicesAdminComponent,
-      },
-      {
-        path: 'kadernictvi',
-        component: KadernictviAdminComponent,
-      },
-      {
-        path: 'barbers',
-        component: BarbersAdminComponent,
-      },
-      {
-        path: 'dashboard',
-        component: DashboardAdminComponent,
-      },
-    ],
-  },
+  //   children: [
+  //     {
+  //       path: 'category',
+  //       component: CategoryAdminComponent,
+  //     },
+  //     {
+  //       path: 'services',
+  //       component: ServicesAdminComponent,
+  //     },
+  //     {
+  //       path: 'kadernictvi',
+  //       component: KadernictviAdminComponent,
+  //     },
+  //     {
+  //       path: 'barbers',
+  //       component: BarbersAdminComponent,
+  //     },
+  //     {
+  //       path: 'dashboard',
+  //       component: DashboardAdminComponent,
+  //     },
+  //   ],
+  // },
   { title: 'Home', path: '**', component: HomeComponent },
 ];

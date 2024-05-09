@@ -1,0 +1,7 @@
+.dropdown-toggle::after {
+  vertical-align: middle;
+}
+.nav-link {
+  font-size: 12px;
+  font-weight: 400;
+}

@@ -1,4 +1,6 @@
-import { Language } from './language.interface';
+export interface TranslateLang {
+  [key: string]: string; // key: value
+}
 
 export interface Translation {
   [key: string]: { [key: string]: string }; // key: value

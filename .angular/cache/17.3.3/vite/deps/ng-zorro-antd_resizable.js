@@ -1,21 +1,21 @@
 import {
   NzDestroyService
-} from "./chunk-4NQDKSHT.js";
-import "./chunk-WD2DFVI4.js";
+} from "./chunk-VRJBQ73G.js";
+import "./chunk-V3IX2XEX.js";
+import {
+  Platform,
+  normalizePassiveListenerOptions
+} from "./chunk-KFL6KJZO.js";
 import {
   InputBoolean,
   ensureInBounds,
   isTouchEvent
-} from "./chunk-A4L4YVTT.js";
-import {
-  Platform,
-  normalizePassiveListenerOptions
-} from "./chunk-HH3PCEGU.js";
-import "./chunk-PA6IY4WI.js";
+} from "./chunk-O6NELX6U.js";
+import "./chunk-XVKPKO6U.js";
 import {
   DOCUMENT,
   NgForOf
-} from "./chunk-VFCSK5OE.js";
+} from "./chunk-D5TAH3ZD.js";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -48,7 +48,7 @@ import {
   ɵɵprojectionDef,
   ɵɵproperty,
   ɵɵtemplate
-} from "./chunk-2P2HMI5Y.js";
+} from "./chunk-Y4OPO6BX.js";
 import {
   Subject,
   filter,
@@ -62,7 +62,7 @@ import {
 import {
   __spreadProps,
   __spreadValues
-} from "./chunk-47AXDMZD.js";
+} from "./chunk-JN3CWD3G.js";
 
 // node_modules/ng-zorro-antd/fesm2022/ng-zorro-antd-resizable.mjs
 var _c0 = ["*"];

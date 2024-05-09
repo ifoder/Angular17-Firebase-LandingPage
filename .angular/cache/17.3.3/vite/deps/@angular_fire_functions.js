@@ -1,8 +1,8 @@
 import {
   AuthInstances
-} from "./chunk-ISKMVW3N.js";
+} from "./chunk-LRXZ67KR.js";
 import "./chunk-JQJXKPM6.js";
-import "./chunk-IDUKWBKV.js";
+import "./chunk-73WZDZUD.js";
 import {
   FirebaseApp,
   FirebaseApps,
@@ -12,7 +12,7 @@ import {
   ɵgetAllInstancesOf,
   ɵgetDefaultInstanceOf,
   ɵzoneWrap
-} from "./chunk-PW3CNSUJ.js";
+} from "./chunk-REYYQF4P.js";
 import {
   Component,
   FirebaseError,
@@ -22,7 +22,7 @@ import {
   getDefaultEmulatorHostnameAndPort,
   getModularInstance,
   registerVersion
-} from "./chunk-3XQ2Y4TU.js";
+} from "./chunk-SKRSHTZE.js";
 import {
   InjectionToken,
   Injector,
@@ -32,7 +32,7 @@ import {
   setClassMetadata,
   ɵɵdefineInjector,
   ɵɵdefineNgModule
-} from "./chunk-2P2HMI5Y.js";
+} from "./chunk-Y4OPO6BX.js";
 import {
   concatMap,
   distinct,
@@ -43,7 +43,7 @@ import {
 import "./chunk-ECDNAN6X.js";
 import {
   __async
-} from "./chunk-47AXDMZD.js";
+} from "./chunk-JN3CWD3G.js";
 
 // node_modules/@firebase/functions/dist/index.esm2017.js
 var LONG_TYPE = "type.googleapis.com/google.protobuf.Int64Value";
