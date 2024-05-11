@@ -36,6 +36,10 @@ import { NotificationService } from './services/notification.service';
 import { TranslationsService } from './services/translations.service';
 import { I18nService } from './services/i18n.services';
 import { TranslatePipe } from './pipes/translate.pipe';
+import { CalendarEventsService } from './services/calendar-events.service';
+import { timeout } from 'rxjs';
+import { NzI18nService, en_US, uk_UA } from 'ng-zorro-antd/i18n';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-root',
@@ -68,19 +72,24 @@ export class AppComponent implements OnInit {
   private authService = inject(AuthService);
   private router = inject(Router);
   private storage = inject(StorageService);
-  private sms = inject(NotificationService);
   private datePicker = inject(DatepickerService);
+
+  private calendarEvents = inject(CalendarEventsService);
   translationsService = inject(TranslationsService);
+  // auth = inject(AngularFireAuth);
   i18n = inject(I18nService);
+  Nzi18n = inject(NzI18nService);
   showLayoutTopBottom = signal<boolean>(true);
 
   calendarEvet: ICalendarEvent;
 
   ngOnInit(): void {
-    // this.languageService.initLanguage();
-    this.getTranslations();
-    this.ifAuthUser();
+    this.Nzi18n.setLocale(en_US);
 
+    this.calendarEvents.fetchData();
+    this.authService.fetchAuth();
+    this.translationsService.fetchTranslate();
+    this.getTranslations();
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (event.url.substring(0, 6) == '/admin') {
@@ -90,60 +99,8 @@ export class AppComponent implements OnInit {
     });
   }
 
-  ifAuthUser() {
-    this.authService.user$.subscribe((user) => {
-      let currentUser: User = new User();
-      if (user) {
-        if (!user.email && this.storage.getUser()?.email) {
-          onAuthStateChanged(this.authService.firebaseAuth, () => {
-            updateEmail(
-              this.authService.firebaseAuth.currentUser!,
-              this.storage.getUser()?.email!
-            );
-          });
-        }
-
-        currentUser = {
-          email: user.email!,
-          username: user.displayName!,
-          uid: user.uid,
-          admin: this.authService.isAdmin(user.email!),
-          phone: user.phoneNumber!,
-          photoURL: user.photoURL!,
-        };
-        this.authService.currentUserSig.set(currentUser);
-        this.ifStorageReservace();
-      } else {
-        this.authService.currentUserSig.set(null);
-        this.storage.clean();
-      }
-      // console.log(this.authService.currentUserSig());
-    });
-  }
-
-  ifStorageReservace() {
-    if (this.storage.get('calendarEvent') && this.authService.isLoggedIn()) {
-      this.datePicker.addCalendarEvent({
-        ...this.storage.get('calendarEvent'),
-        user: this.storage.getUser(),
-      } as ICalendarEvent);
-      this.storage.remove('calendarEvent');
-      this.sms.createNotification(
-        'success',
-        'Послуга зарезервована!',
-        'Ви можете переглянути ваші бронювання в профілі!'
-      );
-      setTimeout(() => {
-        this.router.navigate(['home']);
-      }, 1000);
-      this.router.navigate(['home']);
-    }
-  }
-
   getTranslations() {
-    this.translationsService.getAll().subscribe((translations) => {
-      this.translationsService.translationsDataSig.set(translations);
-      console.log(translations['en']);
-    });
+    this.translationsService.fetchTranslate();
+    console.log(this.translationsService.$translations());
   }
 }

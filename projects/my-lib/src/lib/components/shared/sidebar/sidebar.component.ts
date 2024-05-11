@@ -40,7 +40,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   @Input() style: string = 'expanded';
   logo: string;
   auth = inject(AuthService);
-  currentUser = this.auth.currentUserSig();
+  currentUser = this.auth.$user();
   activeItem: any;
   items: SidebarItem[] = [
     // Dashboard

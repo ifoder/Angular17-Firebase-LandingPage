@@ -80,37 +80,37 @@ export const routes: Routes = [
     canActivate: [AuthGuardService],
   },
 
-  // {
-  //   title: 'Admin',
-  //   path: 'admin2',
-  //   component: AdminComponent,
-  //   canActivate: [AuthGuardService],
-  //   data: {
-  //     role: 'admin',
-  //   },
+  {
+    title: 'Admin',
+    path: 'admin2',
+    component: AdminComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      role: 'admin',
+    },
 
-  //   children: [
-  //     {
-  //       path: 'category',
-  //       component: CategoryAdminComponent,
-  //     },
-  //     {
-  //       path: 'services',
-  //       component: ServicesAdminComponent,
-  //     },
-  //     {
-  //       path: 'kadernictvi',
-  //       component: KadernictviAdminComponent,
-  //     },
-  //     {
-  //       path: 'barbers',
-  //       component: BarbersAdminComponent,
-  //     },
-  //     {
-  //       path: 'dashboard',
-  //       component: DashboardAdminComponent,
-  //     },
-  //   ],
-  // },
+    children: [
+      {
+        path: 'category',
+        component: CategoryAdminComponent,
+      },
+      {
+        path: 'services',
+        component: ServicesAdminComponent,
+      },
+      {
+        path: 'kadernictvi',
+        component: KadernictviAdminComponent,
+      },
+      {
+        path: 'barbers',
+        component: BarbersAdminComponent,
+      },
+      {
+        path: 'dashboard',
+        component: DashboardAdminComponent,
+      },
+    ],
+  },
   { title: 'Home', path: '**', component: HomeComponent },
 ];

@@ -27,14 +27,14 @@ export class NavbarComponent implements OnInit {
   @Input() showBrand: boolean = false;
 
   defaultAvatar = 'u';
-  currentUser = this.auth.currentUserSig();
+  currentUser = this.auth.$user();
 
   constructor(public navigation: NavigationService, public auth: AuthService) {}
 
   ngOnInit() {}
 
   getUserName(): string | undefined {
-    return this.auth.currentUserSig()?.username || undefined;
+    return this.auth.$user()?.username || undefined;
   }
 
   toggleSidebar(event: Event) {

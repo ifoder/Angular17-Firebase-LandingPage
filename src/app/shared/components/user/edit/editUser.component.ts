@@ -37,7 +37,7 @@ import { StorageService } from 'src/app/services/storage.service';
 export class EditUserComponent implements OnInit {
   authService = inject(AuthService);
   router = inject(Router);
-  currentUser$ = computed(() => this.authService.currentUserSig());
+  currentUser$ = computed(() => this.authService.$user());
 
   validateForm: FormGroup<{
     email: FormControl<string>;

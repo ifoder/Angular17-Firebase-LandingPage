@@ -18,6 +18,7 @@ import { Observable } from 'rxjs';
 import { ServicesService } from 'src/app/services/services.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { CalendarEventsService } from 'src/app/services/calendar-events.service';
 
 @Component({
   selector: 'app-reserve',
@@ -40,48 +41,50 @@ export class ReserveComponent implements OnInit {
   private auth = inject(AuthService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
-  _datepickerService = inject(DatepickerService);
+  _calendarEventService = inject(CalendarEventsService);
   _servicesService = inject(ServicesService);
   _storage = inject(StorageService);
 
-  IcalendarEvent?: ICalendarEvent = {};
-  IcalendarEventsRef: any;
-  IcalendarEvents$!: Observable<ICalendarEvent[]>;
+  calendarEvent?: ICalendarEvent = {};
+  calendarEventsRef: any;
 
   current = 0;
   timePicker = TIMEPICKER;
   price = PRICE;
 
   ngOnInit(): void {
-    this.IcalendarEvents$ = this._datepickerService.getCalendarEvents();
-
     const serviceId = Number(this.route.snapshot.paramMap.get('service'));
     if (serviceId) this.current = 1;
   }
 
   setSelectedBarber($event: Barber) {
     this.current++;
-    this.IcalendarEvent!.barber = $event.id;
-    console.log(this.IcalendarEvent);
+    this._calendarEventService.$currentReserve.update(
+      (calendarEvent) => (calendarEvent = { ...calendarEvent, barber: $event })
+    );
+
+    this.calendarEvent!.barber = $event.id;
   }
 
   setSelectedService($event: Service) {
     this.current++;
-    this.IcalendarEvent!.service = $event.id;
-    console.log(this.IcalendarEvent);
+    this._calendarEventService.$currentReserve.update(
+      (calendarEvent) => (calendarEvent = { ...calendarEvent, service: $event })
+    );
+    this.calendarEvent!.service = $event.id;
   }
 
-  setSelectedDate($event: any) {
-    this.IcalendarEvent!.date = $event;
-    this.submitForm({
-      firstName: this.auth.currentUserSig()?.username,
-      email: this.auth.currentUserSig()?.email,
-    });
-    this._storage.save('IcalendarEvent', this.IcalendarEvent);
-
-    console.log(this.IcalendarEvent);
-
-    this.router.navigate(['phone']);
+  setSelectedDate($event: Date) {
+    this.calendarEvent!.date = $event;
+    this._calendarEventService.$currentReserve.update(
+      (calendarEvent) => (calendarEvent = { ...calendarEvent, date: $event })
+    );
+    if (this.auth.isAuth()) {
+      this._calendarEventService.compliteReservace();
+      this.router.navigate(['home']);
+    } else {
+      this._calendarEventService.compliteReservace();
+    }
   }
 
   submitForm($event: any) {

@@ -26,23 +26,23 @@ export class AuthGuardService {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (
-      route.data.role == 'notLoggined' &&
-      this.authService.isLoggedIn() == true
-    ) {
-      this.router.navigate(['home']);
-    }
+    // if (
+    //   route.data.role == 'notLoggined' &&
+    //   this.authService.isLoggedIn() == true
+    // ) {
+    //   this.router.navigate(['home']);
+    // }
 
-    if (
-      this.authService.isLoggedIn() !== true &&
-      route.data.role !== 'notLoggined'
-    ) {
-      this.router.navigate(['login']);
-    }
+    // if (
+    //   this.authService.isLoggedIn() !== true &&
+    //   route.data.role !== 'notLoggined'
+    // ) {
+    //   this.router.navigate(['login']);
+    // }
 
-    if (route.data.role == 'admin' && !this.authService.isAdmin()) {
-      this.router.navigate(['/home']);
-    }
+    // if (route.data.role == 'admin' && !this.authService.isAdmin()) {
+    //   this.router.navigate(['/home']);
+    // }
     return true;
   }
 }

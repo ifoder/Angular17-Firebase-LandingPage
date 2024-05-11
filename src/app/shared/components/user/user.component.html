@@ -2,22 +2,22 @@
   <nz-avatar
     nz-dropdown
     nzIcon="user"
-    [nzSrc]="currentUser$()?.photoURL"
+    [nzSrc]="$user()?.photoURL"
     [nzDropdownMenu]="menu2"
   ></nz-avatar>
 
   <nz-dropdown-menu #menu2="nzDropdownMenu">
     <ul nz-menu>
-      @if (currentUser$()){
+      @if ($user()){
       <li nz-menu-item routerLink="/user">
-        {{ currentUser$()?.username }}
+        {{ $user()?.username }}
       </li>
       <li nz-menu-divider></li>
       <li nz-menu-item routerLink="/user">
         <a routerLinkActive="active">Редагувати</a>
       </li>
       <!-- admin -->
-      @if (currentUser$()?.admin ){
+      @if (_auth.isAdmin() ){
       <li nz-menu-item routerLink="/admin">
         <a routerLinkActive="active">Бронювання</a>
       </li>
@@ -26,7 +26,7 @@
       }
 
       <!-- Login -->
-      @if (!currentUser$()){
+      @if (!$user()){
 
       <li nz-menu-item routerLink="/login">Вхід</li>
       <li nz-menu-item routerLink="/register">Регістрація</li>

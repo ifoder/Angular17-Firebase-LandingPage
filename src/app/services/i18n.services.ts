@@ -10,13 +10,13 @@ import { en } from '../i18n/en';
 import { cs } from '../i18n/cs';
 import { ua } from '../i18n/ua';
 import { SettingsService } from './setting.service';
-import { TranslationsService } from './translations.service';
 import {
   TranslateLang,
   Translation,
   TranslationData,
 } from '../models/translations.model';
 import { toObservable } from '../pipes/toObservable';
+import { TranslationsService } from './translations.service';
 
 @Injectable({ providedIn: 'root' })
 export class I18nService implements OnInit {
@@ -24,9 +24,7 @@ export class I18nService implements OnInit {
 
   langSig = signal('en');
   translateWithLanguageSig = computed(() => {
-    return this.translate.translationsDataSig()[
-      this.langSig()
-    ] as TranslateLang;
+    return this.translate.$translations()[this.langSig()] as TranslateLang;
   });
 
   constructor(
@@ -38,7 +36,9 @@ export class I18nService implements OnInit {
       this.setLanguage(this.settings.language);
     }
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.translate.$translations());
+  }
   setLanguage(lang: string): void {
     this.langSig.set(lang);
   }
@@ -47,7 +47,7 @@ export class I18nService implements OnInit {
     return this.langSig();
   }
   get(key: string, substitutions?: { [key: string]: string }): string {
-    const langObj = this.translate.translationsDataSig();
+    const langObj = this.translate.$translations();
 
     return Object.keys(langObj).includes(this.lang) &&
       Object.keys(langObj[this.lang]).includes(key)

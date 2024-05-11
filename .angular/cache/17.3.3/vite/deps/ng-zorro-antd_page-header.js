@@ -1,31 +1,31 @@
 import {
-  NzIconDirective,
-  NzIconModule
-} from "./chunk-6SU7ZL5H.js";
-import {
   NzResizeObserver
-} from "./chunk-5B365SFL.js";
-import "./chunk-KFL6KJZO.js";
+} from "./chunk-YIVWQ6UJ.js";
 import {
   NzOutletModule,
   NzStringTemplateOutletDirective
-} from "./chunk-5ERIQKMK.js";
+} from "./chunk-I37PCP7C.js";
+import {
+  NzIconDirective,
+  NzIconModule
+} from "./chunk-ZDRZN5Y6.js";
 import {
   NzConfigService,
   WithConfig
-} from "./chunk-DVRA4BNT.js";
+} from "./chunk-7CXXYODY.js";
 import {
   PREFIX
-} from "./chunk-O6NELX6U.js";
+} from "./chunk-A4L4YVTT.js";
+import "./chunk-HH3PCEGU.js";
 import {
   Directionality
-} from "./chunk-JPPYGJGR.js";
-import "./chunk-XVKPKO6U.js";
-import "./chunk-YHGTLF3J.js";
-import "./chunk-2XPBCZRL.js";
+} from "./chunk-UA6AN7W3.js";
+import "./chunk-PA6IY4WI.js";
+import "./chunk-437BBMU4.js";
+import "./chunk-WK2VJHMP.js";
 import {
   Location
-} from "./chunk-D5TAH3ZD.js";
+} from "./chunk-VFCSK5OE.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -68,7 +68,7 @@ import {
   ɵɵtemplate,
   ɵɵtext,
   ɵɵtextInterpolate
-} from "./chunk-Y4OPO6BX.js";
+} from "./chunk-2P2HMI5Y.js";
 import {
   Subject,
   map,
@@ -77,7 +77,7 @@ import {
 import {
   __decorate
 } from "./chunk-ECDNAN6X.js";
-import "./chunk-JN3CWD3G.js";
+import "./chunk-47AXDMZD.js";
 
 // node_modules/ng-zorro-antd/fesm2022/ng-zorro-antd-page-header.mjs
 function NzPageHeaderComponent_Conditional_3_ng_container_2_Template(rf, ctx) {

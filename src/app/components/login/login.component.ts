@@ -14,6 +14,7 @@ import { SharedNgZorroAntdModule } from 'src/app/shared/ng-zorro.module';
 import { Router, RouterLink } from '@angular/router';
 import { ButtonLoginComponent } from './button-login/button-login.component';
 import { DatepickerService } from 'src/app/services/datepicker.service';
+import { SignInService } from 'src/app/services/signin.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,7 @@ import { DatepickerService } from 'src/app/services/datepicker.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  authService = inject(AuthService);
+  _signIn = inject(SignInService);
   buttonsLogin = ['google', 'phone'];
 
   validateForm: FormGroup<{
@@ -36,12 +37,7 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
 
-  constructor(
-    private _storage: StorageService,
-    private _datePicker: DatepickerService,
-    private fb: NonNullableFormBuilder,
-    public router: Router
-  ) {
+  constructor(private fb: NonNullableFormBuilder, public router: Router) {
     this.validateForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -66,7 +62,7 @@ export class LoginComponent implements OnInit {
   }
 
   signInGoogle() {
-    this.authService.signInWithGoogle();
+    this._signIn.signInWithGoogle();
   }
 
   signInPhone() {

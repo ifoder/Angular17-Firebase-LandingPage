@@ -15,6 +15,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ButtonLoginComponent } from '../button-login/button-login.component';
 import { Router } from '@angular/router';
 import { DatepickerService } from 'src/app/services/datepicker.service';
+import { SignInService } from 'src/app/services/signin.service';
 
 @Component({
   selector: 'app-phone',
@@ -24,7 +25,7 @@ import { DatepickerService } from 'src/app/services/datepicker.service';
   styleUrl: './phone.component.css',
 })
 export class PhoneComponent implements OnInit {
-  _auth = inject(AuthService);
+  _signIn = inject(SignInService);
   _storage = inject(StorageService);
   _router = inject(Router);
   _datePicker = inject(DatepickerService);
@@ -48,7 +49,7 @@ export class PhoneComponent implements OnInit {
   ngOnInit(): void {}
 
   getOTP() {
-    this.applicationVerifier = this._auth.reCaptcha();
+    this.applicationVerifier = this._signIn.reCaptcha();
     console.log(this.applicationVerifier);
     this.isLoading = true;
 
@@ -59,7 +60,7 @@ export class PhoneComponent implements OnInit {
       username: this.validateForm.value.name,
     };
 
-    this._auth
+    this._signIn
       .signInWithPhone(this.applicationVerifier, this.newUser.phone!)
       .subscribe((response) => {
         this.verificationId = this._storage.get('verificationId');
@@ -88,7 +89,7 @@ export class PhoneComponent implements OnInit {
 
   submitForm(): void {
     if (this.validateForm.valid) {
-      const res = this._auth
+      const res = this._signIn
         .withCredentional(
           this.verificationId,
           this.validateForm.value.verificationId!,

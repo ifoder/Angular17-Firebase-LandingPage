@@ -1,16 +1,9 @@
 import { Component, Input, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
-import {
-  FormControl,
-  FormGroup,
-  NonNullableFormBuilder,
-  Validators,
-} from '@angular/forms';
+
 import { SharedNgZorroAntdModule } from 'src/app/shared/ng-zorro.module';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
-import { StorageService } from 'src/app/services/storage.service';
+import { SignInService } from 'src/app/services/signin.service';
 
 @Component({
   selector: 'button-login',
@@ -21,7 +14,7 @@ import { StorageService } from 'src/app/services/storage.service';
 export class ButtonLoginComponent implements OnInit {
   @Input() buttons: string[] = [];
 
-  authService = inject(AuthService);
+  _signIn = inject(SignInService);
   public router = inject(Router);
 
   ngOnInit(): void {}
@@ -30,7 +23,7 @@ export class ButtonLoginComponent implements OnInit {
     return this.buttons.includes(button);
   }
   signInGoogle() {
-    this.authService.signInWithGoogle();
+    this._signIn.signInWithGoogle();
   }
 
   signInPhone() {

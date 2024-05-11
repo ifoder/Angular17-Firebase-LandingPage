@@ -13,8 +13,12 @@
         <div class="card-body p-0 d-flex">
           <div class="d-flex flex-column m-auto">
             <div class="stats-small__data text-center">
-              <span class="stats-small__label text-uppercase">Posts</span>
-              <h6 class="stats-small__value count my-3">0</h6>
+              <span class="stats-small__label text-uppercase"
+                >Total calendar events</span
+              >
+              <h6 class="stats-small__value count my-3">
+                {{ totalCalendarEvents() }}
+              </h6>
             </div>
           </div>
         </div>
@@ -65,6 +69,32 @@
   </div>
   <!-- End Small Stats Blocks -->
   <div class="row justify-content-start">
+    <!-- calendar Blocks -->
+    <div class="col-lg-8 col-md-12 col-sm-12 mb-4">
+      <div class="card card-small lo-stats">
+        <div class="card-header border-bottom">
+          <h6 class="m-0">{{ "LatestPosts" | translate }}</h6>
+          <div class="block-handle"></div>
+        </div>
+        <div class="card-body p-0">
+          <nz-calendar>
+            <ul *nzDateCell="let date" class="events" (click)="showModal(date)">
+              <ng-container *ngIf="getCellWithDate(date); let cell">
+                <li *ngFor="let item of cell">
+                  <nz-badge [nzStatus]="getTimelineColor(item.date)"
+                    >{{ item.date | date : "H:mm" }} -
+                    {{ item.barber.name }}</nz-badge
+                  >
+                </li>
+              </ng-container>
+            </ul>
+          </nz-calendar>
+        </div>
+      </div>
+    </div>
+
+    <!-- end calendar Blocks -->
+
     <!-- Latest Posts -->
     <div class="col-lg-8 col-md-12 col-sm-12 mb-4">
       <div class="card card-small lo-stats">

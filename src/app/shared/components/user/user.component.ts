@@ -16,11 +16,12 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { AuthService } from 'src/app/services/auth.service';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { SharedNgZorroAntdModule } from '../../ng-zorro.module';
 import { SharedModule } from '../../shared.module';
+import { SignInService } from 'src/app/services/signin.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'user-app',
@@ -29,14 +30,15 @@ import { SharedModule } from '../../shared.module';
   templateUrl: './user.component.html',
 })
 export class UserComponent implements OnInit {
-  authService = inject(AuthService);
+  _signIn = inject(SignInService);
+  _auth = inject(AuthService);
   router = inject(Router);
 
-  currentUser$ = computed(() => this.authService.currentUserSig());
+  $user = computed(() => this._auth.$user());
 
   ngOnInit(): void {}
 
   logout(): void {
-    this.authService.logout();
+    this._auth.logout();
   }
 }

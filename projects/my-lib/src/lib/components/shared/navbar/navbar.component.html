@@ -36,7 +36,7 @@
         >
           <img
             class="user-avatar rounded-circle mr-2 mx-2"
-            [src]="this.auth.currentUserSig()?.photoURL"
+            [src]="this.auth.$user()?.photoURL"
             alt="User Avatar"
           />
           <span class="d-none d-md-inline-block align-middle">{{
@@ -56,7 +56,7 @@
               navigation.getRouterLink(
                 'users',
                 'profile',
-                this.auth.currentUserSig()?.uid || ''
+                this.auth.$user()?.uid || ''
               )
             "
             ><i class="material-icons">person</i> {{ "Profile" | translate }}</a

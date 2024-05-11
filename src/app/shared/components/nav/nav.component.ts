@@ -25,7 +25,6 @@ import { SettingsService } from 'src/app/services/setting.service';
 import { TranslatePipe } from 'src/app/pipes/translate.pipe';
 import { TranslationsService } from 'src/app/services/translations.service';
 import { I18nService } from 'src/app/services/i18n.services';
-import { SignalPipe } from 'src/app/pipes/signal.pipe';
 
 @Component({
   selector: 'app-nav',
@@ -39,7 +38,6 @@ import { SignalPipe } from 'src/app/pipes/signal.pipe';
     TranslatePipe,
     UserComponent,
     AsyncPipe,
-    SignalPipe,
   ],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css',
@@ -60,6 +58,5 @@ export class NavComponent implements OnInit {
   changeLanguage($event: any) {
     this.i18n.langSig.set($event);
     this.settings.save();
-    window.location.reload();
   }
 }

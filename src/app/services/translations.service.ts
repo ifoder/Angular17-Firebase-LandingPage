@@ -2,38 +2,30 @@ import { Injectable, inject, signal } from '@angular/core';
 
 import { Observable, map } from 'rxjs';
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
-import { Translation, TranslationData } from '../models/translations.model';
 
 @Injectable({ providedIn: 'root' })
 export class TranslationsService {
   private firestore = inject(Firestore);
   translationsCollection = collection(this.firestore, 'translations');
 
-  translationsDataSig = signal<any | null | undefined>(undefined);
+  $translations = signal<any | null | undefined>(undefined);
 
-  // add(data: TranslationData) {
-  //   const translation: Translation = { [data.key]: data.value };
-  //   return this.db.setDocument('translations', data.lang, translation);
-  // }
+  groupBy(arr: any, criteria: any) {
+    return arr.reduce(function (obj: any, item: any) {
+      var key = item[criteria];
+      if (!obj.hasOwnProperty(key)) obj[key] = {};
+      Object.defineProperty(obj[key], item.key, {
+        value: item.value,
+      });
+      return obj;
+    }, {});
+  }
+  fetchTranslate() {
+    return collectionData(this.translationsCollection).subscribe((e) => {
+      const tr = this.groupBy(e, 'lang');
 
-  getAll(lang?: string): Observable<any> {
-    return collectionData(this.translationsCollection).pipe(
-      map((translations: TranslationData[]) => {
-        //console.log(translations);
-        const allTranslations: any = {};
-        translations.forEach((translations: TranslationData) => {
-          // console.log(translations);
-          if (!allTranslations[translations.lang])
-            allTranslations[translations.lang] = {};
-
-          allTranslations[translations.lang] = {
-            ...allTranslations[translations.lang],
-            [translations.key]: translations.value,
-          };
-        });
-        return allTranslations;
-      })
-    ) as Observable<any>;
+      this.$translations.set(tr);
+    });
   }
 
   // getAll() {

@@ -48,8 +48,6 @@ export class NzModalCustomComponent implements OnInit {
       id: new Date().getMilliseconds().toString(),
       date: '',
       service: '',
-      firstName: '',
-      phone: '',
     };
   }
 

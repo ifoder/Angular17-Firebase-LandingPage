@@ -27,10 +27,11 @@ export class DatepickerService {
   calendarEventsSig = signal<ICalendarEvent[]>([]);
 
   addCalendarEvent(calendarEvent: ICalendarEvent) {
+    console.log('ADD');
+
     const calendarEventsRef = collection(this.firestore, 'calendarEvent');
     return addDoc(calendarEventsRef, calendarEvent);
   }
-
   getCalendarEvents(): Observable<ICalendarEvent[]> {
     return collectionData(this.calendarEventsCollection, {
       idField: 'id',
