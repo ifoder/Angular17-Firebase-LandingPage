@@ -31,8 +31,6 @@ import localeUk from '@angular/common/locales/uk';
 import localeEn from '@angular/common/locales/en';
 import localeCs from '@angular/common/locales/cs';
 import { getAuth, provideAuth } from '@angular/fire/auth';
-import { MyLibModule } from 'projects/my-lib/src/public-api';
-import { routesChild } from 'projects/my-lib/src/lib/my-lib-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireModule } from '@angular/fire/compat';
 registerLocaleData(localeUk);
@@ -62,10 +60,8 @@ export const appConfig: ApplicationConfig = {
     AngularFireDatabaseModule,
 
     importProvidersFrom(GoogleMapsModule),
-    importProvidersFrom(RouterModule.forChild(routesChild)),
     importProvidersFrom(FormsModule),
     importProvidersFrom(NgbModule),
-    importProvidersFrom(MyLibModule),
     provideAnimationsAsync(),
     provideHttpClient(),
   ],

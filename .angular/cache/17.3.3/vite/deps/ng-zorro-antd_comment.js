@@ -1,11 +1,11 @@
 import {
-  CdkPortalOutlet,
-  TemplatePortal
-} from "./chunk-2CGA3OMX.js";
-import {
   NzOutletModule,
   NzStringTemplateOutletDirective
 } from "./chunk-I37PCP7C.js";
+import {
+  CdkPortalOutlet,
+  TemplatePortal
+} from "./chunk-2CGA3OMX.js";
 import {
   Directionality
 } from "./chunk-UA6AN7W3.js";

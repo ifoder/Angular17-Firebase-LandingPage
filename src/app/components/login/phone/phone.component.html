@@ -1,98 +1,102 @@
-<div nz-row class="row2" nzJustify="space-around" nzAlign="middle">
-  <div nz-col [nzSpan]="20" class="section-heading">
-    <h2 nz-col nzSpan="20" class="section-title">Вхід</h2>
-  </div>
-  <div nz-col nzXs="20" nzSm="20" nzMd="10" nzLg="10" nzXl="10">
-    <form
-      nz-col
-      nz-form
-      [formGroup]="validateForm"
-      (ngSubmit)="submitForm()"
-      class="login-form"
-    >
-      <!-- <nz-alert
+<app-layout>
+  <div nz-row class="row2" nzJustify="space-around" nzAlign="middle">
+    <div nz-col [nzSpan]="20" class="section-heading">
+      <h2 nz-col nzSpan="20" class="section-title">Вхід</h2>
+    </div>
+    <div nz-col nzXs="20" nzSm="20" nzMd="10" nzLg="10" nzXl="10">
+      <form
+        nz-col
+        nz-form
+        [formGroup]="validateForm"
+        (ngSubmit)="submitForm()"
+        class="login-form"
+      >
+        <!-- <nz-alert
         [hidden]="calendarEvent"
         nzType="info"
         nzMessage="Щоб закінчити бронювання залиште ваш номер телефону для зворотнього звязку. Або увійдіть до сайту іншим способом"
         nzShowIcon
       ></nz-alert> -->
-      <nz-form-item>
-        <nz-form-control nzErrorTip="Не може бути пустим">
-          <nz-form-label for="name" nzSpan="22">Ім'я</nz-form-label>
-          <input
-            nz-input
-            formControlName="name"
-            name="name"
-            placeholder="Username"
-            id="name"
-          />
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control nzHasFeedback [nzErrorTip]="phoneErrorTpl">
-          <nz-form-label nzSpan="22">Введіть ваш номер телефону</nz-form-label>
-
-          <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
-            <ng-template #addOnBeforeTemplate>
-              <nz-select
-                formControlName="phoneNumberPrefix"
-                name="phoneNumberPrefix"
-                class="phone-select"
-              >
-                <nz-option nzLabel="+420" nzValue="+420"></nz-option>
-                <nz-option nzLabel="+380" nzValue="+380"></nz-option>
-              </nz-select>
-            </ng-template>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Не може бути пустим">
+            <nz-form-label for="name" nzSpan="22">Ім'я</nz-form-label>
             <input
-              placeholder="000 000 000"
-              formControlName="phoneNumber"
-              id="phoneNumber"
               nz-input
+              formControlName="name"
+              name="name"
+              placeholder="Username"
+              id="name"
             />
-            <ng-template #phoneErrorTpl let-control>
-              @if (control.errors?.['pattern']) { Use correct phone number use
-              numbers [0-9] }
-            </ng-template>
-          </nz-input-group>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-alert
-        [hidden]="!hideFirstStep"
-        nzType="info"
-        nzMessage="На ваш номер надійде код для підтвердження"
-        nzShowIcon
-      ></nz-alert>
-      <nz-form-item [hidden]="!hideFirstStep">
-        <nz-form-control>
-          <nz-form-label>Введіть код з смс тут</nz-form-label>
-          <input
-            nz-input
-            formControlName="verificationId"
-            placeholder="Verification code"
-            id="verificationId"
-            type="text"
-          />
-        </nz-form-control>
-      </nz-form-item>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control nzHasFeedback [nzErrorTip]="phoneErrorTpl">
+            <nz-form-label nzSpan="22"
+              >Введіть ваш номер телефону</nz-form-label
+            >
 
-      <button
-        nz-button
-        class="login-form-button"
-        nzType="primary"
-        (click)="hideFirstStep ? submitForm : getOTP()"
-        [nzLoading]="isLoading"
-        [disabled]="
-          validateForm.controls.phoneNumber.status == 'INVALID' ||
-          validateForm.controls.name.errors?.required
-        "
-      >
-        Продолжить
-      </button>
+            <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+              <ng-template #addOnBeforeTemplate>
+                <nz-select
+                  formControlName="phoneNumberPrefix"
+                  name="phoneNumberPrefix"
+                  class="phone-select"
+                >
+                  <nz-option nzLabel="+420" nzValue="+420"></nz-option>
+                  <nz-option nzLabel="+380" nzValue="+380"></nz-option>
+                </nz-select>
+              </ng-template>
+              <input
+                placeholder="000 000 000"
+                formControlName="phoneNumber"
+                id="phoneNumber"
+                nz-input
+              />
+              <ng-template #phoneErrorTpl let-control>
+                @if (control.errors?.['pattern']) { Use correct phone number use
+                numbers [0-9] }
+              </ng-template>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-alert
+          [hidden]="!hideFirstStep"
+          nzType="info"
+          nzMessage="На ваш номер надійде код для підтвердження"
+          nzShowIcon
+        ></nz-alert>
+        <nz-form-item [hidden]="!hideFirstStep">
+          <nz-form-control>
+            <nz-form-label>Введіть код з смс тут</nz-form-label>
+            <input
+              nz-input
+              formControlName="verificationId"
+              placeholder="Verification code"
+              id="verificationId"
+              type="text"
+            />
+          </nz-form-control>
+        </nz-form-item>
 
-      <div id="sign-in-button"></div>
-    </form>
+        <button
+          nz-button
+          class="login-form-button"
+          nzType="primary"
+          (click)="hideFirstStep ? submitForm : getOTP()"
+          [nzLoading]="isLoading"
+          [disabled]="
+            validateForm.controls.phoneNumber.status == 'INVALID' ||
+            validateForm.controls.name.errors?.required
+          "
+        >
+          Продолжить
+        </button>
+
+        <div id="sign-in-button"></div>
+      </form>
+    </div>
+    <div nz-col nzXs="20" nzSm="20" nzMd="10" nzLg="10" nzXl="10">
+      <button-login [buttons]="buttonsLogin"></button-login>
+    </div>
   </div>
-  <div nz-col nzXs="20" nzSm="20" nzMd="10" nzLg="10" nzXl="10">
-    <button-login [buttons]="buttonsLogin"></button-login>
-  </div>
-</div>
+</app-layout>

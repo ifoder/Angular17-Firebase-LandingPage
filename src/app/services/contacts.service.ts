@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import {
   addDoc,
   collectionData,
@@ -13,15 +13,23 @@ import {
 import { collection, getDocs, collectionGroup } from '@firebase/firestore';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Contacts } from '../models/contacts';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ContactsService {
-  private contactsSource = new BehaviorSubject<any | null>(null);
-  contacts$ = this.contactsSource.asObservable();
+  private firestore = inject(Firestore);
+  private auth = inject(AuthService);
+  contactsCollection = collection(this.firestore, 'contacts');
 
-  constructor(private firestore: Firestore) {}
+  $contacts = signal<any>([]);
+
+  fetchData() {
+    return collectionData(this.contactsCollection).subscribe((e) => {
+      this.$contacts.set(e.find((i) => i.id == 1));
+    });
+  }
 
   addContacts(contacts: Contacts) {
     const contactsRef = collection(this.firestore, 'contacts');

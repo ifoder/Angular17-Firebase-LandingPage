@@ -1,13 +1,12 @@
 import {
   NzAffixComponent,
   NzAffixModule
-} from "./chunk-74L56L4Q.js";
+} from "./chunk-6VPCC6ZB.js";
 import "./chunk-YIVWQ6UJ.js";
 import {
   NzScrollService
 } from "./chunk-4NQDKSHT.js";
 import "./chunk-WD2DFVI4.js";
-import "./chunk-UA6AN7W3.js";
 import {
   NzConfigService,
   WithConfig
@@ -20,6 +19,7 @@ import {
   Platform,
   normalizePassiveListenerOptions
 } from "./chunk-HH3PCEGU.js";
+import "./chunk-UA6AN7W3.js";
 import "./chunk-PA6IY4WI.js";
 import {
   DOCUMENT,

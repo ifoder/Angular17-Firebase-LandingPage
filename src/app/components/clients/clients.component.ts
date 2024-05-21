@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { GoogleMap, GoogleMapsModule, MapMarker } from '@angular/google-maps';
 import { MAP } from '../../shared/api';
 import { CONTACTS } from '../../shared/data';
 import { SharedNgZorroAntdModule } from '../../shared/ng-zorro.module';
 import { LayoutComponent } from 'src/app/shared/components/layout/layout.component';
+import { I18nService } from 'src/app/services/i18n.services';
+import { ContactsService } from 'src/app/services/contacts.service';
 
 @Component({
   selector: 'app-clients',
@@ -19,6 +21,8 @@ import { LayoutComponent } from 'src/app/shared/components/layout/layout.compone
   styleUrl: './clients.component.css',
 })
 export class ClientsComponent implements OnInit {
+  i18n = inject(I18nService);
+  contactsService = inject(ContactsService);
   marker = {
     position: { lat: MAP.lat, lng: MAP.lng },
   };
@@ -31,9 +35,7 @@ export class ClientsComponent implements OnInit {
     zoom: 14,
   };
 
-  client = CONTACTS;
-
-  constructor() {}
+  client = this.contactsService.$contacts;
 
   ngOnInit(): void {}
 

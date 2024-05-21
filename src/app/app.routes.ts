@@ -6,22 +6,13 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { ServicesComponent } from './components/services/services.component';
 import { ReserveComponent } from './components/reserve/reserve.component';
-import { AppComponent } from './app.component';
-import { AdminComponent } from './admin/admin.component';
-import { ServicesAdminComponent } from './admin/components/services/services.component';
-import { CategoryAdminComponent } from './admin/components/category/category.component';
-import { KadernictviAdminComponent } from './admin/components/kadernictvi/kadernictvi.component';
-import { BarbersAdminComponent } from './admin/components/barbers/barbers.component';
-import { DashboardAdminComponent } from './admin/components/dashboard/dashboard.component';
+
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/login/register/register.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { EditUserComponent } from './shared/components/user/edit/editUser.component';
 import { PhoneComponent } from './components/login/phone/phone.component';
 import { SuccessComponent } from './shared/components/success/success.component';
-import { MyLibComponent } from 'projects/my-lib/src/public-api';
-import { FireAdminRoutingModule } from 'projects/my-lib/src/lib/my-lib-routing.module';
-import { DashboardComponent } from 'projects/my-lib/src/lib/components/dashboard/dashboard.component';
 
 export const routes: Routes = [
   // { path: ':language?', component: HomeComponent },

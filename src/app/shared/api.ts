@@ -4,7 +4,10 @@ export const GOOGLE_MAPS = {
   apiKey: 'AIzaSyA0R6E8kbu4WiWHksqSshQyKvgqW2Vsclw',
 };
 
-export const adminToken = ['leha.kardan2016@gmail.com'];
+export const adminToken = [
+  'pvUS5e5giUYj2lu9nVQr5VIHHl62',
+  'V3kyPnMC7OVQiIe4omQk6Psc2Wh2',
+];
 
 export const NAVITEMS = [
   { title: 'Home', link: '/home' },

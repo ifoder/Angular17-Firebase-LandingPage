@@ -14,7 +14,6 @@ import { differenceInCalendarDays, setHours, format } from 'date-fns';
 import { ru, enUS, uk } from 'date-fns/locale';
 
 import { SharedNgZorroAntdModule } from 'src/app/shared/ng-zorro.module';
-import { DatepickerService } from 'src/app/services/datepicker.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { BarbersService } from 'src/app/services/barbers.service';
@@ -81,7 +80,7 @@ export class DashboardAdminComponent implements OnInit {
     const now = new Date();
 
     return inputDate.getDate() == now.getDate()
-      ? format(inputDate, 'h:mm')
-      : format(inputDate, 'EEEE dd.MM h:mm', { locale: uk });
+      ? format(inputDate, 'HH:mm')
+      : format(inputDate, 'EEEE dd.MM HH:mm', { locale: uk });
   }
 }

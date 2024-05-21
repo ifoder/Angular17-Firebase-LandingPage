@@ -8,18 +8,20 @@ import {
   Validators,
 } from '@angular/forms';
 import { StorageService } from 'src/app/services/storage.service';
-import { DatepickerService } from 'src/app/services/datepicker.service';
 import { ButtonLoginComponent } from '../button-login/button-login.component';
 import { Router } from '@angular/router';
+import { LayoutComponent } from 'src/app/shared/components/layout/layout.component';
+import { SignInService } from 'src/app/services/signin.service';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [SharedModule, ButtonLoginComponent],
+  imports: [SharedModule, ButtonLoginComponent, LayoutComponent],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
+  signService = inject(SignInService);
   authService = inject(AuthService);
   validateForm: FormGroup<{
     firstName: FormControl<string>;
@@ -30,7 +32,6 @@ export class RegisterComponent {
   buttonsLogin = ['email', 'google', 'phone'];
   constructor(
     private _storage: StorageService,
-    private _datePicker: DatepickerService,
     private fb: NonNullableFormBuilder,
     public router: Router
   ) {
@@ -44,6 +45,11 @@ export class RegisterComponent {
   submitForm(): void {
     if (this.validateForm.valid) {
       console.log(this.validateForm.value);
+      this.signService.register(
+        this.validateForm.value.firstName!,
+        this.validateForm.value.email!,
+        this.validateForm.value.password!
+      );
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {

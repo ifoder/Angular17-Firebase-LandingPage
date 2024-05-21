@@ -14,13 +14,13 @@ import { User } from 'src/app/models/user.interface';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ButtonLoginComponent } from '../button-login/button-login.component';
 import { Router } from '@angular/router';
-import { DatepickerService } from 'src/app/services/datepicker.service';
 import { SignInService } from 'src/app/services/signin.service';
+import { LayoutComponent } from 'src/app/shared/components/layout/layout.component';
 
 @Component({
   selector: 'app-phone',
   standalone: true,
-  imports: [SharedModule, ButtonLoginComponent],
+  imports: [SharedModule, ButtonLoginComponent, LayoutComponent],
   templateUrl: './phone.component.html',
   styleUrl: './phone.component.css',
 })
@@ -28,7 +28,6 @@ export class PhoneComponent implements OnInit {
   _signIn = inject(SignInService);
   _storage = inject(StorageService);
   _router = inject(Router);
-  _datePicker = inject(DatepickerService);
 
   isLoading = false;
   hideFirstStep = false;

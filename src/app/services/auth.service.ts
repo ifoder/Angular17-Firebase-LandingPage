@@ -62,7 +62,7 @@ export class AuthService {
   }
 
   isAdmin(email?: string) {
-    if (!email) email = this.$user()?.email;
+    if (!email) email = this.$user()?.uid;
 
     return adminToken.includes(email!);
   }

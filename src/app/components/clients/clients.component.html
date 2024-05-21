@@ -1,63 +1,61 @@
-<app-layout
-  ><!--Clients-->
-  <aside id="clients" class="secondary-color scrollto clearfix">
-    <div nz-row class="row clearfix">
-      <div
-        nz-col
-        [nzXl]="8"
-        [nzLg]="8"
-        [nzMd]="12"
-        [nzSm]="20"
-        [nzXs]="20"
-        class="col-3"
-      >
-        <div class="section-heading">
-          <h3>{{ client.title }}</h3>
-          <h2 class="section-title">{{ client.description }}</h2>
-          <!-- {{ client.detail }} -->
-          <div class="section-subtitle">
-            <i class="fa fa-clock-o fa-2x"></i>
-            {{ client.workHour }}
-          </div>
-          <div class="section-subtitle">
-            <i class="fa fa-map-marker fa-2x"></i>
-            <a (click)="this.googleNav()">{{ client.addressText }}</a>
-          </div>
-          <div class="section-subtitle">
-            <i class="fa fa-telegram fa-2x"></i>
-            <a href="http://{{ client.telegram }}">{{ client.telegram }}</a>
-          </div>
-          <div class="section-subtitle">
-            <i class="fa fa-phone fa-2x"></i>
-            <a href="{{ 'tel:' + client.phone }}"> {{ client.phone }}</a>
-          </div>
+<!--Clients-->
+<aside id="clients" class="secondary-color scrollto clearfix">
+  <div nz-row class="row clearfix">
+    <div
+      nz-col
+      [nzXl]="8"
+      [nzLg]="8"
+      [nzMd]="12"
+      [nzSm]="20"
+      [nzXs]="20"
+      class="col-3"
+    >
+      <div class="section-heading">
+        <h3>{{ i18n.get("contacts") }}</h3>
+        <h2 class="section-title">{{ i18n.get("contacts.title") }}</h2>
+        <!-- {{ client.detail }} -->
+        <div class="section-subtitle">
+          <i class="fa fa-clock-o fa-2x"></i>
+          {{ client().workHour }}
         </div>
-      </div>
-
-      <div
-        nz-col
-        [nzXl]="8"
-        [nzLg]="8"
-        [nzMd]="20"
-        [nzSm]="20"
-        [nzXs]="20"
-        class="col-3"
-      >
-        <div id="map">
-          <google-map
-            height="400px"
-            width="400px"
-            [options]="options"
-            (mapClick)="googleNav()"
-          >
-            <map-advanced-marker
-              [position]="marker.position"
-              (mapClick)="googleNav()"
-            ></map-advanced-marker>
-          </google-map>
+        <div class="section-subtitle">
+          <i class="fa fa-map-marker fa-2x"></i>
+          <a (click)="this.googleNav()">{{ client().location }}</a>
+        </div>
+        <div class="section-subtitle">
+          <i class="fa fa-telegram fa-2x"></i>
+          <a href="http://{{ client().telegram }}">{{ client().telegram }}</a>
+        </div>
+        <div class="section-subtitle">
+          <i class="fa fa-phone fa-2x"></i>
+          <a href="{{ 'tel:' + client().phone }}"> {{ client().phone }}</a>
         </div>
       </div>
     </div>
-  </aside>
-</app-layout>
+
+    <div
+      nz-col
+      [nzXl]="8"
+      [nzLg]="8"
+      [nzMd]="20"
+      [nzSm]="20"
+      [nzXs]="20"
+      class="col-3"
+    >
+      <div id="map">
+        <google-map
+          height="400px"
+          width="400px"
+          [options]="options"
+          (mapClick)="googleNav()"
+        >
+          <map-advanced-marker
+            [position]="marker.position"
+            (mapClick)="googleNav()"
+          ></map-advanced-marker>
+        </google-map>
+      </div>
+    </div>
+  </div>
+</aside>
 <!--End of Clients-->

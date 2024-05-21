@@ -226,13 +226,15 @@ section {
   justify-content: center;
   max-width: 1245px;
   margin: 0 auto;
-  padding: 75px 0;
   position: relative;
 }
 .row2 {
   max-width: 1245px;
+  padding: 70px 0;
+  position: relative;
+}
+.inner-content {
   margin: 0 auto;
-  padding: 75px 0;
 
   position: relative;
 }
@@ -1116,6 +1118,10 @@ blockquote {
  * MIT Licensed.
 **/
 @media all {
+  .row2 {
+    justify-content: center;
+    margin: 15px 0 !important;
+  }
   .featherlight {
     display: none;
 
@@ -2206,13 +2212,6 @@ blockquote {
     display: none;
   }
 
-  .row {
-    padding: 15px !important;
-  }
-  .row2 {
-    justify-content: center;
-    padding: 25px !important;
-  }
   .col-1,
   .col-2,
   .col-3,
@@ -2334,14 +2333,6 @@ blockquote {
   #scrollUp,
   #scrollUp:before {
     display: none;
-  }
-
-  .row {
-    padding: 15px 0 !important;
-  }
-  .row2 {
-    justify-content: center;
-    padding: 15px 0 !important;
   }
 
   .col-1,

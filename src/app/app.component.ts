@@ -15,32 +15,20 @@ import {
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { HomeComponent } from './admin/components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
-import { ClientsComponent } from './components/clients/clients.component';
-import { FeedbackComponent } from './components/feedback/feedback.component';
-import { GalleryComponent } from './components/gallery/gallery.component';
-import { ServicesComponent } from './components/services/services.component';
-import { ReserveComponent } from './components/reserve/reserve.component';
+
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { SharedModule } from './shared/shared.module';
 import { StorageService } from './services/storage.service';
 import { AuthService } from './services/auth.service';
-import { User } from './models/user.interface';
-import { updateEmail, onAuthStateChanged } from 'firebase/auth';
-import { NgForm } from '@angular/forms';
-import { ReCaptchaV3Service } from 'ng-recaptcha';
-import { NavComponent } from './shared/components/nav/nav.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
-import { DatepickerService } from './services/datepicker.service';
+
 import { ICalendarEvent } from './models/calendarEvents.interface';
-import { NotificationService } from './services/notification.service';
 import { TranslationsService } from './services/translations.service';
 import { I18nService } from './services/i18n.services';
-import { TranslatePipe } from './pipes/translate.pipe';
 import { CalendarEventsService } from './services/calendar-events.service';
 import { timeout } from 'rxjs';
 import { NzI18nService, en_US, uk_UA } from 'ng-zorro-antd/i18n';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { LayoutComponent } from './shared/components/layout/layout.component';
+import { ContactsService } from './services/contacts.service';
 
 @Component({
   selector: 'app-root',
@@ -54,7 +42,6 @@ import { LayoutComponent } from './shared/components/layout/layout.component';
 
     NzLayoutModule,
     SharedModule,
-    TranslatePipe,
     AsyncPipe,
     LayoutComponent,
   ],
@@ -63,12 +50,10 @@ import { LayoutComponent } from './shared/components/layout/layout.component';
 export class AppComponent implements OnInit {
   // private languageService = inject(LanguageService);
   private authService = inject(AuthService);
-  private router = inject(Router);
-  private storage = inject(StorageService);
-  private datePicker = inject(DatepickerService);
 
   private calendarEvents = inject(CalendarEventsService);
   translationsService = inject(TranslationsService);
+  contactsService = inject(ContactsService);
   // auth = inject(AngularFireAuth);
   i18n = inject(I18nService);
   Nzi18n = inject(NzI18nService);
@@ -81,6 +66,7 @@ export class AppComponent implements OnInit {
 
     this.calendarEvents.fetchData();
     this.authService.fetchAuth();
+    this.contactsService.fetchData();
     this.translationsService.fetchTranslate();
     this.getTranslations();
     // this.router.events.subscribe((event) => {

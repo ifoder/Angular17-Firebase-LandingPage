@@ -128,7 +128,7 @@ export class CalendarEventsService {
     }).then(() => {
       this.fetchData(), console.log(this.$calendarEvents);
     });
-
+    1;
     this.sms.createNotification(
       'success',
       'Послуга зарезервована!',

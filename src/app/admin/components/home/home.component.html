@@ -11,17 +11,17 @@
       >
         <div nz-col [nzSpan]="20" class="section-subtitle">
           <p>
-            <b>{{ client.addressText }}</b>
+            <b>{{ client().location }}</b>
           </p>
 
-          <p>{{ client.phone }}</p>
+          <p>{{ client().phone }}</p>
         </div>
       </div>
 
       <!--Call to Action-->
       <div nz-col [nzSpan]="20">
         <a routerLink="/reserve" routerLinkActive="active" class="button">{{
-          header.buttontext
+          i18n.get("header.buttontext")
         }}</a>
       </div>
 

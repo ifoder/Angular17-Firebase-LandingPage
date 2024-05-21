@@ -9,12 +9,8 @@ import { BarbersComponent } from './barbers/barbers.component';
 import { Barber } from '../../models/barbers.interface';
 import { ServicesComponent } from './services/services.component';
 import { DatepickerComponent } from './datepicker/datepicker.component';
-import { DatepickerService } from '../../services/datepicker.service';
-import { UserformComponent } from './userform/userform.component';
-import { CorrectComponent } from './correct/correct.component';
 import { ICalendarEvent } from '../../models/calendarEvents.interface';
 
-import { Observable } from 'rxjs';
 import { ServicesService } from 'src/app/services/services.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -31,8 +27,6 @@ import { LayoutComponent } from 'src/app/shared/components/layout/layout.compone
     BarbersComponent,
     ServicesComponent,
     DatepickerComponent,
-    UserformComponent,
-    CorrectComponent,
     DatePipe,
     LayoutComponent,
   ],

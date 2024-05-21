@@ -17,7 +17,6 @@ import { BarbersService } from 'src/app/services/barbers.service';
 import { ServicesService } from 'src/app/services/services.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { differenceInCalendarDays, setHours, format } from 'date-fns';
-import { DatepickerService } from 'src/app/services/datepicker.service';
 import { CalendarEventsService } from 'src/app/services/calendar-events.service';
 
 @Component({

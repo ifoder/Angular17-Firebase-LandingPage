@@ -1,21 +1,7 @@
-import {
-  Injectable,
-  OnInit,
-  Signal,
-  computed,
-  effect,
-  signal,
-} from '@angular/core';
-import { en } from '../i18n/en';
-import { cs } from '../i18n/cs';
-import { ua } from '../i18n/ua';
+import { Injectable, OnInit, computed, signal } from '@angular/core';
+
 import { SettingsService } from './setting.service';
-import {
-  TranslateLang,
-  Translation,
-  TranslationData,
-} from '../models/translations.model';
-import { toObservable } from '../pipes/toObservable';
+
 import { TranslationsService } from './translations.service';
 
 @Injectable({ providedIn: 'root' })

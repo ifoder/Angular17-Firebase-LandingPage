@@ -3,16 +3,16 @@ import {
   NzStringTemplateOutletDirective
 } from "./chunk-I37PCP7C.js";
 import {
-  BidiModule,
-  Directionality
-} from "./chunk-UA6AN7W3.js";
-import {
   NzConfigService,
   WithConfig
 } from "./chunk-7CXXYODY.js";
 import {
   InputBoolean
 } from "./chunk-A4L4YVTT.js";
+import {
+  BidiModule,
+  Directionality
+} from "./chunk-UA6AN7W3.js";
 import "./chunk-PA6IY4WI.js";
 import {
   NgClass,

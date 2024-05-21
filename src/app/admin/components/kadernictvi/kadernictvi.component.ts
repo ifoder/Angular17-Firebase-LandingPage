@@ -6,6 +6,7 @@ import { SharedModule } from '../../../shared/shared.module';
 import { SharedNgZorroAntdModule } from '../../../shared/ng-zorro.module';
 import { Contacts } from 'src/app/models/contacts';
 import { ContactsService } from 'src/app/services/contacts.service';
+import { I18nService } from 'src/app/services/i18n.services';
 
 @Component({
   selector: 'app-kadernictvi-admin',
@@ -18,6 +19,7 @@ import { ContactsService } from 'src/app/services/contacts.service';
 export class KadernictviAdminComponent implements OnInit {
   @ViewChild('contactForm') contactForm: NgForm;
   _contactsService = inject(ContactsService);
+  i18n = inject(I18nService);
 
   contacts$!: Observable<Contacts[]>;
   contact: Contacts;
