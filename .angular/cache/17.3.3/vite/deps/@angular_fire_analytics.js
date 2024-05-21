@@ -4,6 +4,9 @@ import {
   ɵEmptyOutletComponent
 } from "./chunk-UZVDMXWE.js";
 import {
+  Title
+} from "./chunk-437BBMU4.js";
+import {
   getAnalytics,
   getGoogleAnalyticsClientId,
   initializeAnalytics,
@@ -17,18 +20,13 @@ import {
   setUserProperties,
   settings
 } from "./chunk-7XBV73CV.js";
-import "./chunk-GZKD4HDB.js";
-import {
-  Title
-} from "./chunk-437BBMU4.js";
-import "./chunk-WK2VJHMP.js";
-import "./chunk-VFCSK5OE.js";
 import {
   Auth,
   authState
 } from "./chunk-ISKMVW3N.js";
 import "./chunk-JQJXKPM6.js";
 import "./chunk-IDUKWBKV.js";
+import "./chunk-GZKD4HDB.js";
 import {
   FirebaseApp,
   FirebaseApps,
@@ -42,6 +40,8 @@ import {
 import {
   registerVersion
 } from "./chunk-3XQ2Y4TU.js";
+import "./chunk-WK2VJHMP.js";
+import "./chunk-VFCSK5OE.js";
 import {
   APP_INITIALIZER,
   ComponentFactoryResolver$1,

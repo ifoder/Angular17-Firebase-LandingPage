@@ -1,5 +1,13 @@
 import { CommonModule, formatDate } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  inject,
+} from '@angular/core';
 import { DATEUSE, TIMEPICKER } from '../../../shared/data';
 import { SharedNgZorroAntdModule } from '../../../shared/ng-zorro.module';
 import { SharedModule } from '../../../shared/shared.module';
@@ -29,7 +37,6 @@ export class DatepickerComponent implements OnInit {
 
   disabledDate = (current: Date): boolean => {
     let rre = differenceInCalendarDays(current, new Date()) < 0;
-    this.disabledTime(current);
     if (this.timePicker.length < 1) return true;
     return rre;
   };
@@ -40,10 +47,14 @@ export class DatepickerComponent implements OnInit {
   }
 
   disabledTime(current: Date) {
-    const dayPicked = this._calendarEvents.getCalendarEventsOfDate(current);
+    const dayPicked = this._calendarEvents
+      .getCalendarEventsOfDate(current)
+      .filter(
+        (n) => this._calendarEvents.$currentReserve()?.barber.id == n.barber.id
+      );
 
     this.timePicker = TIMEPICKER;
-    this.timePicker.filter((n) => dayPicked);
+    // this.timePicker.filter((n) => dayPicked);
     dayPicked.forEach(
       (dt) =>
         (this.timePicker = this.timePicker.filter(

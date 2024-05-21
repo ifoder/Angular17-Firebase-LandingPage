@@ -1,0 +1,56 @@
+.content {
+  margin: 0 auto;
+  padding-top: 90px;
+  padding-bottom: 50px;
+  text-align: start;
+  padding-left: 40px;
+  padding-right: 40px;
+  max-width: 1100px;
+}
+
+.steps-action {
+  margin-top: 24px;
+}
+
+button {
+  margin-right: 8px;
+}
+
+h3 {
+  margin-top: 20px;
+}
+
+h4 {
+  padding-top: 20px;
+  padding-left: 3%;
+  font-weight: bold;
+}
+
+.service-card {
+  transition: all 200ms;
+  cursor: pointer;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  margin: 10px 5px;
+}
+
+.service-card:hover {
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1), 0 3px 20px 0 rgba(0, 0, 0, 0.09);
+}
+
+.card-price {
+  color: rgba(0, 0, 0, 0.825);
+  font-size: 18px;
+  font-weight: 600;
+  padding-right: 10px;
+}
+
+.service-card-action {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+}
+
+.service-category {
+  padding-bottom: 0px;
+}

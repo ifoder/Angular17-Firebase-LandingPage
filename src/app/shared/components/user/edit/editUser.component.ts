@@ -9,6 +9,9 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { SharedNgZorroAntdModule } from 'src/app/shared/ng-zorro.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { differenceInCalendarDays, setHours, format } from 'date-fns';
+import { ru, enUS, uk } from 'date-fns/locale';
+
 import {
   FormBuilder,
   FormControl,
@@ -17,6 +20,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { StorageService } from 'src/app/services/storage.service';
+import { CalendarEventsService } from 'src/app/services/calendar-events.service';
+import { ICalendarEvent } from 'src/app/models/calendarEvents.interface';
+import { LayoutComponent } from '../../layout/layout.component';
 
 @Component({
   selector: 'edit-user-app',
@@ -30,6 +36,7 @@ import { StorageService } from 'src/app/services/storage.service';
     SharedNgZorroAntdModule,
     SharedModule,
     NgStyle,
+    LayoutComponent,
   ],
   templateUrl: './editUser.component.html',
   styleUrl: './editUser.component.css',
@@ -38,6 +45,8 @@ export class EditUserComponent implements OnInit {
   authService = inject(AuthService);
   router = inject(Router);
   currentUser$ = computed(() => this.authService.$user());
+  _calendarService = inject(CalendarEventsService);
+  calendarEvents = this._calendarService.$calendarEvents;
 
   validateForm: FormGroup<{
     email: FormControl<string>;
@@ -62,16 +71,35 @@ export class EditUserComponent implements OnInit {
     // console.log(this.authService.currentUserSig());
   }
 
-  submitForm(): void {
-    if (this.validateForm.valid) {
-      console.log(this.validateForm.value);
-    } else {
-      Object.values(this.validateForm.controls).forEach((control) => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
-        }
-      });
-    }
+  sort(events: any) {
+    this.calendarEvents().sort(
+      (m, c) => new Date(m.date).getTime() - new Date(c.date).getTime()
+    );
+
+    return this.calendarEvents().filter(
+      (m) => m.user.email == this.authService.$user()?.email
+    );
+  }
+
+  ngOnDestroy() {}
+
+  getCellWithDate(date: Date) {
+    return this._calendarService.getCalendarEventsOfDate(date);
+  }
+
+  getTimelineColor(item: ICalendarEvent) {
+    if (new Date(item.date).getTime() - new Date().getTime() < 0) return 'red';
+    else return 'green';
+  }
+
+  deleteEvent(event: ICalendarEvent) {}
+
+  formatDate(date: Date) {
+    const inputDate = new Date(date);
+    const now = new Date();
+
+    return inputDate.getDate() == now.getDate()
+      ? format(inputDate, 'h:mm')
+      : format(inputDate, 'EEEE dd.MM h:mm', { locale: uk });
   }
 }

@@ -13,7 +13,7 @@ import {
   RouterOutlet,
 } from '@angular/router';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './admin/components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { ClientsComponent } from './components/clients/clients.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
@@ -40,6 +40,7 @@ import { CalendarEventsService } from './services/calendar-events.service';
 import { timeout } from 'rxjs';
 import { NzI18nService, en_US, uk_UA } from 'ng-zorro-antd/i18n';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { LayoutComponent } from './shared/components/layout/layout.component';
 
 @Component({
   selector: 'app-root',
@@ -50,22 +51,14 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
     RouterLinkActive,
     HomeComponent,
     AboutComponent,
-    ReserveComponent,
-    ClientsComponent,
 
-    FeedbackComponent,
-    GalleryComponent,
-    NavComponent,
-    ServicesComponent,
-    FooterComponent,
     NzLayoutModule,
     SharedModule,
     TranslatePipe,
     AsyncPipe,
+    LayoutComponent,
   ],
   templateUrl: './app.component.html',
-
-  encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent implements OnInit {
   // private languageService = inject(LanguageService);
@@ -84,19 +77,19 @@ export class AppComponent implements OnInit {
   calendarEvet: ICalendarEvent;
 
   ngOnInit(): void {
-    this.Nzi18n.setLocale(en_US);
+    this.Nzi18n.setLocale(uk_UA);
 
     this.calendarEvents.fetchData();
     this.authService.fetchAuth();
     this.translationsService.fetchTranslate();
     this.getTranslations();
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        if (event.url.substring(0, 6) == '/admin') {
-          this.showLayoutTopBottom.set(false);
-        }
-      }
-    });
+    // this.router.events.subscribe((event) => {
+    //   if (event instanceof NavigationEnd) {
+    //     if (event.url.substring(0, 6) == '/admin') {
+    //       this.showLayoutTopBottom.set(false);
+    //     }
+    //   }
+    // });
   }
 
   getTranslations() {

@@ -1,0 +1,74 @@
+<h2>Послуги</h2>
+
+<button nz-button (click)="addRow()" nzType="primary">Add</button>
+
+<nz-table #editRowTable nzBordered [nzData]="this.translations()">
+  <thead>
+    <tr>
+      <th>Key</th>
+      <th>Language</th>
+      <th>Value</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let data of editRowTable.data"
+      class="editable-row"
+      (click)="startEdit(data)"
+    >
+      <td>
+        <div class="editable-cell" [hidden]="editService === data">
+          {{ data.key }}
+        </div>
+        <input
+          [hidden]="editService !== data"
+          type="text"
+          nz-input
+          [(ngModel)]="data.key"
+        />
+      </td>
+
+      <td>
+        <div class="editable-cell" [hidden]="editService === data">
+          {{ data.lang }}
+        </div>
+
+        <nz-select [(ngModel)]="data.lang" [hidden]="editService !== data">
+          <nz-option nzValue="en" nzLabel="en"></nz-option>
+          <nz-option nzValue="ua" nzLabel="ua"></nz-option>
+          <nz-option nzValue="cs" nzLabel="cs"></nz-option>
+        </nz-select>
+      </td>
+
+      <td>
+        <div class="editable-cell" [hidden]="editService === data">
+          {{ data.value }}
+        </div>
+        <input
+          [hidden]="editService !== data"
+          type="text"
+          nz-input
+          [(ngModel)]="data.value"
+        />
+      </td>
+
+      <td>
+        <a
+          nz-popconfirm
+          nzPopconfirmTitle="Впевнені що потрібно видалити?"
+          (nzOnConfirm)="deleteRow(data.id, editRowTable.data)"
+          >Delete</a
+        >
+      </td>
+    </tr>
+    <button
+      nz-button
+      [hidden]="editService == null"
+      (click)="stopEdit(editRowTable.data)"
+      nzType="primary"
+    >
+      Сохранить
+    </button>
+  </tbody>
+</nz-table>

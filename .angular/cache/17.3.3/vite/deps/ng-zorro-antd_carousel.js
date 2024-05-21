@@ -11,6 +11,9 @@ import {
 } from "./chunk-4NQDKSHT.js";
 import "./chunk-WD2DFVI4.js";
 import {
+  Directionality
+} from "./chunk-UA6AN7W3.js";
+import {
   NzConfigService,
   WithConfig
 } from "./chunk-7CXXYODY.js";
@@ -21,9 +24,6 @@ import {
 import {
   Platform
 } from "./chunk-HH3PCEGU.js";
-import {
-  Directionality
-} from "./chunk-UA6AN7W3.js";
 import "./chunk-PA6IY4WI.js";
 import {
   NgTemplateOutlet

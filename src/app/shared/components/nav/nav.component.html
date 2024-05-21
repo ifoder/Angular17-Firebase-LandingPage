@@ -53,29 +53,6 @@
               <i class="fa fa-telegram fa-1x"></i><span>Telegram</span>
             </a>
           </li>
-          <li style="padding-left: 10px">
-            <nz-select
-              [(ngModel)]="settings.language"
-              nzSize="small"
-              name="language"
-              id="language"
-              [ngModelOptions]="{ standalone: true }"
-              (ngModelChange)="changeLanguage($event)"
-            >
-              <nz-option
-                nzValue="uk"
-                nzLabel="{{ 'Ukraine' | translate }}"
-              ></nz-option>
-              <nz-option
-                nzValue="cs"
-                nzLabel="{{ 'Czech' | translate }}"
-              ></nz-option>
-              <nz-option
-                nzValue="en"
-                nzLabel="{{ 'English' | translate }}"
-              ></nz-option>
-            </nz-select>
-          </li>
         </ul>
         <!--End of Social Icons in Header-->
       </aside>
@@ -88,7 +65,7 @@
               [routerLink]="item.link"
               routerLinkActive="active"
               ariaCurrentWhenActive="page"
-              >{{ item.title }}</a
+              >{{ this.i18n.get(item.title) }}</a
             >
           </li>
         </ul>

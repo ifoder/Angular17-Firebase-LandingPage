@@ -1,9 +1,6 @@
 import {
   firebase
 } from "./chunk-IUHWDHAU.js";
-import {
-  isPlatformServer
-} from "./chunk-VFCSK5OE.js";
 import "./chunk-IDUKWBKV.js";
 import {
   FirebaseApp,
@@ -59,6 +56,9 @@ import {
   validateCallback,
   validateContextObject
 } from "./chunk-3XQ2Y4TU.js";
+import {
+  isPlatformServer
+} from "./chunk-VFCSK5OE.js";
 import {
   Inject,
   Injectable,

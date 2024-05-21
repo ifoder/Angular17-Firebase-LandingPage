@@ -51,12 +51,14 @@ export class NavComponent implements OnInit {
 
   languageFormControl = 'uk';
 
-  navItems = NAVITEMS;
+  navItems = [
+    { title: 'Home', link: '/home' },
+    { title: 'about', link: '/about' },
+    { title: 'gallery', link: '/gallery' },
+    { title: 'feedback', link: '/feedback' },
+    { title: 'price-list', link: '/services' },
+    { title: 'contacts', link: '/clients' },
+  ];
 
   ngOnInit(): void {}
-
-  changeLanguage($event: any) {
-    this.i18n.langSig.set($event);
-    this.settings.save();
-  }
 }

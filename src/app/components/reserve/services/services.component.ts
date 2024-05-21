@@ -12,6 +12,7 @@ import { CategoryServices, Service } from '../../../models/service.interface';
 import { SharedNgZorroAntdModule } from '../../../shared/ng-zorro.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ServicesService } from 'src/app/services/services.service';
+import { I18nService } from 'src/app/services/i18n.services';
 
 @Component({
   selector: 'app-services',
@@ -24,6 +25,7 @@ export class ServicesComponent implements OnInit {
   @Output() eventService = new EventEmitter<Service>();
 
   _servicesService = inject(ServicesService);
+  i18n = inject(I18nService);
 
   visibleServices = computed(() => {
     const services = this._servicesService.servicesSig();

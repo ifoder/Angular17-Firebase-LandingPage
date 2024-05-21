@@ -1,15 +1,58 @@
-<nz-calendar>
-  <ul *nzDateCell="let date" class="events" (click)="showModal(date)">
-    <ng-container [ngSwitch]="date.getDate()">
-      @for (course of days; track course) {
-      <ng-container *ngSwitchCase="course">
-        <li *ngFor="let item of listDataEvent(date)">
-          <nz-badge [nzStatus]="getTimelineColor(item)"
-            >{{ item.date | date : "H:mm" }} -
-            {{ getBarber(item.barber)?.name }}</nz-badge
+<!-- <div nz-row class="row">
+  <div nz-col [nzXl]="6" [nzMd]="12" [nzXs]="22">
+    <div class="stats-small stats-small--1 card card-small">
+      <div class="card-body p-0 d-flex">
+        <div class="d-flex flex-column m-auto">
+          <div class="stats-small__data text-center">
+            <span class="stats-small__label text-uppercase"
+              >Total calendar events</span
+            >
+            <h6 class="stats-small__value count my-3">
+              {{ totalCalendarEvents() }}
+            </h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div nz-row class="row">
+  <div nz-col [nzMd]="12" [nzXs]="22">
+    <div class="stats-small stats-small--1 card card-small">
+      <div class="card-body p-0 d-flex">
+        <nz-timeline *ngIf="calendarEvents()">
+          <nz-timeline-item
+            [nzColor]="getTimelineColor(item)"
+            *ngFor="let item of sort(calendarEvents())"
           >
-        </li> </ng-container
-      >}
-    </ng-container>
-  </ul>
-</nz-calendar>
+            <h4>{{ formatDate(item.date) }}</h4>
+            <!-- <h4>{{ item.date | date : "H:mm" }}</h4>
+            {{ item.date | date : "dd.MM" }} -->
+
+            <p>
+              {{ item.user.username }} -
+              {{ item.user.email ? item.user.email : null }}
+              {{ item.user.email ? item.user.phone : null }}
+            </p>
+            <p>
+              {{ item.barber?.name }} ->
+              {{ item.service?.title }}
+            </p>
+            <div style="position: absolute; right: 0; top: 0">
+              <button
+                nz-button
+                nzType="primary"
+                nzSize="small"
+                (click)="deleteEvent(item)"
+                nzDanger
+              >
+                <span nz-icon nzType="delete" nzTheme="outline"></span>
+              </button>
+            </div>
+          </nz-timeline-item>
+        </nz-timeline>
+      </div>
+    </div>
+  </div>
+</div>

@@ -16,6 +16,6 @@ export class TranslatePipe implements PipeTransform {
   ) {}
 
   transform(key: string, substitutions?: { [key: string]: string }): string {
-    return this.i18nService.get(key, substitutions);
+    return this.i18nService.get2(key, substitutions);
   }
 }

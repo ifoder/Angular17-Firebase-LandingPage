@@ -1,7 +1,19 @@
 import { Injectable, inject, signal } from '@angular/core';
 
-import { Observable, map } from 'rxjs';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { Observable, from, map } from 'rxjs';
+import {
+  Firestore,
+  addDoc,
+  collection,
+  collectionData,
+  deleteDoc,
+  doc,
+  getDocs,
+  query,
+  setDoc,
+  updateDoc,
+  where,
+} from '@angular/fire/firestore';
 
 @Injectable({ providedIn: 'root' })
 export class TranslationsService {
@@ -9,6 +21,7 @@ export class TranslationsService {
   translationsCollection = collection(this.firestore, 'translations');
 
   $translations = signal<any | null | undefined>(undefined);
+  $translationsData = signal<any | null | undefined>(undefined);
 
   groupBy(arr: any, criteria: any) {
     return arr.reduce(function (obj: any, item: any) {
@@ -21,10 +34,34 @@ export class TranslationsService {
     }, {});
   }
   fetchTranslate() {
-    return collectionData(this.translationsCollection).subscribe((e) => {
+    return collectionData(this.translationsCollection, {
+      idField: 'id',
+    }).subscribe((e) => {
+      this.$translationsData.set(e);
       const tr = this.groupBy(e, 'lang');
 
       this.$translations.set(tr);
+    });
+  }
+
+  addTranslations(translations: any) {
+    return addDoc(this.translationsCollection, translations);
+  }
+
+  async updateTranslations(translations: any) {
+    const docRef = doc(this.firestore, 'translations/' + translations.id);
+    const promise = setDoc(docRef, translations);
+    return from(promise);
+  }
+
+  async deleteTranslations(id: string) {
+    const translationssRef = collection(this.firestore, 'translations');
+    let q = query(translationssRef, where('id', '==', id));
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach(async (document) => {
+      const docRef = doc(this.firestore, 'translations', document.id);
+      deleteDoc(docRef);
     });
   }
 

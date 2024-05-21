@@ -14,18 +14,26 @@
       </li>
       <li nz-menu-divider></li>
       <li nz-menu-item routerLink="/user">
-        <a routerLinkActive="active">Редагувати</a>
+        <a routerLinkActive="active">Бронювання</a>
       </li>
       <!-- admin -->
       @if (_auth.isAdmin() ){
       <li nz-menu-item routerLink="/admin">
-        <a routerLinkActive="active">Бронювання</a>
+        <a routerLinkActive="active">Адмін</a>
       </li>
       }
       <li nz-menu-item (click)="logout()">Вихід</li>
       }
 
       <!-- Login -->
+      <li nz-submenu nzTitle="language">
+        <ul>
+          <li nz-menu-item (click)="changeLanguage('en')">English</li>
+          <li nz-menu-item (click)="changeLanguage('cs')">Czech</li>
+          <li nz-menu-item (click)="changeLanguage('ua')">Ukraine</li>
+        </ul>
+      </li>
+
       @if (!$user()){
 
       <li nz-menu-item routerLink="/login">Вхід</li>

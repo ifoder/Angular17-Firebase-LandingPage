@@ -5,9 +5,6 @@ import {
 } from "./chunk-A2FJNPTB.js";
 import "./chunk-GZKD4HDB.js";
 import {
-  isPlatformBrowser
-} from "./chunk-VFCSK5OE.js";
-import {
   FirebaseApp,
   FirebaseApps,
   VERSION,
@@ -19,6 +16,9 @@ import {
 import {
   registerVersion
 } from "./chunk-3XQ2Y4TU.js";
+import {
+  isPlatformBrowser
+} from "./chunk-VFCSK5OE.js";
 import {
   InjectionToken,
   Injector,

@@ -15,11 +15,12 @@ import { Router, RouterLink } from '@angular/router';
 import { ButtonLoginComponent } from './button-login/button-login.component';
 import { DatepickerService } from 'src/app/services/datepicker.service';
 import { SignInService } from 'src/app/services/signin.service';
+import { LayoutComponent } from 'src/app/shared/components/layout/layout.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [SharedModule, ButtonLoginComponent, RouterLink],
+  imports: [SharedModule, ButtonLoginComponent, RouterLink, LayoutComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })

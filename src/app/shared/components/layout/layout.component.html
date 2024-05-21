@@ -1,0 +1,43 @@
+<!-- start admin layout-->
+<nz-layout class="layout">
+  <nz-sider
+    *ngIf="adminPanel"
+    nzCollapsible
+    nzBreakpoint="lg"
+    [nzCollapsedWidth]="0"
+  >
+    <!-- <div class="logo"><a routerLink="/">На головну</a></div> -->
+    <ul nz-menu nzTheme="dark" nzMode="inline" class="sider-menu">
+      <li
+        nz-submenu
+        nzOpen
+        nzIcon="user"
+        *ngFor="let items of navItems"
+        [nzTitle]="items.title"
+      >
+        <ul>
+          <li
+            *ngFor="let item of items.list"
+            nz-menu-item
+            [routerLink]="item.link"
+          >
+            <span nz-icon nzType="file"></span>
+            <span>{{ item.title }}</span>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header *ngIf="!adminPanel" style="background: none !important"
+      ><app-nav></app-nav
+    ></nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <ng-content></ng-content>
+      </div>
+    </nz-content>
+    <nz-footer *ngIf="!adminPanel"><app-footer></app-footer></nz-footer>
+  </nz-layout>
+</nz-layout>
+<!-- end admin layout-->

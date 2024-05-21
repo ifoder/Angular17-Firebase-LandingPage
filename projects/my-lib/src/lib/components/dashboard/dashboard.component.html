@@ -8,7 +8,7 @@
   <!-- End Page Header -->
   <!-- Small Stats Blocks -->
   <div class="row justify-content-start">
-    <div class="col-lg col-md-6 col-sm-6 mb-4">
+    <div class="col-lg col-md-4 col-sm-6 mb-4">
       <div class="stats-small stats-small--1 card card-small">
         <div class="card-body p-0 d-flex">
           <div class="d-flex flex-column m-auto">
@@ -49,10 +49,7 @@
         </div>
       </div>
     </div>
-    <div
-      class="col-lg col-md-4 mb-4"
-      [ngClass]="currentUser ? 'col-sm-12' : 'col-sm-6'"
-    >
+    <div class="col-lg col-md-4 mb-4 col-sm-6">
       <div class="stats-small stats-small--1 card card-small">
         <div class="card-body p-0 d-flex">
           <div class="d-flex flex-column m-auto">
@@ -69,16 +66,52 @@
   </div>
   <!-- End Small Stats Blocks -->
   <div class="row justify-content-start">
+    <!-- Add New Translation Form -->
+    <div class="col-lg col-md-12 col-sm-12 mb-4">
+      <div class="card card-small mb-3">
+        <div class="card-header border-bottom">
+          <h6 class="m-0">{{ "Active" | translate }}</h6>
+        </div>
+        <div class="card-body">
+          <!-- <div *ngFor="let item of $currentEvent()">{{ item.date }}</div> -->
+
+          <div
+            class="user-details__user-data border-bottom p-0 text-"
+            *ngFor="let item of currentEvent()"
+          >
+            <div class="row mb-3 p-0">
+              <div class="col w-50">
+                <div class="col-12">{{ item.date | date : "H:mm" }}</div>
+                <div class="col-12">{{ item.user.username }}</div>
+              </div>
+              <div class="col w-50">
+                {{ item.user.email ? item.user.email : null }}
+                {{ item.user.email ? item.user.phone : null }}
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col w-50">{{ item.barber?.name }}</div>
+              <div class="col w-50">{{ item.service?.title }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- / Add New Translation Form -->
     <!-- calendar Blocks -->
     <div class="col-lg-8 col-md-12 col-sm-12 mb-4">
-      <div class="card card-small lo-stats">
+      <div class="card card-small">
         <div class="card-header border-bottom">
           <h6 class="m-0">{{ "LatestPosts" | translate }}</h6>
           <div class="block-handle"></div>
         </div>
         <div class="card-body p-0">
           <nz-calendar>
-            <ul *nzDateCell="let date" class="events" (click)="showModal(date)">
+            <ul
+              *nzDateCell="let date"
+              class="events"
+              (click)="setCurrentEvent(date)"
+            >
               <ng-container *ngIf="getCellWithDate(date); let cell">
                 <li *ngFor="let item of cell">
                   <nz-badge [nzStatus]="getTimelineColor(item.date)"
@@ -94,9 +127,10 @@
     </div>
 
     <!-- end calendar Blocks -->
-
+  </div>
+  <div class="row justify-content-start">
     <!-- Latest Posts -->
-    <div class="col-lg-8 col-md-12 col-sm-12 mb-4">
+    <!-- <div class="col-lg-8 col-md-12 col-sm-12 mb-4">
       <div class="card card-small lo-stats">
         <div class="card-header border-bottom">
           <h6 class="m-0">{{ "LatestPosts" | translate }}</h6>
@@ -140,50 +174,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- End Latest Posts -->
-
-    <!-- Add New Translation Form -->
-    <div class="col-lg col-md-6 col-sm-6 mb-4">
-      <div class="card card-small mb-3">
-        <div class="card-header border-bottom">
-          <h6 class="m-0">{{ "NewTranslation" | translate }}</h6>
-        </div>
-        <div class="card-body">
-          <form>
-            <div class="form-group">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="{{ 'TranslationKey' | translate }}"
-                name="key"
-              />
-            </div>
-            <div class="form-group">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="{{ 'TranslationValue' | translate }}"
-                name="value"
-              />
-            </div>
-            <div class="form-group">
-              <select class="custom-select" name="language">
-                <option value="" disabled>
-                  {{ "TranslationLanguage" | translate }}
-                </option>
-              </select>
-            </div>
-            <div class="form-group mb-0">
-              <button type="submit" class="btn btn-primary">
-                <i class="material-icons">add</i>
-                {{ "AddTranslation" | translate }}
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <!-- / Add New Translation Form -->
   </div>
 </fa-layout>

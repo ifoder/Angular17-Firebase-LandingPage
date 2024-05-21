@@ -1,0 +1,12 @@
+<nz-calendar>
+  <ul *nzDateCell="let date" class="events" (click)="showModal(date)">
+    <ng-container *ngIf="getCellWithDate(date); let cell">
+      <li *ngFor="let item of cell">
+        <nz-badge [nzStatus]="getTimelineColor(item.date)"
+          >{{ item.date | date : "H:mm" }} -
+          {{ item.barber ? item.barber.name : item.user.username }}</nz-badge
+        >
+      </li>
+    </ng-container>
+  </ul>
+</nz-calendar>

@@ -19,6 +19,7 @@ import { ServicesService } from 'src/app/services/services.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { CalendarEventsService } from 'src/app/services/calendar-events.service';
+import { LayoutComponent } from 'src/app/shared/components/layout/layout.component';
 
 @Component({
   selector: 'app-reserve',
@@ -33,6 +34,7 @@ import { CalendarEventsService } from 'src/app/services/calendar-events.service'
     UserformComponent,
     CorrectComponent,
     DatePipe,
+    LayoutComponent,
   ],
   templateUrl: './reserve.component.html',
   styleUrl: './reserve.component.css',

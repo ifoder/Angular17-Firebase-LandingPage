@@ -24,7 +24,10 @@ export class I18nService implements OnInit {
 
   langSig = signal('en');
   translateWithLanguageSig = computed(() => {
-    return this.translate.$translations()[this.langSig()] as TranslateLang;
+    if (this.translate.$translations())
+      return this.translate.$translations()[this.langSig()]
+        ? this.translate.$translations()[this.langSig()]
+        : null;
   });
 
   constructor(
@@ -41,12 +44,24 @@ export class I18nService implements OnInit {
   }
   setLanguage(lang: string): void {
     this.langSig.set(lang);
+    this.settings.language = lang;
+    this.settings.save();
   }
 
   getCurrentLanguage(): string {
     return this.langSig();
   }
-  get(key: string, substitutions?: { [key: string]: string }): string {
+  get(key: any) {
+    if (key) {
+      if (this.translateWithLanguageSig())
+        if (this.translateWithLanguageSig()[key])
+          return this.translateWithLanguageSig()[key];
+
+      return key;
+    }
+  }
+
+  get2(key: string, substitutions?: { [key: string]: string }): string {
     const langObj = this.translate.$translations();
 
     return Object.keys(langObj).includes(this.lang) &&

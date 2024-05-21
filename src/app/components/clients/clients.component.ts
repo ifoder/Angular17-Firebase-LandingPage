@@ -4,11 +4,17 @@ import { GoogleMap, GoogleMapsModule, MapMarker } from '@angular/google-maps';
 import { MAP } from '../../shared/api';
 import { CONTACTS } from '../../shared/data';
 import { SharedNgZorroAntdModule } from '../../shared/ng-zorro.module';
+import { LayoutComponent } from 'src/app/shared/components/layout/layout.component';
 
 @Component({
   selector: 'app-clients',
   standalone: true,
-  imports: [CommonModule, GoogleMapsModule, SharedNgZorroAntdModule],
+  imports: [
+    CommonModule,
+    GoogleMapsModule,
+    SharedNgZorroAntdModule,
+    LayoutComponent,
+  ],
   templateUrl: './clients.component.html',
   styleUrl: './clients.component.css',
 })

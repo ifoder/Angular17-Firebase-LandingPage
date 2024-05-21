@@ -6,6 +6,8 @@ import {
   inject,
   ViewContainerRef,
   ChangeDetectionStrategy,
+  signal,
+  computed,
 } from '@angular/core';
 import { I18nService } from 'src/app/services/i18n.services';
 import { NavigationService } from '../../services/navigation.service';
@@ -23,7 +25,7 @@ import { NzI18nService, uk_UA } from 'ng-zorro-antd/i18n';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { differenceInCalendarDays, setHours, format } from 'date-fns';
 import { ru, enUS, uk } from 'date-fns/locale';
-import { NzModalCustomComponent } from 'src/app/admin/components/dashboard/modal/modal.component';
+import { NzModalCustomComponent } from 'src/app/admin/components/calendar/modal/modal.component';
 import { SharedNgZorroAntdModule } from 'src/app/shared/ng-zorro.module';
 import { CalendarEventsService } from 'src/app/services/calendar-events.service';
 
@@ -39,7 +41,7 @@ import { CalendarEventsService } from 'src/app/services/calendar-events.service'
   templateUrl: './dashboard.component.html',
 
   styleUrls: ['./dashboard.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.Emulated,
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   currentUser = true;
@@ -56,6 +58,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   _barberService = inject(BarbersService);
 
+  $currentEvent: any = signal('');
+  currentEvent = this.$currentEvent;
   constructor(
     private auth: AuthService,
     private settings: SettingsService,
@@ -68,7 +72,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this._barberService.getBarbers().forEach((p) => (this.barbers = [...p]));
-    console.log(this.calendarEvents());
+    this.setCurrentEvent();
   }
 
   ngOnDestroy() {}
@@ -78,18 +82,25 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getCellWithDate(date: Date) {
-    console.log(this._calendarService.getCalendarEventsOfDate(date));
-
     return this._calendarService.getCalendarEventsOfDate(date);
+  }
+
+  setCurrentEvent(date?: Date) {
+    if (!date)
+      this.$currentEvent.set(
+        this._calendarService.getCalendarEventsOfDate(new Date())
+      );
+    else
+      this.$currentEvent.set(
+        this._calendarService.getCalendarEventsOfDate(date!)
+      );
+    console.log(this.$currentEvent());
   }
 
   showModal(date: Date): void {
     console.log(this._calendarService.$calendarEvents());
-    this.createComponentModal(
-      this._calendarService.getCalendarEventsOfDate(date),
-      date
-    );
-    this.isVisible = true;
+    const current = this.getCellWithDate(date);
+    console.log(current);
   }
 
   createComponentModal(list: ICalendarEvent[], date: Date): void {

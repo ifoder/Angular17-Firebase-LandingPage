@@ -26,20 +26,20 @@ export class DatepickerService {
   calendarEvents$ = this.calendarEventSource.asObservable();
   calendarEventsSig = signal<ICalendarEvent[]>([]);
 
+  getCalendarEvents(): Observable<ICalendarEvent[]> {
+    return collectionData(this.calendarEventsCollection, {
+      idField: 'id',
+    }) as Observable<ICalendarEvent[]>;
+  }
   addCalendarEvent(calendarEvent: ICalendarEvent) {
     console.log('ADD');
 
     const calendarEventsRef = collection(this.firestore, 'calendarEvent');
     return addDoc(calendarEventsRef, calendarEvent);
   }
-  getCalendarEvents(): Observable<ICalendarEvent[]> {
-    return collectionData(this.calendarEventsCollection, {
-      idField: 'id',
-    }) as Observable<ICalendarEvent[]>;
-  }
 
   async updateCalendarEvent(calendarEvent: ICalendarEvent) {
-    const calendarEventsRef = collection(this.firestore, 'calendarEvent');
+    const calendarEventsRef = collection(this.firestore, 'calendarEvent/');
     let q = query(calendarEventsRef, where('id', '==', calendarEvent.id));
     const querySnapshot = await getDocs(q);
 

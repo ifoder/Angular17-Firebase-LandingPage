@@ -10,6 +10,8 @@ export class NotificationService {
   constructor(private notification: NzNotificationService) {}
 
   createNotification(type: string, title: string, message: string): void {
-    this.notification.create(type, title ? title : 'Notification', message);
+    this.notification.create(type, title ? title : 'Notification', message, {
+      nzPlacement: 'top',
+    });
   }
 }

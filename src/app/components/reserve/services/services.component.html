@@ -5,7 +5,7 @@
     </div>
 
     @for (category of visibleServices(); track $index){
-    <h4 nz-col nzSpan="22">{{ category.title }}</h4>
+    <h4 nz-col nzSpan="22">{{ this.i18n.get(category.title) }}</h4>
     <div
       nz-col
       [nzXl]="8"

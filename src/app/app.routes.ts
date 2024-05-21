@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './admin/components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { ClientsComponent } from './components/clients/clients.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
@@ -35,8 +35,8 @@ export const routes: Routes = [
     title: 'FireAdmin',
     path: 'admin',
     loadChildren: () =>
-      import('projects/my-lib/src/lib/my-lib-routing.module').then((a) => {
-        return a.FireAdminRoutingModule;
+      import('src/app/admin/admin-routing.module').then((a) => {
+        return a.AdminRoutingModule;
       }),
   },
   {
@@ -80,37 +80,5 @@ export const routes: Routes = [
     canActivate: [AuthGuardService],
   },
 
-  {
-    title: 'Admin',
-    path: 'admin2',
-    component: AdminComponent,
-    canActivate: [AuthGuardService],
-    data: {
-      role: 'admin',
-    },
-
-    children: [
-      {
-        path: 'category',
-        component: CategoryAdminComponent,
-      },
-      {
-        path: 'services',
-        component: ServicesAdminComponent,
-      },
-      {
-        path: 'kadernictvi',
-        component: KadernictviAdminComponent,
-      },
-      {
-        path: 'barbers',
-        component: BarbersAdminComponent,
-      },
-      {
-        path: 'dashboard',
-        component: DashboardAdminComponent,
-      },
-    ],
-  },
   { title: 'Home', path: '**', component: HomeComponent },
 ];

@@ -17,6 +17,7 @@ import {
 import { KadernictviAdminComponent } from './components/kadernictvi/kadernictvi.component';
 import { DashboardAdminComponent } from './components/dashboard/dashboard.component';
 import { AuthService } from '../services/auth.service';
+import { LayoutComponent } from '../shared/components/layout/layout.component';
 
 @Component({
   selector: 'app-admin',
@@ -32,6 +33,7 @@ import { AuthService } from '../services/auth.service';
     RouterModule,
     NzCollapseModule,
     NzCollapsePanelComponent,
+    LayoutComponent,
   ],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css',
@@ -44,16 +46,29 @@ export class AdminComponent implements OnInit {
   ) {}
   hide = true;
   admin = false;
-  ngOnInit(): void {
-    // this.admin = this.auth.isAdmin();
-    // if (!this.admin) window.location.href = '/';
-    // this.router.events.subscribe((event) => {
-    //   if (event instanceof NavigationEnd) {
-    //     console.log(event.url);
-    //     if (event.url.substring(0, 6) == '/admin') {
-    //       this.hide = false;
-    //     }
-    //   }
-    // });
-  }
+
+  navLink = [
+    {
+      title: 'Бронювання',
+      list: [
+        { title: 'Панель', link: 'dashboard' },
+        { title: 'Календар', link: 'calendar' },
+      ],
+    },
+    {
+      title: 'Настройки',
+      list: [
+        { title: 'Категорії послуг', link: 'category' },
+        { title: 'Перевод', link: 'translations' },
+        { title: 'Послуги', link: 'services' },
+        { title: 'Контакти', link: 'kadernictvi' },
+        { title: 'Барбери', link: 'barbers' },
+      ],
+    },
+    {
+      title: 'Інше',
+      list: [{ title: 'На головну', link: '/' }],
+    },
+  ];
+  ngOnInit(): void {}
 }

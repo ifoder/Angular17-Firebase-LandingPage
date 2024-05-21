@@ -8,17 +8,16 @@ import {
   Firestore,
   getDoc,
   query,
+  setDoc,
   updateDoc,
   where,
 } from '@angular/fire/firestore';
 import { collection, getDocs } from '@firebase/firestore';
-import { BehaviorSubject, map, Observable, of } from 'rxjs';
+import { BehaviorSubject, from, map, Observable, of } from 'rxjs';
 import { ICalendarEvent } from '../models/calendarEvents.interface';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { response } from 'express';
-import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { NotificationService } from './notification.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -40,7 +39,9 @@ export class CalendarEventsService {
   $currentReserve = signal<ICalendarEvent | undefined>(undefined);
 
   fetchData() {
-    return collectionData(this.calendarEventsCollection).subscribe((e) => {
+    return collectionData(this.calendarEventsCollection, {
+      idField: 'id',
+    }).subscribe((e) => {
       this.$calendarEvents.set(e);
     });
   }
@@ -59,6 +60,18 @@ export class CalendarEventsService {
     return await addDoc(this.calendarEventsCollection, calendarEvent)
       .then((response) => console.log(response + 'sdadsadsadsa'))
       .catch((error) => console.log(error.code, error.message));
+  }
+
+  async updateCalendarEvents(services: ICalendarEvent) {
+    const docRef = doc(this.firestore, 'calendarEvent/' + services.id);
+    const promise = setDoc(docRef, services);
+    return from(promise);
+  }
+
+  deleteCalendarEvents(id: string): Observable<void> {
+    const docRef = doc(this.firestore, 'calendarEvent/' + id);
+    const promise = deleteDoc(docRef);
+    return from(promise);
   }
 
   // async updateCalendarEvent(calendarEvent: ICalendarEvent) {
@@ -85,7 +98,7 @@ export class CalendarEventsService {
   // ifStorageReservace() {
   //   console.log('RESERVACE');
 
-  //   if (this.storage.get('calendarEvent') && this.authService.isAuth()) {
+  //   if (this.storage.get('calendarEvent') && this.authCalendarEvent.isAuth()) {
   //     this.datePicker.addCalendarEvent({
   //       ...this.storage.get('calendarEvent'),
   //       user: this.storage.getUser(),
