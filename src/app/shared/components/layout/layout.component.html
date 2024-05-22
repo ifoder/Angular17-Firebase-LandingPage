@@ -20,6 +20,7 @@
             *ngFor="let item of items.list"
             nz-menu-item
             [routerLink]="item.link"
+            [queryParams]="item.params"
           >
             <span nz-icon nzType="file"></span>
             <span>{{ item.title }}</span>

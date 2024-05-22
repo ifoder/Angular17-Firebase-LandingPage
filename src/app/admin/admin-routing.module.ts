@@ -50,6 +50,10 @@ export const routesChild: Routes = [
         path: 'translations',
         component: TranslationsComponent,
       },
+      {
+        path: 'translations/:tab',
+        component: TranslationsComponent,
+      },
     ],
   },
 ];

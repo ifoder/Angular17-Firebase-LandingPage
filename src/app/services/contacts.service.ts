@@ -7,11 +7,12 @@ import {
   Firestore,
   getDoc,
   query,
+  setDoc,
   updateDoc,
   where,
 } from '@angular/fire/firestore';
 import { collection, getDocs, collectionGroup } from '@firebase/firestore';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, from, of } from 'rxjs';
 import { Contacts } from '../models/contacts';
 import { AuthService } from './auth.service';
 
@@ -31,40 +32,14 @@ export class ContactsService {
     });
   }
 
-  addContacts(contacts: Contacts) {
-    const contactsRef = collection(this.firestore, 'contacts');
-    return addDoc(contactsRef, contacts);
-  }
-
-  getContacts(filter = '') {
-    const contactsRef = collection(this.firestore, 'contacts');
-
-    let q = query(contactsRef, where('id', '==', 1));
-
-    return collectionData(q) as unknown as Observable<Contacts[]>;
-  }
-
   async updateContacts(contacts: Contacts) {
-    console.log(contacts);
-
-    const contactsRef = collection(this.firestore, 'contacts');
-    let q = query(contactsRef, where('id', '==', 1));
+    let q = query(this.contactsCollection, where('id', '==', 1));
     const querySnapshot = await getDocs(q);
+    console.log(querySnapshot);
 
     querySnapshot.forEach(async (document) => {
-      const docRef = doc(this.firestore, 'contacts', document.id);
-      await updateDoc(docRef, { ...contacts });
-    });
-  }
-
-  async deleteContacts(id: string) {
-    const contactsRef = collection(this.firestore, 'contacts');
-    let q = query(contactsRef, where('id', '==', id));
-    const querySnapshot = await getDocs(q);
-
-    querySnapshot.forEach(async (document) => {
-      const docRef = doc(this.firestore, 'contacts', document.id);
-      deleteDoc(docRef);
+      const docRef = doc(this.contactsCollection, document.id);
+      const promise = setDoc(docRef, contacts);
     });
   }
 }

@@ -5,5 +5,5 @@ export interface Contacts {
   facebook?: string;
   location?: string;
   phone?: string;
-  workDay?: string;
+  workHour?: string;
 }

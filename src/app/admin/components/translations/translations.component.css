@@ -54,3 +54,21 @@ h4 {
 .service-category {
   padding-bottom: 0px;
 }
+
+.ant-input-group-wrapper {
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 21px !important;
+  position: absolute;
+  top: -7px;
+}
+
+h4 {
+  font-size: 15px !important;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  /* font-weight: 700; */
+  font-variant: all-small-caps;
+  padding-bottom: 7px;
+}

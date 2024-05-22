@@ -21,25 +21,11 @@ export class KadernictviAdminComponent implements OnInit {
   _contactsService = inject(ContactsService);
   i18n = inject(I18nService);
 
-  contacts$!: Observable<Contacts[]>;
-  contact: Contacts;
+  contact = this._contactsService.$contacts;
 
-  constructor() {}
-
-  ngOnInit(): void {
-    this.getContacts();
-  }
+  ngOnInit(): void {}
 
   submitForm() {
-    this._contactsService.updateContacts(this.contact);
-  }
-
-  getContacts() {
-    this.contacts$ = this._contactsService.getContacts();
-    this._contactsService.getContacts().forEach((p) =>
-      p.find((x) => {
-        if ((x.id = 1)) this.contact = x;
-      })
-    );
+    this._contactsService.updateContacts(this.contact());
   }
 }

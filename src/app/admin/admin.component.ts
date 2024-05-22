@@ -56,10 +56,29 @@ export class AdminComponent implements OnInit {
       ],
     },
     {
+      title: 'Редагування сторінок сайту',
+      list: [
+        {
+          title: "'Про Нас'",
+          link: 'translations',
+          params: { tab: 'one' },
+        },
+        {
+          title: "'Контакти'",
+          link: 'translations',
+          params: { tab: 'two' },
+        },
+        {
+          title: "'Послуги'",
+          link: 'translations',
+          params: { tab: 'three' },
+        },
+      ],
+    },
+    {
       title: 'Настройки',
       list: [
         { title: 'Категорії послуг', link: 'category' },
-        { title: 'Перевод', link: 'translations' },
         { title: 'Послуги', link: 'services' },
         { title: 'Контакти', link: 'kadernictvi' },
         { title: 'Барбери', link: 'barbers' },

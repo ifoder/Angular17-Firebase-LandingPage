@@ -16,15 +16,19 @@
         <!-- {{ client.detail }} -->
         <div class="section-subtitle">
           <i class="fa fa-clock-o fa-2x"></i>
-          {{ client().workHour }}
+          {{ i18n.get("contacts.workHour") }}
         </div>
         <div class="section-subtitle">
           <i class="fa fa-map-marker fa-2x"></i>
           <a (click)="this.googleNav()">{{ client().location }}</a>
         </div>
         <div class="section-subtitle">
+          <i class="fa fa-instagram fa-2x"></i>
+          <a [href]="client().instagram">{{ client().instagram }}</a>
+        </div>
+        <div class="section-subtitle">
           <i class="fa fa-telegram fa-2x"></i>
-          <a href="http://{{ client().telegram }}">{{ client().telegram }}</a>
+          <a [href]="client().telegram">{{ client().telegram }}</a>
         </div>
         <div class="section-subtitle">
           <i class="fa fa-phone fa-2x"></i>

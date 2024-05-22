@@ -1,91 +1,94 @@
-<section *ngIf="contacts$ | async as contacts">
-  <h2>Контакти</h2>
+<div nz-row class="row">
+  <div nz-col [nzMd]="12" [nzXs]="22">
+    <div class="stats-small stats-small--1 card card-small">
+      <div class="card-body p-0 d-flex">
+        <h2>Контакти</h2>
 
-  <form
-    #contactForm
-    nz-form
-    (ngSubmit)="submitForm()"
-    *ngFor="let item of contacts"
-  >
-    <div nz-row nzJustify="space-between">
-      <nz-form-item nz-row>
-        <nz-form-label [nzSpan]="20" nzLabelAlign="left" for="telegram"
-          >Telegram</nz-form-label
-        >
+        <form #contactForm nz-form (ngSubmit)="submitForm()">
+          <div>
+            <nz-form-item>
+              <nz-form-label [nzSpan]="20" nzLabelAlign="left" for="telegram"
+                >Telegram</nz-form-label
+              >
 
-        <input
-          nz-input
-          id="telegram"
-          name="telegram"
-          [(ngModel)]="contact.telegram"
-        />
-      </nz-form-item>
+              <input
+                nz-input
+                id="telegram"
+                name="telegram"
+                [(ngModel)]="contact().telegram"
+              />
+            </nz-form-item>
 
-      <nz-form-item nz-row>
-        <nz-form-label [nzSpan]="20" nzLabelAlign="left" for="instagram"
-          >Instagram</nz-form-label
-        >
+            <nz-form-item nz-row>
+              <nz-form-label [nzSpan]="20" nzLabelAlign="left" for="instagram"
+                >Instagram</nz-form-label
+              >
 
-        <input
-          nz-input
-          id="instagram"
-          name="instagram"
-          [(ngModel)]="contact.instagram"
-        />
-      </nz-form-item>
+              <input
+                nz-input
+                id="instagram"
+                name="instagram"
+                [(ngModel)]="contact().instagram"
+              />
+            </nz-form-item>
 
-      <nz-form-item nz-col>
-        <nz-form-label [nzSpan]="20" nzLabelAlign="left" for="facebook"
-          >Facebook</nz-form-label
-        >
+            <nz-form-item nz-col>
+              <nz-form-label [nzSpan]="20" nzLabelAlign="left" for="facebook"
+                >Facebook</nz-form-label
+              >
 
-        <input
-          nz-input
-          id="facebook"
-          name="facebook"
-          [(ngModel)]="contact.facebook"
-        />
-      </nz-form-item>
+              <input
+                nz-input
+                id="facebook"
+                name="facebook"
+                [(ngModel)]="contact().facebook"
+              />
+            </nz-form-item>
 
-      <nz-form-item nz-col>
-        <nz-form-label [nzSpan]="20" nzLabelAlign="left" for="phone"
-          >Номер телефону</nz-form-label
-        >
+            <nz-form-item nz-col>
+              <nz-form-label [nzSpan]="20" nzLabelAlign="left" for="phone"
+                >Номер телефону</nz-form-label
+              >
 
-        <input nz-input id="phone" name="phone" [(ngModel)]="contact.phone" />
-      </nz-form-item>
+              <input
+                nz-input
+                id="phone"
+                name="phone"
+                [(ngModel)]="contact().phone"
+              />
+            </nz-form-item>
 
-      <nz-form-item nz-col>
-        <nz-form-label [nzSpan]="20" nzLabelAlign="left" for="location"
-          >Адреса</nz-form-label
-        >
+            <nz-form-item nz-col>
+              <nz-form-label [nzSpan]="20" nzLabelAlign="left" for="location"
+                >Адреса</nz-form-label
+              >
 
-        <input
-          nz-input
-          id="location"
-          name="location"
-          [(ngModel)]="contact.location"
-        />
-      </nz-form-item>
+              <input
+                nz-input
+                id="location"
+                name="location"
+                [(ngModel)]="contact().location"
+              />
+            </nz-form-item>
 
-      <nz-form-item nz-col>
-        <nz-form-label [nzSpan]="20" nzLabelAlign="left" for="workDay"
-          >Графік роботи</nz-form-label
-        >
-        <input
-          nz-input
-          id="workDay"
-          name="workDay"
-          [(ngModel)]="contact.workDay"
-        />
-      </nz-form-item>
-      <!-- <textarea
+            <nz-form-item nz-col>
+              <nz-form-label [nzSpan]="20" nzLabelAlign="left" for="workHour"
+                >Графік роботи</nz-form-label
+              >
+              <input
+                nz-input
+                id="workHour"
+                name="workHour"
+                [(ngModel)]="contact().workHour"
+              />
+            </nz-form-item>
+            <!-- <textarea
           nz-input
           placeholder="Autosize height based on content lines"
           nzAutosize
         ></textarea> -->
 
-      <!-- <nz-form-item nz-col>
+            <!-- <nz-form-item nz-col>
       <nz-form-label [nzSpan]="20" nzLabelAlign="left" for="telegram"
         >Telegram</nz-form-label
       >
@@ -93,9 +96,19 @@
       
     </nz-form-item> -->
 
-      <nz-form-item nz-col [nzSpan]="20" class="register-area">
-        <button nz-button nzType="primary">Зберегти</button>
-      </nz-form-item>
+            <nz-form-item nz-col [nzSpan]="20" class="register-area">
+              <button
+                nz-button
+                nzType="primary"
+                type="submit"
+                (click)="submitForm()"
+              >
+                Зберегти
+              </button>
+            </nz-form-item>
+          </div>
+        </form>
+      </div>
     </div>
-  </form>
-</section>
+  </div>
+</div>
